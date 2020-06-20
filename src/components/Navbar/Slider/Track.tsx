@@ -6,6 +6,7 @@ interface Props {
 }
 
 const Track = styled.div<Props>`
+  position: relative;
   margin: 0 10px;
   border: ${(props) => `2px solid ${props.theme.navbar.foreground}`};
   width: 50px;
