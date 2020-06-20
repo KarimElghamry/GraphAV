@@ -9,7 +9,7 @@ const Navbar: React.FC = (): ReactElement => {
   return (
     <Container>
       <LabelText>Graph Algorithms Visualizer</LabelText>
-      <Row justifyContent="center">
+      <Row justifyContent="space-between" margin="0 18px">
         <GithubLogo></GithubLogo>
         <Star></Star>
       </Row>

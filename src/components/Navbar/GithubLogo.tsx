@@ -6,6 +6,7 @@ const GithubLogo = styled.img.attrs({
 })`
   height: 28px;
   width: 28px;
+  margin: 0 10px;
 `;
 
 export default GithubLogo;
