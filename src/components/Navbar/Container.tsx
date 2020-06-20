@@ -7,7 +7,7 @@ interface Props {
 
 const Container = styled.div<Props>`
   width: 100%;
-  height: 80px;
+  height: 50px;
   display: flex;
   justify-content: space-between;
   align-items: center;
