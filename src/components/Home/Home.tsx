@@ -1,9 +1,14 @@
 import React, {ReactElement} from 'react';
+import Navbar from '../Navbar/Navbar';
 
-const Home: React.FC<{}> = (): ReactElement => {
+interface HomeProps {
+  changeTheme: Function;
+}
+
+const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
   return (
     <div>
-      <div></div>
+      <Navbar changeTheme={props.changeTheme}></Navbar>
     </div>
   );
 };

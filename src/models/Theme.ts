@@ -1,4 +1,5 @@
 export interface Theme {
+  name: string;
   navbar: Color;
   sidebar: Color;
   canvas: Color;
