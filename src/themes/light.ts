@@ -7,7 +7,6 @@ const light: Theme = {
   },
   sidebar: {
     background: '#0D1929',
-    foreground: '#02E095',
   },
   canvas: {
     background: '#EFEFEF',
@@ -23,7 +22,6 @@ const light: Theme = {
   },
   edge: {
     background: '#0D1929',
-    foreground: 'white',
   },
 };
 
