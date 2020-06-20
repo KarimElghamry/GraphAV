@@ -2,7 +2,11 @@ import React, {ReactElement} from 'react';
 import Track from './Track';
 import Thumb from './Thumb';
 
-const Slider: React.FC = (): ReactElement => {
+interface SliderProps {
+  changeTheme: Function;
+}
+
+const Slider: React.FC<SliderProps> = (props: SliderProps): ReactElement => {
   return (
     <Track>
       <Thumb></Thumb>

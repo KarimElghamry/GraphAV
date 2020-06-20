@@ -6,12 +6,16 @@ import GithubLogo from './GithubLogo';
 import Star from './Star';
 import Slider from './Slider/Slider';
 
-const Navbar: React.FC = (): ReactElement => {
+interface NavbarProps {
+  changeTheme: Function;
+}
+
+const Navbar: React.FC<NavbarProps> = (props: NavbarProps): ReactElement => {
   return (
     <Container>
       <LabelText>Graph Algorithms Visualizer</LabelText>
       <Row justifyContent="space-between" margin="0 18px">
-        <Slider></Slider>
+        <Slider changeTheme={props.changeTheme}></Slider>
         <GithubLogo></GithubLogo>
         <Star></Star>
       </Row>

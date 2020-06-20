@@ -9,7 +9,7 @@ const App: React.FC<{}> = (): ReactElement => {
 
   return (
     <ThemeProvider theme={globalTheme}>
-      <Home></Home>
+      <Home changeTheme={setGlobalTheme}></Home>
     </ThemeProvider>
   );
 };
