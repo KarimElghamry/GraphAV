@@ -7,7 +7,7 @@ const Star = styled.div`
   height: 0;
   margin-left: 20px;
   margin-right: 20px;
-  margin-bottom: 18%;
+  margin-bottom: 11%;
   border-right: 0.3em solid transparent;
   border-bottom: 0.7em solid white;
   border-left: 0.3em solid transparent;

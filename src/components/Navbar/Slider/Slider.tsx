@@ -1,10 +1,11 @@
 import React, {ReactElement} from 'react';
+import Track from './Track';
 
 const Slider: React.FC = (): ReactElement => {
   return (
-    <div>
+    <Track>
       <div></div>
-    </div>
+    </Track>
   );
 };
 
