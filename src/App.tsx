@@ -10,7 +10,6 @@ const App: React.FC<{}> = (): ReactElement => {
   return (
     <ThemeProvider theme={globalTheme === 'dark' ? themes.dark : themes.light}>
       <Home></Home>
-      <Test toggleTheme={setGlobalTheme}></Test>
     </ThemeProvider>
   );
 };
