@@ -1,6 +1,7 @@
 import {Theme} from '../models/Theme';
 
 const dark: Theme = {
+  name: 'dark',
   navbar: {
     background: '#02E095',
     foreground: 'white',
