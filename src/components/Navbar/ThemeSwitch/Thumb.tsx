@@ -11,6 +11,7 @@ const Thumb = styled.div<Props>`
   height: 20px;
   width: 20px;
   border-radius: 20px;
+  box-sizing: border-box;
   background-color: ${(props) => props.theme.navbar.foreground};
   transition-duration: 0.3s;
 `;
