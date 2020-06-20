@@ -9,5 +9,5 @@ export interface Theme {
 
 interface Color {
   background: string;
-  foreground: string;
+  foreground?: string;
 }
