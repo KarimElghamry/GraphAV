@@ -9,8 +9,8 @@ interface HomeProps {
 const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
   return (
     <div>
-      <Navbar changeTheme={props.changeTheme}></Navbar>
       <SideNav />
+      <Navbar changeTheme={props.changeTheme}></Navbar>
     </div>
   );
 };
