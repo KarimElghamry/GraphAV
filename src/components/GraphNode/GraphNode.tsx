@@ -1,9 +1,10 @@
-import React, {ReactElement, useState, useEffect, useRef} from 'react';
+import React, {ReactElement, useState, useRef, useEffect} from 'react';
 import Container from './Container';
 
 interface Props {
   isActive: boolean;
   content: string;
+  canvasRef: React.RefObject<HTMLDivElement>;
 }
 
 interface Position {
@@ -12,37 +13,87 @@ interface Position {
 }
 
 const GraphNode: React.FC<Props> = (props: Props): ReactElement => {
-  const [isDragged, setIsDragged] = useState<boolean>(false);
   const [position, setPosition] = useState<Position>({top: 0, left: 0});
-  const myRef = useRef<HTMLDivElement>(null);
-  const handleMouseDown = () => {
-    setIsDragged(true);
-  };
-  const handleMouseUp = () => {
-    setIsDragged(false);
-  };
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (isDragged) {
+  const nodeRef = useRef<HTMLDivElement>(null);
+
+  const handleMouseMove = (e: MouseEvent) => {
+    if (nodeRef.current !== null && props.canvasRef.current !== null) {
+      const nodeWidth: number = +nodeRef.current.offsetWidth;
+      const canvasWidth: number = +props.canvasRef.current.offsetWidth;
+      const canvasHeight: number = +props.canvasRef.current.offsetHeight;
+
+      let newLeft: number, newTop: number;
+      if (e.clientX - nodeWidth / 2 <= 0) {
+        newLeft = 0;
+      } else if (e.clientX - nodeWidth / 2 >= canvasWidth - nodeWidth) {
+        newLeft = canvasWidth - nodeWidth;
+      } else {
+        newLeft = e.clientX - nodeWidth / 2;
+      }
+
+      if (e.clientY - nodeWidth <= 0) {
+        newTop = 0;
+      } else if (e.clientY - nodeWidth >= canvasHeight - nodeWidth) {
+        newTop = canvasHeight - nodeWidth;
+      } else {
+        newTop = e.clientY - nodeWidth;
+      }
+
       setPosition({
-        top: position.top + e.movementY,
-        left: position.left + e.movementX,
+        top: newTop,
+        left: newLeft,
       });
     }
   };
+  const handleMouseDown = () => {
+    document.onmousemove = handleMouseMove;
+    document.onmouseup = handleMouseUp;
+  };
+  const handleMouseUp = () => {
+    document.onmousemove = null;
+  };
 
   useEffect(() => {
-    if (myRef.current) {
-      myRef.current.style.transform = `translate(${position.left}px, ${position.top}px)`;
-    }
-  }, [position]);
+    const handleWindowResize = () => {
+      if (nodeRef.current !== null && props.canvasRef.current !== null) {
+        const nodeWidth: number = +nodeRef.current.offsetWidth;
+        const canvasWidth: number = +props.canvasRef.current.offsetWidth;
+        const canvasHeight: number = +props.canvasRef.current.offsetHeight;
+
+        let newLeft: number, newTop: number;
+        if (position.left - nodeWidth / 2 <= 0) {
+          newLeft = 0;
+        } else if (position.left - nodeWidth / 2 >= canvasWidth - nodeWidth) {
+          newLeft = canvasWidth - nodeWidth;
+        } else {
+          newLeft = position.left;
+        }
+
+        if (position.top - nodeWidth <= 0) {
+          newTop = 0;
+        } else if (position.top >= canvasHeight - nodeWidth) {
+          newTop = canvasHeight - nodeWidth;
+        } else {
+          newTop = position.top;
+        }
+
+        setPosition({
+          top: newTop,
+          left: newLeft,
+        });
+      }
+    };
+    window.addEventListener('resize', handleWindowResize);
+    return () => window.removeEventListener('resize', handleWindowResize);
+  }, [nodeRef, props.canvasRef, position]);
 
   return (
     <Container
-      ref={myRef}
       isActive={props.isActive}
       onMouseDown={handleMouseDown}
       onMouseUp={handleMouseUp}
-      onMouseMove={handleMouseMove}
+      position={position}
+      ref={nodeRef}
     >
       {props.content}
     </Container>
