@@ -8,6 +8,7 @@ const light: Theme = {
   },
   sidebar: {
     background: '#0D1929',
+    foreground: 'white'
   },
   canvas: {
     background: '#EFEFEF',
