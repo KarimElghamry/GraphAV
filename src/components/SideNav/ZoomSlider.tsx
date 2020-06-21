@@ -26,10 +26,11 @@ const sliderTrackStyles = (props: Props) => (`
 `);
 
 const ZoomSlider = styled.div`
-    width: 250px;
+    width: 200px;
     height: 25px;
     background-color: transparent;
     border: none;
+    padding-left:20px;
     .slider {
         -webkit-appearance: none;
         width: 100%;
