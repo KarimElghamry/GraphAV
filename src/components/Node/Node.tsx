@@ -1,11 +1,12 @@
 import React, {ReactElement} from 'react';
+import Container from './Container';
 
-const Node: React.FC = (): ReactElement => {
-  return (
-    <div>
-      <div></div>
-    </div>
-  );
+interface Props {
+  isActive: boolean;
+}
+
+const Node: React.FC<Props> = (props: Props): ReactElement => {
+  return <Container isActive={props.isActive}></Container>;
 };
 
 export default Node;

@@ -8,6 +8,9 @@ interface Props {
 
 const Container = styled.div<Props>`
   position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   height: 88px;
   width: 88px;
   left: calc(50% - 44px);
