@@ -31,6 +31,8 @@ const Container = styled.div<Props>`
   border-style: solid;
   border-color: ${(props) => props.theme.edge.background};
   transition-duration: 0.3s;
+  user-select: none;
+  cursor: move;
 `;
 
 export default Container;
