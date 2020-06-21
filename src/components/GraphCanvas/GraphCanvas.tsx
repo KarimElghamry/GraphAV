@@ -1,11 +1,8 @@
 import React, {ReactElement} from 'react';
+import Container from './Container';
 
 const GraphCanvas: React.FC = (): ReactElement => {
-  return (
-    <div>
-      <div></div>
-    </div>
-  );
+  return <Container></Container>;
 };
 
 export default GraphCanvas;
