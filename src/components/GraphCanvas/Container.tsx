@@ -6,7 +6,7 @@ interface Props {
 }
 
 const Container = styled.div<Props>`
-  height: 100%;
+  height: calc(100vh - 50px);
   width: 100%;
   background-color: ${(props) => props.theme.canvas.background};
   transition-duration: 0.3s;
