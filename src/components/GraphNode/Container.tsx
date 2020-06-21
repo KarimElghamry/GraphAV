@@ -11,6 +11,7 @@ const Container = styled.div<Props>`
   display: flex;
   justify-content: center;
   align-items: center;
+  font-size: 24px;
   height: 88px;
   width: 88px;
   left: calc(50% - 44px);
@@ -28,7 +29,8 @@ const Container = styled.div<Props>`
   border-radius: 88px;
   border-width: 2px;
   border-style: solid;
-  border-color: ${(props) => props.theme.edge};
+  border-color: ${(props) => props.theme.edge.background};
+  transition-duration: 0.3s;
 `;
 
 export default Container;

@@ -11,9 +11,8 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
   return (
     <div>
       <Navbar changeTheme={props.changeTheme}></Navbar>
-      <GraphCanvas>
-        <GraphNode isActive={true}></GraphNode>
-      </GraphCanvas>
+      <GraphCanvas></GraphCanvas>
+      <GraphNode isActive={false} content="1"></GraphNode>
     </div>
   );
 };
