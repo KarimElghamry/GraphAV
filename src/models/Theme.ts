@@ -6,6 +6,7 @@ export interface Theme {
   nodeActive: Color;
   nodeInactive: Color;
   edge: Color;
+  slider: Color;
 }
 
 interface Color {
