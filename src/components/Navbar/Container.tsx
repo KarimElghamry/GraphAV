@@ -1,11 +1,13 @@
 import styled from 'styled-components';
-import {Theme} from '../../models/Theme';
+import { Theme } from '../../models/Theme';
 
 interface Props {
   theme: Theme;
 }
 
 const Container = styled.div<Props>`
+  z-index:2;
+  position:relative;
   width: 100%;
   height: 50px;
   display: flex;
