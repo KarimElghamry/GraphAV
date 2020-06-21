@@ -1,4 +1,4 @@
-import {Theme} from '../models/Theme';
+import { Theme } from '../models/Theme';
 
 const dark: Theme = {
   name: 'dark',
@@ -24,6 +24,10 @@ const dark: Theme = {
   edge: {
     background: 'white',
   },
+  slider: {
+    background: '#0D1929',
+    foreground: 'white',
+  }
 };
 
 export default dark;

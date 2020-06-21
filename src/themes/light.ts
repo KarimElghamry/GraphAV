@@ -1,4 +1,4 @@
-import {Theme} from '../models/Theme';
+import { Theme } from '../models/Theme';
 
 const light: Theme = {
   name: 'light',
@@ -8,6 +8,7 @@ const light: Theme = {
   },
   sidebar: {
     background: '#0D1929',
+    foreground: 'white'
   },
   canvas: {
     background: '#EFEFEF',
@@ -24,6 +25,10 @@ const light: Theme = {
   edge: {
     background: '#0D1929',
   },
+  slider: {
+    background: '#02E095',
+    foreground: '#0D1929',
+  }
 };
 
 export default light;
