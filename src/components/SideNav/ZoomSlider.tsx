@@ -16,11 +16,11 @@ const sliderThumbStyles = (props: Props) => (`
     
 `);
 
-const sliderTrackStyles = (props: Props) => (`
+const sliderTrackStyles = (`
     width:100%;
     height:3px;
     cursor: pointer;
-    background: ${props.theme.slider.background};
+    background: #EFEFEF;
     border: none;
     border-radius: 200px;
 `);
@@ -59,17 +59,21 @@ const ZoomSlider = styled.div`
         }
 
         &::-webkit-slider-runnable-track{
-            ${(props) => sliderTrackStyles(props)}
+            ${sliderTrackStyles}
 
         }
 
         &::-moz-range-track{
-            ${(props) => sliderTrackStyles(props)}
+            ${sliderTrackStyles}
 
         }
 
         &::-ms-track {
-            ${(props) => sliderTrackStyles(props)}
+            ${sliderTrackStyles}
+        }
+
+        &::-moz-range-progress {
+             background: ${(props) => props.theme.slider.background};
         }
     }
 `
