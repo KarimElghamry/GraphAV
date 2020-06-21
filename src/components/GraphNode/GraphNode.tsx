@@ -5,8 +5,9 @@ interface Props {
   isActive: boolean;
 }
 
-const Node: React.FC<Props> = (props: Props): ReactElement => {
+const GraphNode: React.FC<Props> = (props: Props): ReactElement => {
+  console.log(1212);
   return <Container isActive={props.isActive}></Container>;
 };
 
-export default Node;
+export default GraphNode;
