@@ -1,10 +1,6 @@
 import styled from 'styled-components';
-import {Theme} from '../../models/Theme';
-
-interface Position {
-  top: number;
-  left: number;
-}
+import Theme from '../../models/Theme';
+import Position from '../../models/Position';
 
 interface Props {
   theme: Theme;
