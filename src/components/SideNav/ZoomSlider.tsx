@@ -1,18 +1,18 @@
-import styled from "styled-components";
-import { Theme } from '../../models/Theme';
+import styled from 'styled-components';
+import Theme from '../../models/Theme';
 
 interface Props {
-    theme: Theme;
+  theme: Theme;
 }
 
-const sliderTrackStyles = (`
+const sliderTrackStyles = `
     width:100%;
     height:3px;
     cursor: pointer;
     background: #EFEFEF;
     border: none;
     border-radius: 200px;
-`);
+`;
 
 const ZoomSlider = styled.div`
     width: 200px;
@@ -77,6 +77,6 @@ const ZoomSlider = styled.div`
              background: ${(props) => props.theme.slider.background};
         }
     }
-`
+`;
 
-export default ZoomSlider
+export default ZoomSlider;

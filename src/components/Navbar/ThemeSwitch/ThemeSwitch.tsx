@@ -2,7 +2,7 @@ import React, {ReactElement} from 'react';
 import Track from './Track';
 import Thumb from './Thumb';
 import themes from '../../../themes';
-import {Theme} from '../../../models/Theme';
+import Theme from '../../../models/Theme';
 
 interface ThemeSwitchProps {
   changeTheme: Function;
