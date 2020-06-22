@@ -4,7 +4,7 @@ import ZoomSlider from './ZoomSlider';
 import ItemText from './ItemText';
 
 const SideNav: React.FC = (): ReactElement => {
-  const [isVisible, setIsVisible] = useState<Boolean>();
+  const [isVisible, setIsVisible] = useState<Boolean>(false);
 
   return (
     <StyledSideNav>

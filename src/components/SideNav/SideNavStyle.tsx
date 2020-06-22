@@ -1,6 +1,7 @@
-import styled from "styled-components";
+import styled from 'styled-components';
+
 const StyledSideNav = styled.div`
-  position: fixed;    
+  position: fixed;
   height: 100%;
   width: 250px;
   z-index: 1;
@@ -11,4 +12,4 @@ const StyledSideNav = styled.div`
   transition-property: background-color;
 `;
 
-export default StyledSideNav
+export default StyledSideNav;
