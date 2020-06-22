@@ -3,6 +3,7 @@ import StyledSideNav from './SideNavStyle';
 import ZoomSlider from './ZoomSlider';
 import ItemText from './ItemText';
 import ToggleButton from './ToggleButton';
+import Arrow from './Arrow';
 
 const SideNav: React.FC = (): ReactElement => {
   const [isVisible, setIsVisible] = useState<boolean>(false);
@@ -12,10 +13,9 @@ const SideNav: React.FC = (): ReactElement => {
   };
   return (
     <StyledSideNav isVisible={isVisible}>
-      <ToggleButton
-        isVisible={isVisible}
-        onClick={() => toggleVisibility()}
-      ></ToggleButton>
+      <ToggleButton isVisible={isVisible} onClick={() => toggleVisibility()}>
+        <Arrow></Arrow>
+      </ToggleButton>
       <ItemText>Zoom</ItemText>
       <ZoomSlider>
         <input type="range" className="slider" />
