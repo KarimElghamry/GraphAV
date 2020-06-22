@@ -10,13 +10,14 @@ interface Props {
 
 const GraphNode: React.FC<Props> = (props: Props): ReactElement => {
   const [position, setPosition] = useState<Position>({top: 600, left: 600});
-  const nodeRef = useRef<HTMLDivElement>(null);
+  const nodeRef: React.RefObject<HTMLDivElement> = useRef<HTMLDivElement>(null);
+  const canvasRef: React.RefObject<HTMLDivElement> = props.canvasRef;
 
   const handleMouseMove = (e: MouseEvent) => {
-    if (nodeRef.current !== null && props.canvasRef.current !== null) {
+    if (nodeRef.current !== null && canvasRef.current !== null) {
       const nodeWidth: number = +nodeRef.current.offsetWidth;
-      const canvasWidth: number = +props.canvasRef.current.offsetWidth;
-      const canvasHeight: number = +props.canvasRef.current.offsetHeight;
+      const canvasWidth: number = +canvasRef.current.offsetWidth;
+      const canvasHeight: number = +canvasRef.current.offsetHeight;
 
       let newLeft: number = e.clientX - nodeWidth / 2;
       let newTop: number = e.clientY - nodeWidth;
@@ -50,10 +51,10 @@ const GraphNode: React.FC<Props> = (props: Props): ReactElement => {
 
   useEffect(() => {
     const handleWindowResize = () => {
-      if (nodeRef.current !== null && props.canvasRef.current !== null) {
+      if (nodeRef.current !== null && canvasRef.current !== null) {
         const nodeWidth: number = +nodeRef.current.offsetWidth;
-        const canvasWidth: number = +props.canvasRef.current.offsetWidth;
-        const canvasHeight: number = +props.canvasRef.current.offsetHeight;
+        const canvasWidth: number = +canvasRef.current.offsetWidth;
+        const canvasHeight: number = +canvasRef.current.offsetHeight;
 
         let newLeft: number = position.left;
         let newTop: number = position.top;
@@ -78,7 +79,7 @@ const GraphNode: React.FC<Props> = (props: Props): ReactElement => {
     };
     window.addEventListener('resize', handleWindowResize);
     return () => window.removeEventListener('resize', handleWindowResize);
-  }, [nodeRef, props.canvasRef, position]);
+  }, [nodeRef, canvasRef, position]);
 
   return (
     <Container
