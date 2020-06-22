@@ -18,21 +18,19 @@ const GraphNode: React.FC<Props> = (props: Props): ReactElement => {
       const canvasWidth: number = +props.canvasRef.current.offsetWidth;
       const canvasHeight: number = +props.canvasRef.current.offsetHeight;
 
-      let newLeft: number, newTop: number;
+      let newLeft: number = e.clientX - nodeWidth / 2;
+      let newTop: number = e.clientY - nodeWidth;
+
       if (e.clientX - nodeWidth / 2 <= 0) {
         newLeft = 0;
       } else if (e.clientX - nodeWidth / 2 >= canvasWidth - nodeWidth) {
         newLeft = canvasWidth - nodeWidth;
-      } else {
-        newLeft = e.clientX - nodeWidth / 2;
       }
 
       if (e.clientY - nodeWidth <= 0) {
         newTop = 0;
       } else if (e.clientY - nodeWidth >= canvasHeight - nodeWidth) {
         newTop = canvasHeight - nodeWidth;
-      } else {
-        newTop = e.clientY - nodeWidth;
       }
 
       setPosition({
@@ -41,6 +39,7 @@ const GraphNode: React.FC<Props> = (props: Props): ReactElement => {
       });
     }
   };
+
   const handleMouseDown = () => {
     document.onmousemove = handleMouseMove;
     document.onmouseup = handleMouseUp;
