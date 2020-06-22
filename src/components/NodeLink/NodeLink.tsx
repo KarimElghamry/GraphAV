@@ -11,12 +11,12 @@ interface Link {
     lineY2: number;
 }
 
-interface Props {
+interface NodeLinkProps {
     n1: Position;
     n2: Position;
 }
 
-const NodeLink: React.FC<Props> = (props: Props): ReactElement => {
+const NodeLink: React.FC<NodeLinkProps> = (props: NodeLinkProps): ReactElement => {
 
     const createLine = (n1: Position, n2: Position): Link => {
         return {
