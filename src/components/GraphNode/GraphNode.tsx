@@ -55,21 +55,19 @@ const GraphNode: React.FC<Props> = (props: Props): ReactElement => {
         const canvasWidth: number = +props.canvasRef.current.offsetWidth;
         const canvasHeight: number = +props.canvasRef.current.offsetHeight;
 
-        let newLeft: number, newTop: number;
+        let newLeft: number = position.left;
+        let newTop: number = position.top;
+
         if (position.left - nodeWidth / 2 <= 0) {
           newLeft = 0;
         } else if (position.left - nodeWidth / 2 >= canvasWidth - nodeWidth) {
           newLeft = canvasWidth - nodeWidth;
-        } else {
-          newLeft = position.left;
         }
 
         if (position.top - nodeWidth <= 0) {
           newTop = 0;
         } else if (position.top >= canvasHeight - nodeWidth) {
           newTop = canvasHeight - nodeWidth;
-        } else {
-          newTop = position.top;
         }
 
         setPosition({
