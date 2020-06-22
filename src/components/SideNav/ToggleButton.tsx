@@ -6,16 +6,18 @@ interface Props {
 
 const ToggleButton = styled.div.attrs((props: Props) => ({
   width: '30px',
-  isVisible: props.isVisible,
+  isVisible: props.isVisible ?? false,
 }))`
   position: fixed;
-  left: calc(250px - ${(props) => props.width} / 2);
+  left: ${(props) =>
+    props.isVisible ? `calc(250px - ${props.width} / 2)` : 0};
   top: 50%;
   z-index: 2;
   height: ${(props) => props.width};
   width: ${(props) => props.width};
   border-radius: ${(props) => props.width};
   background-color: red;
+  transition-duration: 0.3s;
 `;
 
 export default ToggleButton;
