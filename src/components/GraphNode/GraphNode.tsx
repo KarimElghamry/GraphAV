@@ -49,6 +49,7 @@ const GraphNode: React.FC<Props> = (props: Props): ReactElement => {
     document.onmousemove = null;
   };
 
+  //the following is to handle boundries of canvas on screen resize (zooming)
   useEffect(() => {
     const handleWindowResize = () => {
       if (nodeRef.current !== null && canvasRef.current !== null) {
