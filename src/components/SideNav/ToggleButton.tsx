@@ -14,7 +14,7 @@ const ToggleButton = styled.div.attrs((props: Props) => ({
   align-items: center;
   left: ${(props) =>
     props.isVisible
-      ? `calc(250px - ${props.width}px / 2)`
+      ? `calc(250px - ${props.width}px / 2 - 8px)`
       : `-${props.width / 2}px`};
   top: 50%;
   z-index: 2;
