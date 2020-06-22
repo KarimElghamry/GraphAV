@@ -1,4 +1,4 @@
-import React, {ReactElement, useState, useRef, useEffect} from 'react';
+import React, { ReactElement, useState, useRef, useEffect } from 'react';
 import Container from './Container';
 
 interface Props {
@@ -13,7 +13,7 @@ interface Position {
 }
 
 const GraphNode: React.FC<Props> = (props: Props): ReactElement => {
-  const [position, setPosition] = useState<Position>({top: 0, left: 0});
+  const [position, setPosition] = useState<Position>({ top: 500, left: 500 });
   const nodeRef = useRef<HTMLDivElement>(null);
 
   const handleMouseMove = (e: MouseEvent) => {
