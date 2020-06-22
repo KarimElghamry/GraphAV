@@ -1,10 +1,6 @@
 import React, { ReactElement } from 'react';
 import StyledLink from "./StyledLink"
-
-interface Position {
-    top: number;
-    left: number;
-}
+import Position from "../../models/Position"
 
 interface Link {
     height: number;
@@ -15,7 +11,12 @@ interface Link {
     lineY2: number;
 }
 
-const NodeLink: React.FC = (): ReactElement => {
+interface Props {
+    n1: Position;
+    n2: Position;
+}
+
+const NodeLink: React.FC<Props> = (props: Props): ReactElement => {
 
     const createLine = (n1: Position, n2: Position): Link => {
         return {
@@ -28,8 +29,8 @@ const NodeLink: React.FC = (): ReactElement => {
         } as Link;
     }
 
-    const { height, width, lineX1, lineX2, lineY1, lineY2 }: Link
-        = createLine({ top: 400, left: 700 }, { top: 550, left: 550 })
+    const { height, width, lineX1, lineX2, lineY1, lineY2 }
+        : Link = createLine(props.n1, props.n2);
     return (
         <svg height={height} width={width}>
             <StyledLink
