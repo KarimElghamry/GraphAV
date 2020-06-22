@@ -1,6 +1,6 @@
 import React, {ReactElement, useState, useRef, useEffect} from 'react';
 import Container from './Container';
-import {Position} from '../../models/Position';
+import Position from '../../models/Position';
 
 interface Props {
   isActive: boolean;
