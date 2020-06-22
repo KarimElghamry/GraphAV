@@ -5,17 +5,6 @@ interface Props {
     theme: Theme;
 }
 
-const sliderThumbStyles = (props: Props) => (`
-    width:16px;
-    height:16px;
-    cursor: pointer;
-    background: ${props.theme.slider.background};
-    border: 1px solid;
-    border-color: ${props.theme.slider.foreground};
-    border-radius: 200px;
-    
-`);
-
 const sliderTrackStyles = (`
     width:100%;
     height:3px;
@@ -31,6 +20,10 @@ const ZoomSlider = styled.div`
     background-color: transparent;
     border: none;
     padding-left:20px;
+    input{
+        outline:none;
+    }
+
     .slider {
         -webkit-appearance: none;
         width: 100%;
@@ -39,19 +32,23 @@ const ZoomSlider = styled.div`
 
         &::-webkit-slider-thumb {
             -webkit-appearance: none;
-            margin-top:-6px;    /*fix chrome thumb not alligning with track*/
+            margin-top:-7px;    /*fix chrome thumb not alligning with track*/
             appearance:none;
-            width:16px;
-            height:16px;
-            cursor: pointer;
+            width:18px;
+            height:18px;
             background: ${(props) => props.theme.slider.background};
             border: 1px solid;
             border-color: ${(props) => props.theme.slider.foreground};
             border-radius: 200px;
         }
-
+        
         &::-moz-range-thumb {
-            ${(props) => sliderThumbStyles(props)}
+            width:16px;
+            height:16px;
+            background: ${(props) => props.theme.slider.background};
+            border: 1px solid;
+            border-color: ${(props) => props.theme.slider.foreground};
+            border-radius: 200px;        
         }
 
         &::-ms-thumb {
