@@ -6,6 +6,7 @@ const LabelText = styled.div`
   margin-right: 20px;
   text-overflow: ellipsis;
   white-space: nowrap;
+  user-select: none;
 `;
 
 export default LabelText;
