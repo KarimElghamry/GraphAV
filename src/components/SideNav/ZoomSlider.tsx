@@ -39,28 +39,32 @@ const ZoomSlider = styled.div`
 
         &::-webkit-slider-thumb {
             -webkit-appearance: none;
-            appearance:none
-            ${(props) => sliderThumbStyles(props)}
+            margin-top:-6px;    /*fix chrome thumb not alligning with track*/
+            appearance:none;
+            width:16px;
+            height:16px;
+            cursor: pointer;
+            background: ${(props) => props.theme.slider.background};
+            border: 1px solid;
+            border-color: ${(props) => props.theme.slider.foreground};
+            border-radius: 200px;
         }
 
         &::-moz-range-thumb {
             ${(props) => sliderThumbStyles(props)}
         }
 
+        &::-ms-thumb {
+            margin: 0px; /*removes the margin to fix thumb and track allignment in chrome from ie*/
+        }
+
         &::-moz-focus-outer {
             border: 0; /* removes dotted border when clicked on in firefox */
         }
 
-        &::-ms-track {
-            width: 100%;
-            background: transparent; 
-            border-color: transparent;
-            color: transparent;
-        }
-
         &::-webkit-slider-runnable-track{
             ${sliderTrackStyles}
-
+            background: ${(props) => props.theme.slider.background};
         }
 
         &::-moz-range-track{
