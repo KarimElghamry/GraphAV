@@ -5,7 +5,7 @@ interface Props {
 }
 
 const ToggleButton = styled.div.attrs((props: Props) => ({
-  width: 30,
+  width: 32,
   isVisible: props.isVisible ?? false,
 }))`
   position: fixed;

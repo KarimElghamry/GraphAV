@@ -14,7 +14,7 @@ const SideNav: React.FC = (): ReactElement => {
   return (
     <StyledSideNav isVisible={isVisible}>
       <ToggleButton isVisible={isVisible} onClick={() => toggleVisibility()}>
-        <Arrow></Arrow>
+        <Arrow isVisible={isVisible}></Arrow>
       </ToggleButton>
       <ItemText>Zoom</ItemText>
       <ZoomSlider>
