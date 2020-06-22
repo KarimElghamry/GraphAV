@@ -11,7 +11,7 @@ const SideNav: React.FC = (): ReactElement => {
     setIsVisible((prev) => !prev);
   };
   return (
-    <StyledSideNav>
+    <StyledSideNav isVisible={isVisible}>
       <ToggleButton
         isVisible={isVisible}
         onClick={() => toggleVisibility()}

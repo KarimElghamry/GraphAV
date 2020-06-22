@@ -5,19 +5,22 @@ interface Props {
 }
 
 const ToggleButton = styled.div.attrs((props: Props) => ({
-  width: '30px',
+  width: 30,
   isVisible: props.isVisible ?? false,
 }))`
   position: fixed;
   left: ${(props) =>
-    props.isVisible ? `calc(250px - ${props.width} / 2)` : 0};
+    props.isVisible
+      ? `calc(250px - ${props.width}px / 2)`
+      : `-${props.width / 2}px`};
   top: 50%;
   z-index: 2;
-  height: ${(props) => props.width};
-  width: ${(props) => props.width};
-  border-radius: ${(props) => props.width};
+  height: ${(props) => `${props.width}px`};
+  width: ${(props) => `${props.width}px`};
+  border-radius: ${(props) => `${props.width}px`};
   background-color: red;
   transition-duration: 0.3s;
+  cursor: pointer;
 `;
 
 export default ToggleButton;
