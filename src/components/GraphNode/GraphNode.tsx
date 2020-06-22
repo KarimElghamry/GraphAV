@@ -1,15 +1,11 @@
 import React, {ReactElement, useState, useRef, useEffect} from 'react';
 import Container from './Container';
+import {Position} from '../../models/Position';
 
 interface Props {
   isActive: boolean;
   content: string;
   canvasRef: React.RefObject<HTMLDivElement>;
-}
-
-interface Position {
-  top: number;
-  left: number;
 }
 
 const GraphNode: React.FC<Props> = (props: Props): ReactElement => {
