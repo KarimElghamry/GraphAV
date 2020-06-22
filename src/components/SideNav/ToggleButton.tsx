@@ -1,10 +1,15 @@
 import styled from 'styled-components';
 
-const ToggleButton = styled.div.attrs({
-  width: '25px',
-})`
+interface Props {
+  isVisible: boolean;
+}
+
+const ToggleButton = styled.div.attrs((props: Props) => ({
+  width: '30px',
+  isVisible: props.isVisible,
+}))`
   position: fixed;
-  left: 250px;
+  left: calc(250px - ${(props) => props.width} / 2);
   top: 50%;
   z-index: 2;
   height: ${(props) => props.width};
