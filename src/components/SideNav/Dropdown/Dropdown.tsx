@@ -4,7 +4,11 @@ import Arrow from './Arrow';
 import ContentContainer from './ContentContainer';
 import ContentTile from './ContentTile';
 
-const Dropdown: React.FC = (): ReactElement => {
+interface Props {
+  content: Array<string>;
+}
+
+const Dropdown: React.FC<Props> = (props: Props): ReactElement => {
   const [isExpanded, setIsExpanded] = useState<boolean>(false);
   const toggleDropdown = () => {
     setIsExpanded((prev) => !prev);
