@@ -1,10 +1,11 @@
 import React, {ReactElement} from 'react';
+import Container from './Container';
 
 const Dropdown: React.FC = (): ReactElement => {
   return (
-    <div>
+    <Container>
       <div></div>
-    </div>
+    </Container>
   );
 };
 
