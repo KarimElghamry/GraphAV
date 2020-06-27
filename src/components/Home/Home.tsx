@@ -21,7 +21,7 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
 
   return (
     <div>
-      <SideNav />
+      <SideNav adjacencyList={adjacencyList} />
       <Navbar changeTheme={props.changeTheme}></Navbar>
       <GraphCanvas adjacencyList={adjacencyList}></GraphCanvas>
     </div>

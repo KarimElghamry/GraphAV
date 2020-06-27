@@ -6,6 +6,7 @@ interface Props {
 }
 
 const ContentContainer = styled.div<Props>`
+  z-index: 9999;
   overflow-y: scroll;
   overflow-x: hidden;
   position: absolute;

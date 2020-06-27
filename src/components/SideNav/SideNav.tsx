@@ -5,6 +5,13 @@ import ItemText from './ItemText';
 import ToggleButton from './ToggleButton';
 import Arrow from './Arrow';
 import Dropdown from './Dropdown/Dropdown';
+import Row from '../common/Row';
+import OptionButton from './Options/OptionButton';
+import {AddIcon, UndirectedIcon, DirectedIcon} from './Options/OptionIcons';
+
+interface Props {
+  adjacencyList: Array<Array<number>>;
+}
 
 const sampleAlgorithms: Array<string> = [
   'DFS',
@@ -15,8 +22,9 @@ const sampleAlgorithms: Array<string> = [
   'Bellman',
 ];
 
-const SideNav: React.FC = (): ReactElement => {
+const SideNav: React.FC<Props> = (props: Props): ReactElement => {
   const [isVisible, setIsVisible] = useState<boolean>(true);
+  const adjacencyList = props.adjacencyList;
 
   const toggleVisibility = () => {
     setIsVisible((prev) => !prev);
@@ -32,6 +40,24 @@ const SideNav: React.FC = (): ReactElement => {
       </ZoomSlider>
       <ItemText>Algorithm</ItemText>
       <Dropdown content={sampleAlgorithms}></Dropdown>
+      <ItemText>Starting Node</ItemText>
+      <Dropdown
+        content={adjacencyList.map((val: Array<number>, index: number) => {
+          return (index + 1).toString();
+        })}
+      ></Dropdown>
+      <ItemText>Options</ItemText>
+      <Row justifyContent="space-evenly" margin="10px 0px">
+        <OptionButton>
+          <AddIcon></AddIcon>
+        </OptionButton>
+        <OptionButton>
+          <UndirectedIcon></UndirectedIcon>
+        </OptionButton>
+        <OptionButton>
+          <DirectedIcon></DirectedIcon>
+        </OptionButton>
+      </Row>
     </StyledSideNav>
   );
 };
