@@ -6,6 +6,10 @@ import ToggleButton from './ToggleButton';
 import Arrow from './Arrow';
 import Dropdown from './Dropdown/Dropdown';
 
+interface Props {
+  adjacencyList: Array<Array<number>>;
+}
+
 const sampleAlgorithms: Array<string> = [
   'DFS',
   'BFS',
@@ -15,8 +19,9 @@ const sampleAlgorithms: Array<string> = [
   'Bellman',
 ];
 
-const SideNav: React.FC = (): ReactElement => {
+const SideNav: React.FC<Props> = (props: Props): ReactElement => {
   const [isVisible, setIsVisible] = useState<boolean>(true);
+  const adjacencyList = props.adjacencyList;
 
   const toggleVisibility = () => {
     setIsVisible((prev) => !prev);
@@ -32,6 +37,12 @@ const SideNav: React.FC = (): ReactElement => {
       </ZoomSlider>
       <ItemText>Algorithm</ItemText>
       <Dropdown content={sampleAlgorithms}></Dropdown>
+      <ItemText>Starting Node</ItemText>
+      <Dropdown
+        content={adjacencyList.map((val: Array<number>, index: number) => {
+          return (index + 1).toString();
+        })}
+      ></Dropdown>
     </StyledSideNav>
   );
 };
