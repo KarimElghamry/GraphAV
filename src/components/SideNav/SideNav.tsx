@@ -5,6 +5,8 @@ import ItemText from './ItemText';
 import ToggleButton from './ToggleButton';
 import Arrow from './Arrow';
 import Dropdown from './Dropdown/Dropdown';
+import Row from '../common/Row';
+import OptionButton from './OptionButton';
 
 interface Props {
   adjacencyList: Array<Array<number>>;
@@ -43,6 +45,12 @@ const SideNav: React.FC<Props> = (props: Props): ReactElement => {
           return (index + 1).toString();
         })}
       ></Dropdown>
+      <ItemText>Options</ItemText>
+      <Row justifyContent="space-evenly" margin="10px 0px">
+        <OptionButton></OptionButton>
+        <OptionButton></OptionButton>
+        <OptionButton></OptionButton>
+      </Row>
     </StyledSideNav>
   );
 };
