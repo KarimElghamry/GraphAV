@@ -15,6 +15,10 @@ const StyledSideNav = styled.div<Props>`
   padding-top: 64px;
   transition-duration: 0.3s;
   transition-property: background-color, left;
+
+  @media (max-width: 550px) {
+    padding-top: 104px;
+  }
 `;
 
 export default StyledSideNav;

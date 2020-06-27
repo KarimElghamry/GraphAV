@@ -4,9 +4,19 @@ import ZoomSlider from './ZoomSlider';
 import ItemText from './ItemText';
 import ToggleButton from './ToggleButton';
 import Arrow from './Arrow';
+import Dropdown from './Dropdown/Dropdown';
+
+const sampleAlgorithms: Array<string> = [
+  'DFS',
+  'BFS',
+  'Dijkstra',
+  'Prim',
+  'A*',
+  'Bellman',
+];
 
 const SideNav: React.FC = (): ReactElement => {
-  const [isVisible, setIsVisible] = useState<boolean>(false);
+  const [isVisible, setIsVisible] = useState<boolean>(true);
 
   const toggleVisibility = () => {
     setIsVisible((prev) => !prev);
@@ -20,6 +30,8 @@ const SideNav: React.FC = (): ReactElement => {
       <ZoomSlider>
         <input type="range" className="slider" />
       </ZoomSlider>
+      <ItemText>Algorithm</ItemText>
+      <Dropdown content={sampleAlgorithms}></Dropdown>
     </StyledSideNav>
   );
 };

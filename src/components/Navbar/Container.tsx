@@ -17,6 +17,14 @@ const Container = styled.div<Props>`
   color: ${(props) => props.theme.navbar.foreground};
   transition-duration: 0.3s;
   transition-property: background-color;
+
+  @media (max-width: 550px) {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    height: 90px;
+  }
 `;
 
 export default Container;
