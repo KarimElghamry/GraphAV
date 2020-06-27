@@ -10,6 +10,7 @@ interface Props {
 
 const Dropdown: React.FC<Props> = (props: Props): ReactElement => {
   const [isExpanded, setIsExpanded] = useState<boolean>(false);
+  const content = props.content;
   const toggleDropdown = () => {
     setIsExpanded((prev) => !prev);
   };
@@ -19,10 +20,9 @@ const Dropdown: React.FC<Props> = (props: Props): ReactElement => {
       <div style={{marginLeft: '12px'}}>DFS</div>
       <Arrow></Arrow>
       <ContentContainer isVisible={isExpanded}>
-        <ContentTile>BFS</ContentTile>
-        <ContentTile>BFS</ContentTile>
-        <ContentTile>BFS</ContentTile>
-        <ContentTile>BFS</ContentTile>
+        {content.map((val: string) => {
+          return <ContentTile>{val}</ContentTile>;
+        })}
       </ContentContainer>
     </Container>
   );
