@@ -14,7 +14,7 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
     <div>
       <SideNav />
       <Navbar changeTheme={props.changeTheme}></Navbar>
-      <GraphCanvas></GraphCanvas>
+      <GraphCanvas adjacencyList={adjacencyList}></GraphCanvas>
     </div>
   );
 };
