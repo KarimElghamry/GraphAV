@@ -12,8 +12,8 @@ const Container = styled.div.attrs({
   height: 30px;
   border-radius: 9px;
   margin-left: calc(50% - ${(props) => `${props.width / 2}px`});
-  margin-top: 20px;
-  margin-bottom: 20px;
+  margin-top: 10px;
+  margin-bottom: 10px;
   color: white;
   background-color: ${(props) =>
     props.theme.name === 'dark'
