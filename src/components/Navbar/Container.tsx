@@ -23,7 +23,7 @@ const Container = styled.div<Props>`
     margin-left: auto;
     margin-right: auto;
     text-align: center;
-    height: 100px;
+    height: 90px;
   }
 `;
 

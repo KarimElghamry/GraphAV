@@ -16,7 +16,7 @@ const Container = styled.div<Props>`
   transition-property: background-color;
 
   @media (max-width: 550px) {
-    height: calc(100vh - 100px);
+    height: calc(100vh - 90px);
   }
 `;
 
