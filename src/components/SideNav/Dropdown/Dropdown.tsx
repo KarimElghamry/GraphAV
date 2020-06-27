@@ -7,7 +7,7 @@ import ContentTile from './ContentTile';
 interface Props {
   content: Array<string>;
 }
-
+//TODO: lift selectedTile state up
 const Dropdown: React.FC<Props> = (props: Props): ReactElement => {
   const [isExpanded, setIsExpanded] = useState<boolean>(false);
   const [selectedTile, setSelectedTile] = useState<number>(0);
