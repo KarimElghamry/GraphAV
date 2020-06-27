@@ -4,6 +4,7 @@ import themes from '../../../themes';
 const Container = styled.div.attrs({
   width: 110,
 })`
+  user-select: none;
   position: relative;
   display: flex;
   justify-content: space-between;
