@@ -2,10 +2,10 @@ import styled from 'styled-components';
 import themes from '../../../themes';
 
 const Container = styled.div.attrs({
-  width: 130,
+  width: 110,
 })`
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   font-size: 22px;
   width: ${(props) => `${props.width}px`};

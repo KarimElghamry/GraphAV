@@ -6,6 +6,7 @@ const Arrow = styled.div`
   border-left: 6px solid transparent;
   border-right: 6px solid transparent;
   border-top: 10px solid white;
+  margin-right: 12px;
 `;
 
 export default Arrow;
