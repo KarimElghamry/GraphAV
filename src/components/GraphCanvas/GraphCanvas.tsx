@@ -12,16 +12,13 @@ const GraphCanvas: React.FC<Props> = (props: Props): ReactElement => {
 
   return (
     <Container ref={canvasRef}>
-      {/* <GraphNode canvasRef={canvasRef} isActive={false} content="1"></GraphNode>
-      <GraphNode canvasRef={canvasRef} isActive={false} content="2"></GraphNode>
-      <GraphNode canvasRef={canvasRef} isActive={false} content="3"></GraphNode> */}
       {adjacencyList.map((val: Array<number>, index: number) => {
         return (
           <GraphNode
             key={index}
             canvasRef={canvasRef}
             isActive={false}
-            content={index.toString()}
+            content={(index + 1).toString()}
           ></GraphNode>
         );
       })}
