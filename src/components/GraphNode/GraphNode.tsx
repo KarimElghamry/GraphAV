@@ -9,7 +9,7 @@ interface Props {
 }
 
 const GraphNode: React.FC<Props> = (props: Props): ReactElement => {
-  const [position, setPosition] = useState<Position>({top: 600, left: 600});
+  const [position, setPosition] = useState<Position>({top: 100, left: 100});
   const nodeRef: React.RefObject<HTMLDivElement> = useRef<HTMLDivElement>(null);
   const canvasRef: React.RefObject<HTMLDivElement> = props.canvasRef;
 
