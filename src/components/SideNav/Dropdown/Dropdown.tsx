@@ -24,6 +24,7 @@ const Dropdown: React.FC<Props> = (props: Props): ReactElement => {
         {content.map((val: string, index: number) => {
           return (
             <ContentTile
+              key={val}
               onClick={() => {
                 setSelectedTile(index);
               }}
