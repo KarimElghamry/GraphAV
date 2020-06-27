@@ -1,7 +1,10 @@
 import styled from 'styled-components';
-import themes from '../../themes';
+import themes from '../../../themes';
 
 const OptionButton = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 45px;
   height: 45px;
   border-radius: 45px;
@@ -10,6 +13,7 @@ const OptionButton = styled.div`
       ? themes.light.navbar.background
       : themes.dark.navbar.background};
   transition: background-color 0.3s;
+  cursor: pointer;
 `;
 
 export default OptionButton;
