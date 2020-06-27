@@ -7,7 +7,7 @@ const Container = styled.div.attrs({
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-size: 22px;
+  font-size: 18px;
   width: ${(props) => `${props.width}px`};
   height: 30px;
   border-radius: 9px;
@@ -19,6 +19,7 @@ const Container = styled.div.attrs({
     props.theme.name === 'dark'
       ? themes.light.navbar.background
       : themes.dark.navbar.background};
+  cursor: pointer;
   transition-duration: 0.3s;
   transition-property: background-color;
 `;
