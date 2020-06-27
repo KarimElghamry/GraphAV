@@ -7,7 +7,7 @@ import Arrow from './Arrow';
 import Dropdown from './Dropdown/Dropdown';
 import Row from '../common/Row';
 import OptionButton from './Options/OptionButton';
-import {AddIcon, UndirectedIcon} from './Options/OptionIcons';
+import {AddIcon, UndirectedIcon, DirectedIcon} from './Options/OptionIcons';
 
 interface Props {
   adjacencyList: Array<Array<number>>;
@@ -54,7 +54,9 @@ const SideNav: React.FC<Props> = (props: Props): ReactElement => {
         <OptionButton>
           <UndirectedIcon></UndirectedIcon>
         </OptionButton>
-        <OptionButton></OptionButton>
+        <OptionButton>
+          <DirectedIcon></DirectedIcon>
+        </OptionButton>
       </Row>
     </StyledSideNav>
   );
