@@ -12,7 +12,7 @@ const ContentContainer = styled.div<Props>`
   position: absolute;
   top: 100%;
   width: 110px;
-  height: 200px;
+  max-height: 135px;
   background-color: ${(props) =>
     props.theme.name === 'dark'
       ? themes.light.navbar.background
@@ -24,14 +24,13 @@ const ContentContainer = styled.div<Props>`
   scrollbar-color: white transparent;
   scrollbar-width: thin;
   &::-webkit-scrollbar {
-    width: 8px;
+    width: 6px;
   }
   &::-webkit-scrollbar-track {
     background-color: transparent;
   }
   &::-webkit-scrollbar-thumb {
     background-color: white;
-    border-radius: 5px;
   }
 `;
 

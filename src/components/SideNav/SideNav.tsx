@@ -21,7 +21,7 @@ const SideNav: React.FC = (): ReactElement => {
       <ZoomSlider>
         <input type="range" className="slider" />
       </ZoomSlider>
-      <ItemText>Alogrithm</ItemText>
+      <ItemText>Algorithm</ItemText>
       <Dropdown></Dropdown>
     </StyledSideNav>
   );

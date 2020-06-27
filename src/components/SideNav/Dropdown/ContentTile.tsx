@@ -2,12 +2,17 @@ import styled from 'styled-components';
 
 const ContentTile = styled.div`
   width: 100%;
-  height: 33%;
+  height: 45px;
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  margin-left: 12px;
+  padding-left: 12px;
   color: white;
+  transition-duration: 0.3s;
+
+  &:hover {
+    background-color: ${(props) => props.theme.navbar.background};
+  }
 `;
 
 export default ContentTile;
