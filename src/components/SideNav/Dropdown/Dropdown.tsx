@@ -10,6 +10,7 @@ interface Props {
 
 const Dropdown: React.FC<Props> = (props: Props): ReactElement => {
   const [isExpanded, setIsExpanded] = useState<boolean>(false);
+  const [selectedTile, setSelectedTile] = useState<number>(0);
   const content = props.content;
   const toggleDropdown = () => {
     setIsExpanded((prev) => !prev);
@@ -17,11 +18,19 @@ const Dropdown: React.FC<Props> = (props: Props): ReactElement => {
 
   return (
     <Container onClick={() => toggleDropdown()}>
-      <div style={{marginLeft: '12px'}}>DFS</div>
+      <div style={{marginLeft: '12px'}}>{content[selectedTile]}</div>
       <Arrow></Arrow>
       <ContentContainer isVisible={isExpanded}>
-        {content.map((val: string) => {
-          return <ContentTile>{val}</ContentTile>;
+        {content.map((val: string, index: number) => {
+          return (
+            <ContentTile
+              onClick={() => {
+                setSelectedTile(index);
+              }}
+            >
+              {val}
+            </ContentTile>
+          );
         })}
       </ContentContainer>
     </Container>
