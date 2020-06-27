@@ -1,8 +1,12 @@
 import styled from 'styled-components';
 import themes from '../../../themes';
 
-const ContentContainer = styled.div`
-  display: block;
+interface Props {
+  isVisible: boolean;
+}
+
+const ContentContainer = styled.div<Props>`
+  display: ${(props) => (props.isVisible ? 'block' : 'none')};
   position: absolute;
   top: 100%;
   width: 110px;

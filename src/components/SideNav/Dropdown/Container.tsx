@@ -4,13 +4,13 @@ import themes from '../../../themes';
 const Container = styled.div.attrs({
   width: 110,
 })`
+  position: relative;
   display: flex;
   justify-content: space-between;
   align-items: center;
   font-size: 18px;
   width: ${(props) => `${props.width}px`};
   height: 30px;
-  border-radius: 9px;
   margin-left: calc(50% - ${(props) => `${props.width / 2}px`});
   margin-top: 10px;
   margin-bottom: 10px;
