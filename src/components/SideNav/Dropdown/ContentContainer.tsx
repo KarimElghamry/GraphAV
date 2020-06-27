@@ -7,6 +7,8 @@ interface Props {
 
 const ContentContainer = styled.div<Props>`
   display: ${(props) => (props.isVisible ? 'block' : 'none')};
+  overflow-y: scroll;
+  overflow-x: hidden;
   position: absolute;
   top: 100%;
   width: 110px;
@@ -18,6 +20,19 @@ const ContentContainer = styled.div<Props>`
 
   transition-duration: 0.3s;
   transition-property: background-color;
+
+  scrollbar-color: white transparent;
+  scrollbar-width: thin;
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+  &::-webkit-scrollbar-track {
+    background-color: transparent;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: white;
+    border-radius: 5px;
+  }
 `;
 
 export default ContentContainer;
