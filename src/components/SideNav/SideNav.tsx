@@ -6,6 +6,15 @@ import ToggleButton from './ToggleButton';
 import Arrow from './Arrow';
 import Dropdown from './Dropdown/Dropdown';
 
+const sampleAlgorithms: Array<string> = [
+  'DFS',
+  'BFS',
+  'Dijkstra',
+  'Prim',
+  'A*',
+  'Bellman',
+];
+
 const SideNav: React.FC = (): ReactElement => {
   const [isVisible, setIsVisible] = useState<boolean>(true);
 

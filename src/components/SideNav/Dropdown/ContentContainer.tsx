@@ -11,7 +11,7 @@ const ContentContainer = styled.div<Props>`
   overflow-x: hidden;
   position: absolute;
   top: 100%;
-  width: 110px;
+  width: 100%;
   max-height: 135px;
   background-color: ${(props) =>
     props.theme.name === 'dark'

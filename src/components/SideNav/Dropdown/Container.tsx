@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import themes from '../../../themes';
 
 const Container = styled.div.attrs({
-  width: 110,
+  width: 120,
 })`
   user-select: none;
   position: relative;

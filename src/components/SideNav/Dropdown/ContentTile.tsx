@@ -8,7 +8,7 @@ const ContentTile = styled.div`
   justify-content: flex-start;
   padding-left: 12px;
   color: white;
-  transition-duration: 0.3s;
+  transition-duration: 0.2s;
 
   &:hover {
     background-color: ${(props) => props.theme.navbar.background};
