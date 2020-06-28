@@ -7,10 +7,12 @@ interface Props {
 
 const ToolTip = styled.div<Props>`
   z-index: 999;
+  display: ${(props) => (props.isVisible ? 'block' : 'none')};
   position: absolute;
+  text-align: center;
   top: 115%;
-  width: 80px;
-  height: ${(props) => (props.isVisible ? '30px' : '0px')};
+  min-width: 80px;
+  padding: 2px;
   border-radius: 6px;
   color: white;
   background-color: ${(props) =>
@@ -31,7 +33,8 @@ const ToolTip = styled.div<Props>`
       ${(props) =>
         props.theme.name === 'dark'
           ? themes.light.navbar.background
-          : themes.dark.navbar.background}; transparent;
+          : themes.dark.navbar.background}
+      transparent;
   }
 `;
 

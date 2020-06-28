@@ -5,6 +5,7 @@ import ToolTip from './ToolTip';
 interface Props {
   onClick: Function;
   children?: ReactChild | ReactChildren;
+  tooltipContent: string;
 }
 
 const OptionButton: React.FC<Props> = (props: Props): ReactElement => {
@@ -16,7 +17,7 @@ const OptionButton: React.FC<Props> = (props: Props): ReactElement => {
       onMouseLeave={() => setIsToolTipVisible(false)}
       onClick={() => props.onClick()}
     >
-      <ToolTip isVisible={isToolTipVisible}></ToolTip>
+      <ToolTip isVisible={isToolTipVisible}>{props.tooltipContent}</ToolTip>
       {props.children}
     </Container>
   );
