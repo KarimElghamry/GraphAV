@@ -19,6 +19,10 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
     sampleData
   );
 
+  const addNewNode = () => {
+    setAdjacencyList((prev: Array<Array<number>>) => prev.concat([]));
+  };
+
   return (
     <div>
       <SideNav adjacencyList={adjacencyList} />
