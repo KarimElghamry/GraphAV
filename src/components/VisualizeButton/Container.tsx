@@ -4,13 +4,13 @@ const Container = styled.div`
   z-index: 999;
   position: fixed;
   left: calc(100% - 150px - 20px);
-  top: calc(100% - 30px - 20px);
+  top: calc(100% - 35px - 20px);
   display: flex;
   justify-content: center;
-  font-size: 22px;
+  font-size: 24px;
   align-items: center;
   width: 150px;
-  height: 30px;
+  height: 35px;
   border-radius: 6px;
   margin-right: 20px;
   margin-bottom: 20px;
