@@ -11,6 +11,7 @@ import {AddIcon, UndirectedIcon, DirectedIcon} from './Options/OptionIcons';
 
 interface Props {
   adjacencyList: Array<Array<number>>;
+  addNewNode: () => void;
 }
 
 const sampleAlgorithms: Array<string> = [
