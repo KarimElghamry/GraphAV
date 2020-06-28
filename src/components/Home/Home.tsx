@@ -18,12 +18,14 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
     console.log(adjacencyList);
   };
 
+  const handleVisualize = () => {};
+
   return (
     <div>
       <SideNav adjacencyList={adjacencyList} addNewNode={addNewNode} />
       <Navbar changeTheme={props.changeTheme}></Navbar>
       <GraphCanvas adjacencyList={adjacencyList}></GraphCanvas>
-      <VisualizeButton></VisualizeButton>
+      <VisualizeButton onClick={handleVisualize}></VisualizeButton>
     </div>
   );
 };
