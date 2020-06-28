@@ -50,13 +50,13 @@ const SideNav: React.FC<Props> = (props: Props): ReactElement => {
       <ItemText>Options</ItemText>
       <Row justifyContent="space-evenly" margin="10px 0px">
         {/* add new node */}
-        <OptionButton onClick={() => props.addNewNode()}>
+        <OptionButton onClick={props.addNewNode}>
           <AddIcon></AddIcon>
         </OptionButton>
-        <OptionButton>
+        <OptionButton onClick={() => {}}>
           <UndirectedIcon></UndirectedIcon>
         </OptionButton>
-        <OptionButton>
+        <OptionButton onClick={() => {}}>
           <DirectedIcon></DirectedIcon>
         </OptionButton>
       </Row>

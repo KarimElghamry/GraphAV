@@ -1,19 +1,15 @@
-import styled from 'styled-components';
-import themes from '../../../themes';
+import React, {ReactElement, ReactChild, ReactChildren} from 'react';
+import Container from './Container';
 
-const OptionButton = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 45px;
-  height: 45px;
-  border-radius: 45px;
-  background-color: ${(props) =>
-    props.theme.name === 'dark'
-      ? themes.light.navbar.background
-      : themes.dark.navbar.background};
-  transition: background-color 0.3s;
-  cursor: pointer;
-`;
+interface Props {
+  onClick: Function;
+  children?: ReactChild | ReactChildren;
+}
+
+const OptionButton: React.FC<Props> = (props: Props): ReactElement => {
+  return (
+    <Container onClick={() => props.onClick()}>{props.children}</Container>
+  );
+};
 
 export default OptionButton;
