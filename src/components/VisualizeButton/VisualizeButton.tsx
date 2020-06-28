@@ -1,11 +1,8 @@
 import React, {ReactElement} from 'react';
+import Container from './Container';
 
 const VisualizeButton: React.FC = (): ReactElement => {
-  return (
-    <div>
-      <div></div>
-    </div>
-  );
+  return <Container>Visualize</Container>;
 };
 
 export default VisualizeButton;
