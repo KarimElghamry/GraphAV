@@ -49,7 +49,8 @@ const SideNav: React.FC<Props> = (props: Props): ReactElement => {
       ></Dropdown>
       <ItemText>Options</ItemText>
       <Row justifyContent="space-evenly" margin="10px 0px">
-        <OptionButton>
+        {/* add new node */}
+        <OptionButton onClick={() => props.addNewNode()}>
           <AddIcon></AddIcon>
         </OptionButton>
         <OptionButton>

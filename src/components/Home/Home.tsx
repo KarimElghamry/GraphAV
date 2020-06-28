@@ -7,20 +7,14 @@ interface HomeProps {
   changeTheme: Function;
 }
 
-const sampleData = [
-  [1, 2, 3],
-  [2, 3, 4],
-  [4, 3, 1],
-  [4, 3, 1],
-];
-
 const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
-  const [adjacencyList, setAdjacencyList] = useState<Array<Array<number>>>(
-    sampleData
-  );
+  const [adjacencyList, setAdjacencyList] = useState<Array<Array<number>>>([]);
 
   const addNewNode = () => {
-    setAdjacencyList((prev: Array<Array<number>>) => prev.concat([]));
+    let newAdjacencyList = adjacencyList.slice();
+    newAdjacencyList.push([]);
+    setAdjacencyList((prev: Array<Array<number>>) => newAdjacencyList);
+    console.log(adjacencyList);
   };
 
   return (
