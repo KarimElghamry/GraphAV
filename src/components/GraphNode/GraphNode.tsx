@@ -49,6 +49,15 @@ const GraphNode: React.FC<Props> = (props: Props): ReactElement => {
     document.onmousemove = null;
   };
 
+  //side effect for centering position on initial render
+  useEffect(() => {
+    if (canvasRef.current && nodeRef.current) {
+      const canvasWidth = canvasRef.current.offsetWidth;
+      const canvasHeight = canvasRef.current.offsetHeight;
+      setPosition({left: canvasWidth / 2, top: canvasHeight / 2});
+    }
+  }, [canvasRef, nodeRef, setPosition]);
+
   //the following is to handle boundries of canvas on screen resize (zooming)
   useEffect(() => {
     const handleWindowResize = () => {

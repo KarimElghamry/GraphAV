@@ -11,6 +11,7 @@ import {AddIcon, UndirectedIcon, DirectedIcon} from './Options/OptionIcons';
 
 interface Props {
   adjacencyList: Array<Array<number>>;
+  addNewNode: () => void;
 }
 
 const sampleAlgorithms: Array<string> = [
@@ -48,13 +49,14 @@ const SideNav: React.FC<Props> = (props: Props): ReactElement => {
       ></Dropdown>
       <ItemText>Options</ItemText>
       <Row justifyContent="space-evenly" margin="10px 0px">
-        <OptionButton>
+        {/* add new node */}
+        <OptionButton tooltipContent="Add node" onClick={props.addNewNode}>
           <AddIcon></AddIcon>
         </OptionButton>
-        <OptionButton>
+        <OptionButton tooltipContent="Add undirected edge" onClick={() => {}}>
           <UndirectedIcon></UndirectedIcon>
         </OptionButton>
-        <OptionButton>
+        <OptionButton tooltipContent="Add directed edge" onClick={() => {}}>
           <DirectedIcon></DirectedIcon>
         </OptionButton>
       </Row>

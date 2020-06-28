@@ -1,19 +1,26 @@
-import styled from 'styled-components';
-import themes from '../../../themes';
+import React, {ReactElement, ReactChild, ReactChildren, useState} from 'react';
+import Container from './Container';
+import ToolTip from './ToolTip';
 
-const OptionButton = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 45px;
-  height: 45px;
-  border-radius: 45px;
-  background-color: ${(props) =>
-    props.theme.name === 'dark'
-      ? themes.light.navbar.background
-      : themes.dark.navbar.background};
-  transition: background-color 0.3s;
-  cursor: pointer;
-`;
+interface Props {
+  onClick: Function;
+  children?: ReactChild | ReactChildren;
+  tooltipContent: string;
+}
+
+const OptionButton: React.FC<Props> = (props: Props): ReactElement => {
+  const [isToolTipVisible, setIsToolTipVisible] = useState<boolean>(false);
+
+  return (
+    <Container
+      onMouseEnter={() => setIsToolTipVisible(true)}
+      onMouseLeave={() => setIsToolTipVisible(false)}
+      onClick={() => props.onClick()}
+    >
+      <ToolTip isVisible={isToolTipVisible}>{props.tooltipContent}</ToolTip>
+      {props.children}
+    </Container>
+  );
+};
 
 export default OptionButton;
