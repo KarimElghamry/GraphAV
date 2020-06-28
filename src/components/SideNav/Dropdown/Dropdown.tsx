@@ -38,7 +38,7 @@ const Dropdown: React.FC<Props> = (props: Props): ReactElement => {
       <div style={{marginLeft: '12px'}}>
         {content.length === 0 ? '' : content[selectedTile]}
       </div>
-      <Arrow></Arrow>
+      <Arrow isExpanded={isExpanded}></Arrow>
       <ContentContainer isVisible={isExpanded}>
         {content.map((val: string, index: number) => {
           return (
