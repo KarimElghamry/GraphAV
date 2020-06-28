@@ -13,6 +13,7 @@ const ToolTip = styled.div<Props>`
   top: 115%;
   min-width: 80px;
   padding: 2px;
+  font-size: 14px;
   border-radius: 6px;
   color: white;
   background-color: ${(props) =>
