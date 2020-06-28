@@ -1,5 +1,6 @@
-import React, {ReactElement, ReactChild, ReactChildren} from 'react';
+import React, {ReactElement, ReactChild, ReactChildren, useState} from 'react';
 import Container from './Container';
+import ToolTip from './ToolTip';
 
 interface Props {
   onClick: Function;
@@ -7,8 +8,17 @@ interface Props {
 }
 
 const OptionButton: React.FC<Props> = (props: Props): ReactElement => {
+  const [isToolTipVisible, setIsToolTipVisible] = useState<boolean>(false);
+
   return (
-    <Container onClick={() => props.onClick()}>{props.children}</Container>
+    <Container
+      onMouseEnter={() => setIsToolTipVisible(true)}
+      onMouseLeave={() => setIsToolTipVisible(false)}
+      onClick={() => props.onClick()}
+    >
+      <ToolTip isVisible={isToolTipVisible}></ToolTip>
+      {props.children}
+    </Container>
   );
 };
 
