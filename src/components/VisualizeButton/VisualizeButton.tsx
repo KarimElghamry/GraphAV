@@ -8,7 +8,10 @@ interface Props {
 
 const VisualizeButton: React.FC<Props> = (props: Props): ReactElement => {
   return (
-    <Container onClick={() => props.onClick()}>
+    <Container
+      isVisualizing={props.isVisualizing}
+      onClick={() => props.onClick()}
+    >
       {props.isVisualizing ? 'Visualizing' : 'Visualize'}
     </Container>
   );
