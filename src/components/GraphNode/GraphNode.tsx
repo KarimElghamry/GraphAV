@@ -6,6 +6,7 @@ interface Props {
   isActive: boolean;
   content: string;
   canvasRef: React.RefObject<HTMLDivElement>;
+  children: React.ReactChild | React.ReactChildren;
 }
 
 const GraphNode: React.FC<Props> = (props: Props): ReactElement => {
@@ -101,6 +102,7 @@ const GraphNode: React.FC<Props> = (props: Props): ReactElement => {
       ref={nodeRef}
     >
       {props.content}
+      {props.children}
     </Container>
   );
 };
