@@ -27,7 +27,7 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
 
   const handleVisualize = async () => {
     setVisited([]);
-    await algorithms.dfs(adjacencyList, 0, setVisited);
+    await algorithms.dfs(adjacencyList, startingNode, setVisited);
   };
 
   return (
