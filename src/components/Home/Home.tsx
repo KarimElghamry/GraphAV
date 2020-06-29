@@ -32,7 +32,12 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
 
   return (
     <div>
-      <SideNav adjacencyList={adjacencyList} addNewNode={addNewNode} />
+      <SideNav
+        startingNode={startingNode}
+        setStartingNode={setStartingNode}
+        adjacencyList={adjacencyList}
+        addNewNode={addNewNode}
+      />
       <Navbar changeTheme={props.changeTheme}></Navbar>
       <GraphCanvas
         visited={visited}

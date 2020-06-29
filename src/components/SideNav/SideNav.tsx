@@ -12,6 +12,8 @@ import {AddIcon, UndirectedIcon, DirectedIcon} from './Options/OptionIcons';
 interface Props {
   adjacencyList: Array<Array<number>>;
   addNewNode: () => void;
+  startingNode: number;
+  setStartingNode: Function;
 }
 
 const sampleAlgorithms: Array<string> = [
@@ -30,6 +32,10 @@ const SideNav: React.FC<Props> = (props: Props): ReactElement => {
   const toggleVisibility = () => {
     setIsVisible((prev) => !prev);
   };
+
+  //TODO: Implement set selected algorithm logic
+  const setSelectedAlgorithm = (val: number) => {};
+
   return (
     <StyledSideNav isVisible={isVisible}>
       <ToggleButton isVisible={isVisible} onClick={() => toggleVisibility()}>
@@ -40,9 +46,15 @@ const SideNav: React.FC<Props> = (props: Props): ReactElement => {
         <input type="range" className="slider" />
       </ZoomSlider>
       <ItemText>Algorithm</ItemText>
-      <Dropdown content={sampleAlgorithms}></Dropdown>
+      <Dropdown
+        selectedTile={0}
+        setSelectedTile={setSelectedAlgorithm}
+        content={sampleAlgorithms}
+      ></Dropdown>
       <ItemText>Starting Node</ItemText>
       <Dropdown
+        selectedTile={props.startingNode}
+        setSelectedTile={props.setStartingNode}
         content={adjacencyList.map((val: Array<number>, index: number) => {
           return (index + 1).toString();
         })}
