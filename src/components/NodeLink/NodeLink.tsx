@@ -44,7 +44,7 @@ const NodeLink: React.FC<NodeLinkProps> = (props: NodeLinkProps): ReactElement =
         const interval = setInterval(() => {
             const newLink = createLine(props.n1, props.n2);
             setLink(newLink);
-        }, 50);
+        }, 16.7);
         return () => clearInterval(interval);
     })
 
@@ -55,7 +55,7 @@ const NodeLink: React.FC<NodeLinkProps> = (props: NodeLinkProps): ReactElement =
                 y1={lineY1}
                 x2={lineX2}
                 y2={lineY2}
-                style={{ stroke: "white" }} />
+            />
         </svg>
     );
 };
