@@ -14,7 +14,7 @@ const Navbar: React.FC<NavbarProps> = (props: NavbarProps): ReactElement => {
   return (
     <Container>
       <LabelText>Graph Algorithms Visualizer</LabelText>
-      <Row justifyContent="space-between" margin="0 18px">
+      <Row justifyContent="space-evenly" margin="0 18px">
         <ThemeSwitch changeTheme={props.changeTheme}></ThemeSwitch>
         <GithubLogo></GithubLogo>
         <Star></Star>

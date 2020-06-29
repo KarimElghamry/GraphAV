@@ -9,7 +9,7 @@ interface Props {
 }
 
 const GraphNode: React.FC<Props> = (props: Props): ReactElement => {
-  const [position, setPosition] = useState<Position>({ top: 600, left: 600 });
+  const [position, setPosition] = useState<Position>({ top: 100, left: 100 });
   const nodeRef: React.RefObject<HTMLDivElement> = useRef<HTMLDivElement>(null);
   const canvasRef: React.RefObject<HTMLDivElement> = props.canvasRef;
 
@@ -20,7 +20,8 @@ const GraphNode: React.FC<Props> = (props: Props): ReactElement => {
       const canvasHeight: number = +canvasRef.current.offsetHeight;
 
       let newLeft: number = e.clientX - nodeWidth / 2;
-      let newTop: number = e.clientY - nodeWidth;
+      let newTop: number =
+        e.clientY - nodeWidth * (canvasHeight < 700 ? 1.5 : 1);
 
       if (e.clientX - nodeWidth / 2 <= 0) {
         newLeft = 0;
@@ -48,6 +49,15 @@ const GraphNode: React.FC<Props> = (props: Props): ReactElement => {
   const handleMouseUp = () => {
     document.onmousemove = null;
   };
+
+  //side effect for centering position on initial render
+  useEffect(() => {
+    if (canvasRef.current && nodeRef.current) {
+      const canvasWidth = canvasRef.current.offsetWidth;
+      const canvasHeight = canvasRef.current.offsetHeight;
+      setPosition({ left: canvasWidth / 2, top: canvasHeight / 2 });
+    }
+  }, [canvasRef, nodeRef, setPosition]);
 
   //the following is to handle boundries of canvas on screen resize (zooming)
   useEffect(() => {
