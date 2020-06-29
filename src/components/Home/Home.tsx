@@ -4,12 +4,16 @@ import SideNav from '../SideNav/SideNav';
 import GraphCanvas from '../GraphCanvas/GraphCanvas';
 import VisualizeButton from '../VisualizeButton/VisualizeButton';
 
+const sampleGraph = [[1, 2], [0], [0]];
+
 interface HomeProps {
   changeTheme: Function;
 }
 
 const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
-  const [adjacencyList, setAdjacencyList] = useState<Array<Array<number>>>([]);
+  const [adjacencyList, setAdjacencyList] = useState<Array<Array<number>>>(
+    sampleGraph
+  );
 
   const addNewNode = () => {
     let newAdjacencyList = adjacencyList.slice();
