@@ -1,6 +1,10 @@
 import styled from 'styled-components';
 
-const Container = styled.div`
+interface Props {
+  isVisualizing: boolean;
+}
+
+const Container = styled.div<Props>`
   z-index: 999;
   position: fixed;
   left: calc(100% - 150px - 20px);
@@ -14,7 +18,8 @@ const Container = styled.div`
   border-radius: 6px;
   margin-right: 20px;
   margin-bottom: 20px;
-  background-color: ${(props) => props.theme.navbar.background};
+  background-color: ${(props) =>
+    props.isVisualizing ? 'red' : props.theme.navbar.background};
   color: white;
   transition-duration: 0.3s;
   user-select: none;
