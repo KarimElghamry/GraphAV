@@ -4,11 +4,13 @@ import GraphNode from '../GraphNode/GraphNode';
 
 interface Props {
   adjacencyList: Array<Array<number>>;
+  visited: Array<number>;
 }
 
 const GraphCanvas: React.FC<Props> = (props: Props): ReactElement => {
   const canvasRef = useRef<HTMLDivElement>(null);
   const adjacencyList = props.adjacencyList;
+  const visited = props.visited;
 
   return (
     <Container ref={canvasRef}>
@@ -17,7 +19,7 @@ const GraphCanvas: React.FC<Props> = (props: Props): ReactElement => {
           <GraphNode
             key={index}
             canvasRef={canvasRef}
-            isActive={false}
+            isActive={visited.includes(index)}
             content={(index + 1).toString()}
           ></GraphNode>
         );
