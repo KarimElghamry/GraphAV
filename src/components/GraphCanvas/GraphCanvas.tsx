@@ -23,6 +23,7 @@ const GraphCanvas: React.FC<Props> = (props: Props): ReactElement => {
             canvasRef={canvasRef}
             isActive={visited.includes(index)}
             content={(index + 1).toString()}
+            edgeRef={nodeRefs[index]}
           >
             <span
               ref={nodeRefs[index]}></span>
@@ -31,7 +32,6 @@ const GraphCanvas: React.FC<Props> = (props: Props): ReactElement => {
         );
       })}
       <NodeLink n1={nodeRefs[0]} n2={nodeRefs[1]} />
-      {console.log(nodeRefs)}
     </Container>
   );
 };

@@ -7,6 +7,7 @@ interface Props {
   content: string;
   canvasRef: React.RefObject<HTMLDivElement>;
   children: React.ReactChild | React.ReactChildren;
+  edgeRef: React.RefObject<HTMLSpanElement> | null;
 }
 
 const GraphNode: React.FC<Props> = (props: Props): ReactElement => {
@@ -50,6 +51,15 @@ const GraphNode: React.FC<Props> = (props: Props): ReactElement => {
   const handleMouseUp = () => {
     document.onmousemove = null;
   };
+
+  useEffect(() => {
+    if (props.edgeRef?.current && nodeRef.current) {
+      const halfNodeWidth: number = +nodeRef.current.offsetWidth / 2;
+      const edgePosition: Position = { top: position.top + halfNodeWidth, left: position.left + halfNodeWidth };
+      const event = new CustomEvent<Position>('position', { detail: edgePosition });
+      props.edgeRef.current.dispatchEvent(event);
+    }
+  });
 
   //side effect for centering position on initial render
   useEffect(() => {
