@@ -5,6 +5,7 @@ import GraphCanvas from '../GraphCanvas/GraphCanvas';
 import VisualizeButton from '../VisualizeButton/VisualizeButton';
 import algorithms from '../../algorithms';
 
+//TODO: Remove hard coded graph
 const sampleGraph = [[1, 2], [0, 3], [0], [1]];
 
 interface HomeProps {
