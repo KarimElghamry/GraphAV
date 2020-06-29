@@ -17,6 +17,7 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
   );
   const [visited, setVisited] = useState<Array<number>>([]);
   const [startingNode, setStartingNode] = useState<number>(0);
+  const [isVisualizing, setIsVisualizing] = useState<boolean>(false);
 
   const addNewNode = () => {
     let newAdjacencyList = adjacencyList.slice();
