@@ -1,7 +1,7 @@
-import dfs from './dfs';
+import dfsWrapper from './dfs';
 
 const algorithms = {
-  dfs: dfs,
+  dfs: dfsWrapper,
 };
 
 export default algorithms;

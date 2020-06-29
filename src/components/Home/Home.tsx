@@ -5,7 +5,7 @@ import GraphCanvas from '../GraphCanvas/GraphCanvas';
 import VisualizeButton from '../VisualizeButton/VisualizeButton';
 import algorithms from '../../algorithms';
 
-const sampleGraph = [[1, 2], [0], [0]];
+const sampleGraph = [[1, 2], [0, 3], [0], [1]];
 
 interface HomeProps {
   changeTheme: Function;
@@ -25,6 +25,7 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
   };
 
   const handleVisualize = async () => {
+    setVisited([]);
     await algorithms.dfs(adjacencyList, 0, setVisited);
   };
 

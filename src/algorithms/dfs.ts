@@ -18,4 +18,13 @@ const dfs = async (
   }
 };
 
-export default dfs;
+const dfsWrapper = async (
+  graph: Array<Array<number>>,
+  node: number,
+  setVisited: Function
+) => {
+  globalVisited = [];
+  await dfs(graph, node, setVisited);
+};
+
+export default dfsWrapper;
