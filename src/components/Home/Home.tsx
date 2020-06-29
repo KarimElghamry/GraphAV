@@ -47,7 +47,10 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
         visited={visited}
         adjacencyList={adjacencyList}
       ></GraphCanvas>
-      <VisualizeButton onClick={handleVisualize}></VisualizeButton>
+      <VisualizeButton
+        isVisualizing={isVisualizing}
+        onClick={handleVisualize}
+      ></VisualizeButton>
     </div>
   );
 };
