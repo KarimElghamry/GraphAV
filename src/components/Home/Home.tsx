@@ -14,6 +14,7 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
   const [adjacencyList, setAdjacencyList] = useState<Array<Array<number>>>(
     sampleGraph
   );
+  const [visited, setVisited] = useState<Array<number>>([]);
 
   const addNewNode = () => {
     let newAdjacencyList = adjacencyList.slice();
