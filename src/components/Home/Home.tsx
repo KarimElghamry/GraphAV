@@ -3,6 +3,7 @@ import Navbar from '../Navbar/Navbar';
 import SideNav from '../SideNav/SideNav';
 import GraphCanvas from '../GraphCanvas/GraphCanvas';
 import VisualizeButton from '../VisualizeButton/VisualizeButton';
+import algorithms from '../../algorithms';
 
 const sampleGraph = [[1, 2], [0], [0]];
 
@@ -23,7 +24,9 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
     console.log(adjacencyList);
   };
 
-  const handleVisualize = () => {};
+  const handleVisualize = async () => {
+    await algorithms.dfs(adjacencyList, 0, setVisited);
+  };
 
   return (
     <div>

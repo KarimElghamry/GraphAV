@@ -1,18 +1,20 @@
 import helpers from '../helpers';
 
+let globalVisited: Array<number> = [];
+
 const dfs = async (
   graph: Array<Array<number>>,
   node: number,
-  visited: Array<number>,
   setVisited: Function
 ): Promise<void> => {
-  if (visited.includes(node)) return;
+  if (globalVisited.includes(node)) return;
   await helpers.asyncTimout(1000);
-  visited = visited.concat(node);
-  setVisited(visited);
+  globalVisited = globalVisited.concat(node);
+  setVisited(globalVisited);
+  console.log(globalVisited);
 
   for (let neighbour of graph[node]) {
-    dfs(graph, neighbour, visited, setVisited);
+    await dfs(graph, neighbour, setVisited);
   }
 };
 
