@@ -1,15 +1,15 @@
 import React, { ReactElement, RefObject, useEffect, useState } from 'react';
-import StyledLink from "./StyledLink"
+import StyledEdgeLine from "./StyledEdgeLine"
 import Position from "../../models/Position"
 import StyledEdgeContainer from "./StyledEdgeContainer";
 
 
-interface NodeLinkProps {
+interface EdgeProps {
     n1: RefObject<HTMLSpanElement>;
     n2: RefObject<HTMLSpanElement>;
 }
 
-const NodeLink: React.FC<NodeLinkProps> = (props: NodeLinkProps): ReactElement => {
+const Edge: React.FC<EdgeProps> = (props: EdgeProps): ReactElement => {
 
     const [position1, setPosition1] = useState<Position>({ top: 0, left: 0 })
     const [position2, setPosition2] = useState<Position>({ top: 0, left: 0 })
@@ -50,7 +50,7 @@ const NodeLink: React.FC<NodeLinkProps> = (props: NodeLinkProps): ReactElement =
             height={Math.max(position1.top + 3, position2.top + 3)}
             width={Math.max(position1.left + 3, position2.left + 3)}
         >
-            <StyledLink
+            <StyledEdgeLine
                 x1={position1.left}
                 y1={position1.top}
                 x2={position2.left}
@@ -60,5 +60,5 @@ const NodeLink: React.FC<NodeLinkProps> = (props: NodeLinkProps): ReactElement =
     );
 };
 
-export default NodeLink;
+export default Edge;
 
