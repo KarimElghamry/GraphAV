@@ -1,7 +1,7 @@
 import React, { ReactElement, RefObject, useEffect, useState } from 'react';
 import StyledLink from "./StyledLink"
 import Position from "../../models/Position"
-
+import StyledEdgeContainer from "./StyledEdgeContainer";
 
 
 interface NodeLinkProps {
@@ -23,6 +23,7 @@ const NodeLink: React.FC<NodeLinkProps> = (props: NodeLinkProps): ReactElement =
                 if (e?.detail) {
                     const newPosition1: Position = e.detail;
                     setPosition1(newPosition1);
+
                 }
             };
             props.n1.current.addEventListener('position', handler);
@@ -40,13 +41,12 @@ const NodeLink: React.FC<NodeLinkProps> = (props: NodeLinkProps): ReactElement =
                 }
             };
             props.n2.current.addEventListener('position', handler);
-
             return () => props.n2.current?.removeEventListener('position', handler);
         }
     });
-
     return (
-        <svg
+        <StyledEdgeContainer
+
             height={Math.max(position1.top + 3, position2.top + 3)}
             width={Math.max(position1.left + 3, position2.left + 3)}
         >
@@ -56,7 +56,7 @@ const NodeLink: React.FC<NodeLinkProps> = (props: NodeLinkProps): ReactElement =
                 x2={position2.left}
                 y2={position2.top}
             />
-        </svg>
+        </StyledEdgeContainer >
     );
 };
 
