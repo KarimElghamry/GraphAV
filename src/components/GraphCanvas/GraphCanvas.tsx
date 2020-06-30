@@ -7,11 +7,33 @@ interface Props {
   visited: Array<number>;
 }
 
+
+
 const GraphCanvas: React.FC<Props> = (props: Props): ReactElement => {
   const canvasRef = useRef<HTMLDivElement>(null);
   const adjacencyList = props.adjacencyList;
   const visited = props.visited;
-  const nodeRefs = adjacencyList.map(x => React.createRef<HTMLSpanElement>());
+  const nodeRefs = adjacencyList.map(_ => React.createRef<HTMLSpanElement>());
+  const reducedEdges: Map<number, Array<number>> = new Map();
+  const connectedNodePairs: Array<Array<number>> = [];
+
+  adjacencyList.forEach((adjacentNodes: Array<number>, currentNode: number) => {
+    const currentNodeEdges: Array<number> = [];
+    adjacentNodes.forEach((adjacentNode: number) => {
+      if (!reducedEdges.get(adjacentNode)?.includes(currentNode))
+        currentNodeEdges.push(adjacentNode);
+    });
+    if (currentNodeEdges.length !== 0) {
+      reducedEdges.set(currentNode, currentNodeEdges);
+    }
+  });
+
+  reducedEdges.forEach((adjacentNodes: Array<number>, node: number) => {
+    adjacentNodes.forEach((adjacentNode: number) => {
+      connectedNodePairs.push([node, adjacentNode])
+    })
+  })
+
 
   return (
     <Container ref={canvasRef}>
@@ -31,7 +53,11 @@ const GraphCanvas: React.FC<Props> = (props: Props): ReactElement => {
 
         );
       })}
-      <NodeLink n1={nodeRefs[0]} n2={nodeRefs[1]} />
+      {
+        connectedNodePairs.map(([n1, n2]: Array<number>, index: number) => {
+          return <NodeLink n1={nodeRefs[n2]} n2={nodeRefs[n1]} key={1000 + index} />
+        })
+      }
     </Container>
   );
 };
