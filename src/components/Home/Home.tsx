@@ -6,7 +6,7 @@ import VisualizeButton from '../VisualizeButton/VisualizeButton';
 import algorithms from '../../algorithms';
 
 //TODO: Remove hard coded graph
-const sampleGraph = [[1, 2], [0, 3], [0], [1]];
+const sampleGraph = [[1, 2, 4], [0, 3], [0, 5], [1], [0], [2]];
 
 interface HomeProps {
   changeTheme: Function;
