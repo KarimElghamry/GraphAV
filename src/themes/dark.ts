@@ -18,7 +18,7 @@ const dark: Theme = {
     foreground: 'white',
   },
   nodeInactive: {
-    background: 'transparent',
+    background: '#0D1929',
     foreground: 'white',
   },
   edge: {

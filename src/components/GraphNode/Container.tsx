@@ -13,7 +13,8 @@ const Container = styled.div.attrs((props: Props) => ({
     top: `${props.position.top}px`,
     left: `${props.position.left}px`,
   },
-}))<Props>`
+})) <Props>`
+  z-index: 1;
   position: absolute;
   display: flex;
   justify-content: center;
