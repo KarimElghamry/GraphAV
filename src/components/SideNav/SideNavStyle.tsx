@@ -8,7 +8,7 @@ const StyledSideNav = styled.div<Props>`
   position: fixed;
   height: 100%;
   width: 250px;
-  z-index: 1;
+  z-index: 2;
   left: ${(props) => (props.isVisible ? 0 : '-250px')};
   background-color: ${(props) => props.theme.sidebar.background};
   overflow-x: hidden;

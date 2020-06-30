@@ -6,7 +6,7 @@ interface Props {
 }
 
 const Container = styled.div<Props>`
-  z-index: 2;
+  z-index: 3;
   position: relative;
   width: 100%;
   height: 50px;
