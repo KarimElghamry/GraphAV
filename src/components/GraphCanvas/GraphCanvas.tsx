@@ -20,19 +20,15 @@ const GraphCanvas: React.FC<Props> = (props: Props): ReactElement => {
   adjacencyList.forEach((adjacentNodes: Array<number>, currentNode: number) => {
     const currentNodeEdges: Array<number> = [];
     adjacentNodes.forEach((adjacentNode: number) => {
-      if (!reducedEdges.get(adjacentNode)?.includes(currentNode))
+      if (!reducedEdges.get(adjacentNode)?.includes(currentNode)) {
         currentNodeEdges.push(adjacentNode);
+        connectedNodePairs.push([currentNode, adjacentNode])
+      }
     });
     if (currentNodeEdges.length !== 0) {
       reducedEdges.set(currentNode, currentNodeEdges);
     }
   });
-
-  reducedEdges.forEach((adjacentNodes: Array<number>, node: number) => {
-    adjacentNodes.forEach((adjacentNode: number) => {
-      connectedNodePairs.push([node, adjacentNode])
-    })
-  })
 
 
   return (
