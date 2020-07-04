@@ -43,7 +43,14 @@ const SideNav: React.FC<Props> = (props: Props): ReactElement => {
       </ToggleButton>
       <ItemText>Zoom</ItemText>
       <ZoomSlider>
-        <input type="range" className="slider" />
+        <input
+          type="range"
+          className="slider"
+          min={0.5}
+          max={1.5}
+          step={0.1}
+          value={1}
+        />
       </ZoomSlider>
       <ItemText>Algorithm</ItemText>
       <Dropdown
