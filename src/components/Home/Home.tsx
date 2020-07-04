@@ -15,6 +15,7 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
   const [startingNode, setStartingNode] = useState<number>(0);
   const [isVisualizing, setIsVisualizing] = useState<boolean>(false);
   const [zoomPercentage, setZoomPercentage] = useState<number>(1);
+  const [visualizationSpeed, setVisualizationSpeed] = useState<number>(1000);
   const [isConnecting, setIsConnecting] = useState<boolean>(false);
   const [edgeFirstNode, setEdgeFirstNode] = useState<number>();
 
@@ -42,20 +43,34 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
     let newAdjacencyList = adjacencyList.slice();
     newAdjacencyList.push([]);
     setAdjacencyList((prev: Array<Array<number>>) => newAdjacencyList);
-    console.log(adjacencyList);
   };
 
   //TODO: switch case between algorithms
   //TODO: lift state of the selected Algorithm to Home
   const handleVisualize = async () => {
+    if (adjacencyList.length === 0) return;
     if (isVisualizing) return;
     setIsVisualizing(true);
     setVisited([]);
-    await algorithms.dfs(adjacencyList, startingNode, setVisited);
+    await algorithms.dfs(
+      adjacencyList,
+      startingNode,
+      setVisited,
+      visualizationSpeed
+    );
     setIsVisualizing(false);
   };
 
-  console.log(zoomPercentage);
+  const changeVisualizationSpeed = (speed: number) => {
+    if (isVisualizing) return;
+    setVisualizationSpeed(speed);
+  };
+
+  const clearCanvas = () => {
+    if (isVisualizing) return;
+    setVisited([]);
+    setAdjacencyList([]);
+  };
 
   return (
     <div>
@@ -67,6 +82,9 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
         addNewNode={addNewNode}
         setZoomPercentage={setZoomPercentage}
         zoomPercentage={zoomPercentage}
+        visualizationSpeed={visualizationSpeed}
+        setVisualizationSpeed={changeVisualizationSpeed}
+        clearCanvas={clearCanvas}
       />
       <Navbar changeTheme={props.changeTheme}></Navbar>
       <GraphCanvas

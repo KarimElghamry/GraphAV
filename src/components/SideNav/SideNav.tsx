@@ -1,13 +1,14 @@
-import React, { ReactElement, useState } from 'react';
+import React, {ReactElement, useState} from 'react';
 import StyledSideNav from './SideNavStyle';
-import ZoomSlider from './ZoomSlider';
+import Slider from './Slider';
 import ItemText from './ItemText';
 import ToggleButton from './ToggleButton';
 import Arrow from './Arrow';
 import Dropdown from './Dropdown/Dropdown';
 import Row from '../common/Row';
 import OptionButton from './Options/OptionButton';
-import { AddIcon, UndirectedIcon, DirectedIcon } from './Options/OptionIcons';
+import {AddIcon, UndirectedIcon, DirectedIcon} from './Options/OptionIcons';
+import ClearButton from './ClearButton';
 
 interface Props {
   adjacencyList: Array<Array<number>>;
@@ -17,6 +18,9 @@ interface Props {
   setZoomPercentage: Function;
   zoomPercentage: number;
   onUndirectedEdgeClick: VoidFunction;
+  visualizationSpeed: number;
+  setVisualizationSpeed: Function;
+  clearCanvas: Function;
 }
 
 const sampleAlgorithms: Array<string> = [
@@ -37,7 +41,7 @@ const SideNav: React.FC<Props> = (props: Props): ReactElement => {
   };
 
   //TODO: Implement set selected algorithm logic
-  const setSelectedAlgorithm = (val: number) => { };
+  const setSelectedAlgorithm = (val: number) => {};
 
   return (
     <StyledSideNav isVisible={isVisible}>
@@ -45,7 +49,7 @@ const SideNav: React.FC<Props> = (props: Props): ReactElement => {
         <Arrow isVisible={isVisible}></Arrow>
       </ToggleButton>
       <ItemText>Zoom</ItemText>
-      <ZoomSlider>
+      <Slider>
         <input
           type="range"
           className="slider"
@@ -57,7 +61,7 @@ const SideNav: React.FC<Props> = (props: Props): ReactElement => {
             props.setZoomPercentage(e.target.value)
           }
         />
-      </ZoomSlider>
+      </Slider>
       <ItemText>Algorithm</ItemText>
       <Dropdown
         selectedTile={0}
@@ -78,15 +82,45 @@ const SideNav: React.FC<Props> = (props: Props): ReactElement => {
         <OptionButton tooltipContent="Add node" onClick={props.addNewNode}>
           <AddIcon></AddIcon>
         </OptionButton>
-        <OptionButton tooltipContent="Add undirected edge" onClick={() => {
-          props.onUndirectedEdgeClick()
-        }}>
+        <OptionButton
+          tooltipContent="Add undirected edge"
+          onClick={() => {
+            props.onUndirectedEdgeClick();
+          }}
+        >
           <UndirectedIcon></UndirectedIcon>
         </OptionButton>
-        <OptionButton tooltipContent="Add directed edge" onClick={() => { }}>
+        <OptionButton tooltipContent="Add directed edge" onClick={() => {}}>
           <DirectedIcon></DirectedIcon>
         </OptionButton>
       </Row>
+      <ClearButton
+        onClick={() => {
+          props.clearCanvas();
+        }}
+      >
+        Clear Canvas
+      </ClearButton>
+      <ItemText>Speed</ItemText>
+      <Slider>
+        <input
+          type="range"
+          className="slider"
+          min={500}
+          max={3000}
+          step={50}
+          value={3500 - props.visualizationSpeed}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+            const val: number = +e.target.value;
+            const speed: number = +e.target.max + +e.target.min - val;
+            props.setVisualizationSpeed(speed);
+          }}
+        />
+        <Row justifyContent="space-between" margin="-20px 0px 0px -20px">
+          <ItemText>Slow</ItemText>
+          <ItemText>Fast</ItemText>
+        </Row>
+      </Slider>
     </StyledSideNav>
   );
 };
