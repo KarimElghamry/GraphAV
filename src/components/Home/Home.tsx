@@ -66,6 +66,11 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
     setVisualizationSpeed(speed);
   };
 
+  const clearCanvas = () => {
+    setVisited([]);
+    setAdjacencyList([]);
+  };
+
   return (
     <div>
       <SideNav
