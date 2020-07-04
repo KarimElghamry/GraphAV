@@ -24,7 +24,6 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
 
   const onNodeConnect = (nodeIndex: number) => {
     if (isConnecting) {
-
       if (edgeFirstNode) {
         const newAdjacencyList = adjacencyList.slice();
         newAdjacencyList[edgeFirstNode].push(nodeIndex)
