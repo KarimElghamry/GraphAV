@@ -38,6 +38,8 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
     setIsVisualizing(false);
   };
 
+  console.log(zoomPercentage);
+
   return (
     <div>
       <SideNav
@@ -45,6 +47,7 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
         setStartingNode={setStartingNode}
         adjacencyList={adjacencyList}
         addNewNode={addNewNode}
+        setZoomPercentage={setZoomPercentage}
       />
       <Navbar changeTheme={props.changeTheme}></Navbar>
       <GraphCanvas

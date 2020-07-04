@@ -14,6 +14,7 @@ interface Props {
   addNewNode: () => void;
   startingNode: number;
   setStartingNode: Function;
+  setZoomPercentage: Function;
 }
 
 const sampleAlgorithms: Array<string> = [
@@ -50,6 +51,9 @@ const SideNav: React.FC<Props> = (props: Props): ReactElement => {
           max={1.5}
           step={0.1}
           value={1}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+            props.setZoomPercentage(e.target.value)
+          }
         />
       </ZoomSlider>
       <ItemText>Algorithm</ItemText>
