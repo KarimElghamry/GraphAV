@@ -61,6 +61,10 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
     setIsVisualizing(false);
   };
 
+  const changeVisualizationSpeed = (speed: number) => {
+    if (isVisualizing) return;
+    setVisualizationSpeed(speed);
+  };
   console.log(zoomPercentage);
 
   return (
@@ -74,7 +78,7 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
         setZoomPercentage={setZoomPercentage}
         zoomPercentage={zoomPercentage}
         visualizationSpeed={visualizationSpeed}
-        setVisualizationSpeed={setVisualizationSpeed}
+        setVisualizationSpeed={changeVisualizationSpeed}
       />
       <Navbar changeTheme={props.changeTheme}></Navbar>
       <GraphCanvas
