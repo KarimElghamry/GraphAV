@@ -17,6 +17,8 @@ interface Props {
   setZoomPercentage: Function;
   zoomPercentage: number;
   onUndirectedEdgeClick: VoidFunction;
+  visualizationSpeed: number;
+  setVisualizationSpeed: Function;
 }
 
 const sampleAlgorithms: Array<string> = [
@@ -95,13 +97,16 @@ const SideNav: React.FC<Props> = (props: Props): ReactElement => {
         <input
           type="range"
           className="slider"
-          min={0.5}
-          max={1.5}
-          step={0.1}
-          value={props.zoomPercentage}
-          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-            props.setZoomPercentage(e.target.value)
-          }
+          min={500}
+          max={3000}
+          step={50}
+          value={3500 - props.visualizationSpeed}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+            const val: number = +e.target.value;
+            const speed: number = +e.target.max + +e.target.min - val;
+            console.log(speed);
+            props.setVisualizationSpeed(speed);
+          }}
         />
         <Row justifyContent="space-between" margin="-20px 0px 0px -20px">
           <ItemText>Slow</ItemText>
