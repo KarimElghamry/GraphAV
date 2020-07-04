@@ -53,7 +53,6 @@ const GraphCanvas: React.FC<Props> = (props: Props): ReactElement => {
       })}
       {
         connectedNodePairs.map(([n1, n2]: Array<number>, index: number) => {
-          console.log(adjacencyList)
           return <Edge n1={nodeRefs[n2]} n2={nodeRefs[n1]} key={`${n1}${n2}`} />
         })
       }
