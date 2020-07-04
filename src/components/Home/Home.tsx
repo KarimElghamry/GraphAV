@@ -54,6 +54,7 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
       <GraphCanvas
         visited={visited}
         adjacencyList={adjacencyList}
+        zoomPercentage={zoomPercentage}
       ></GraphCanvas>
       <VisualizeButton
         isVisualizing={isVisualizing}

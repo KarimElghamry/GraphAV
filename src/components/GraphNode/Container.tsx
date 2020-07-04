@@ -6,22 +6,24 @@ interface Props {
   theme: Theme;
   isActive: boolean;
   position: Position;
+  zoomPercentage: number;
 }
 
 const Container = styled.div.attrs((props: Props) => ({
+  size: props.zoomPercentage * 88,
   style: {
     top: `${props.position.top}px`,
     left: `${props.position.left}px`,
   },
-})) <Props>`
+}))<Props>`
   z-index: 1;
   position: absolute;
   display: flex;
   justify-content: center;
   align-items: center;
   font-size: 24px;
-  height: 88px;
-  width: 88px;
+  height: ${(props) => `${props.size}px`};
+  width: ${(props) => `${props.size}px`};
   box-sizing: border-box;
   background-color: ${(props) =>
     props.isActive
