@@ -21,10 +21,10 @@ const GraphNode: React.FC<Props> = (props: Props): ReactElement => {
       const nodeWidth: number = +nodeRef.current.offsetWidth;
       const canvasWidth: number = +canvasRef.current.offsetWidth;
       const canvasHeight: number = +canvasRef.current.offsetHeight;
+      const temp: number = canvasWidth < 700 ? 90 : 50;
 
       let newLeft: number = e.clientX - nodeWidth / 2;
-      let newTop: number =
-        e.clientY - nodeWidth * (canvasHeight < 700 ? 1.5 : 1);
+      let newTop: number = e.clientY - temp - nodeWidth / 2;
 
       if (e.clientX - nodeWidth / 2 <= 0) {
         newLeft = 0;

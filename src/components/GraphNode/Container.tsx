@@ -21,7 +21,7 @@ const Container = styled.div.attrs((props: Props) => ({
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 24px;
+  font-size: ${(props) => `${props.size / 3}px`};
   height: ${(props) => `${props.size}px`};
   width: ${(props) => `${props.size}px`};
   box-sizing: border-box;
