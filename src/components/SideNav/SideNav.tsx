@@ -8,6 +8,7 @@ import Dropdown from './Dropdown/Dropdown';
 import Row from '../common/Row';
 import OptionButton from './Options/OptionButton';
 import {AddIcon, UndirectedIcon, DirectedIcon} from './Options/OptionIcons';
+import ClearButton from './ClearButton';
 
 interface Props {
   adjacencyList: Array<Array<number>>;
@@ -92,6 +93,7 @@ const SideNav: React.FC<Props> = (props: Props): ReactElement => {
           <DirectedIcon></DirectedIcon>
         </OptionButton>
       </Row>
+      <ClearButton>Clear Canvas</ClearButton>
       <ItemText>Speed</ItemText>
       <Slider>
         <input
