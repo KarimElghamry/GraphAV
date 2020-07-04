@@ -8,6 +8,7 @@ interface Props {
   canvasRef: React.RefObject<HTMLDivElement>;
   children: React.ReactChild | React.ReactChildren;
   edgeRef: React.RefObject<HTMLSpanElement> | null;
+  connectNode: VoidFunction;
 }
 
 const GraphNode: React.FC<Props> = (props: Props): ReactElement => {
@@ -47,6 +48,7 @@ const GraphNode: React.FC<Props> = (props: Props): ReactElement => {
   const handleMouseDown = () => {
     document.onmousemove = handleMouseMove;
     document.onmouseup = handleMouseUp;
+    props.connectNode();
   };
   const handleMouseUp = () => {
     document.onmousemove = null;

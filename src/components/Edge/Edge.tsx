@@ -11,14 +11,21 @@ interface EdgeProps {
 
 const Edge: React.FC<EdgeProps> = (props: EdgeProps): ReactElement => {
 
-    const [position1, setPosition1] = useState<Position>({ top: 0, left: 0 })
-    const [position2, setPosition2] = useState<Position>({ top: 0, left: 0 })
+    const [position1, setPosition1] = useState<Position | null>(null)
+    const [position2, setPosition2] = useState<Position | null>(null)
 
 
 
 
     useEffect(() => {
-        if (props.n1.current) {
+
+        if (props.n1.current && props.n1.current.parentElement) {
+            const nodeRect: DOMRect = props.n1.current.getBoundingClientRect();
+            const nodeRadius: number = props.n1.current.parentElement.offsetWidth / 2;
+            const initialPosition1: Position = {
+                top: (nodeRect.y - 6) - nodeRadius,
+                left: nodeRect.x - 6.5
+            };
             const handler = (e: CustomEventInit<Position>) => {
                 if (e?.detail) {
                     const newPosition1: Position = e.detail;
@@ -27,13 +34,21 @@ const Edge: React.FC<EdgeProps> = (props: EdgeProps): ReactElement => {
                 }
             };
             props.n1.current.addEventListener('position', handler);
-
+            if (!position1) {
+                setPosition1(initialPosition1);
+            }
             return () => props.n1.current?.removeEventListener('position', handler);
         }
-    });
+    }, [props.n1, position1]);
 
     useEffect(() => {
-        if (props.n2.current) {
+        if (props.n2.current && props.n2.current.parentElement) {
+            const nodeRect: DOMRect = props.n2.current.getBoundingClientRect();
+            const nodeRadius: number = props.n2.current.parentElement.offsetWidth / 2
+            const initialPosition1: Position = {
+                top: (nodeRect.y - 6) - nodeRadius,
+                left: nodeRect.x - 6.5
+            }
             const handler = (e: CustomEventInit<Position>) => {
                 if (e?.detail) {
                     const newPosition2: Position = e.detail;
@@ -41,20 +56,24 @@ const Edge: React.FC<EdgeProps> = (props: EdgeProps): ReactElement => {
                 }
             };
             props.n2.current.addEventListener('position', handler);
+            if (!position2) {
+                setPosition2(initialPosition1);
+            }
             return () => props.n2.current?.removeEventListener('position', handler);
         }
-    });
+    }, [props.n2, position2]);
+
     return (
         <StyledEdgeContainer
 
-            height={Math.max(position1.top + 3, position2.top + 3)}
-            width={Math.max(position1.left + 3, position2.left + 3)}
+            height={Math.max(position1 ? position1.top + 3 : 0, position2 ? position2.top + 3 : 0)}
+            width={Math.max(position1 ? position1.left + 3 : 0, position2 ? position2.left + 3 : 0)}
         >
             <StyledEdgeLine
-                x1={position1.left}
-                y1={position1.top}
-                x2={position2.left}
-                y2={position2.top}
+                x1={position1 ? position1.left : 0}
+                y1={position1 ? position1.top : 0}
+                x2={position2 ? position2.left : 0}
+                y2={position2 ? position2.top : 0}
             />
         </StyledEdgeContainer >
     );
