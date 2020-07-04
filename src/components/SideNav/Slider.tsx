@@ -14,7 +14,7 @@ const sliderTrackStyles = `
     border-radius: 200px;
 `;
 
-const ZoomSlider = styled.div`
+const Slider = styled.div`
     width: 200px;
     height: 25px;
     background-color: transparent;
@@ -79,4 +79,4 @@ const ZoomSlider = styled.div`
     }
 `;
 
-export default ZoomSlider;
+export default Slider;
