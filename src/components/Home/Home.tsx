@@ -15,6 +15,7 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
   const [startingNode, setStartingNode] = useState<number>(0);
   const [isVisualizing, setIsVisualizing] = useState<boolean>(false);
   const [zoomPercentage, setZoomPercentage] = useState<number>(1);
+  const [visualizationSpeed, setVisualizationSpeed] = useState<number>(1);
   const [isConnecting, setIsConnecting] = useState<boolean>(false);
   const [edgeFirstNode, setEdgeFirstNode] = useState<number>();
 
