@@ -67,6 +67,7 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
   };
 
   const clearCanvas = () => {
+    if (isVisualizing) return;
     setVisited([]);
     setAdjacencyList([]);
   };
@@ -83,6 +84,7 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
         zoomPercentage={zoomPercentage}
         visualizationSpeed={visualizationSpeed}
         setVisualizationSpeed={changeVisualizationSpeed}
+        clearCanvas={clearCanvas}
       />
       <Navbar changeTheme={props.changeTheme}></Navbar>
       <GraphCanvas

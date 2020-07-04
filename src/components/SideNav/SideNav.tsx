@@ -20,6 +20,7 @@ interface Props {
   onUndirectedEdgeClick: VoidFunction;
   visualizationSpeed: number;
   setVisualizationSpeed: Function;
+  clearCanvas: Function;
 }
 
 const sampleAlgorithms: Array<string> = [
@@ -93,7 +94,13 @@ const SideNav: React.FC<Props> = (props: Props): ReactElement => {
           <DirectedIcon></DirectedIcon>
         </OptionButton>
       </Row>
-      <ClearButton>Clear Canvas</ClearButton>
+      <ClearButton
+        onClick={() => {
+          props.clearCanvas();
+        }}
+      >
+        Clear Canvas
+      </ClearButton>
       <ItemText>Speed</ItemText>
       <Slider>
         <input
