@@ -90,6 +90,24 @@ const SideNav: React.FC<Props> = (props: Props): ReactElement => {
           <DirectedIcon></DirectedIcon>
         </OptionButton>
       </Row>
+      <ItemText>Speed</ItemText>
+      <Slider>
+        <input
+          type="range"
+          className="slider"
+          min={0.5}
+          max={1.5}
+          step={0.1}
+          value={props.zoomPercentage}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+            props.setZoomPercentage(e.target.value)
+          }
+        />
+        <Row justifyContent="space-between" margin="-20px 0px 0px -20px">
+          <ItemText>Slow</ItemText>
+          <ItemText>Fast</ItemText>
+        </Row>
+      </Slider>
     </StyledSideNav>
   );
 };
