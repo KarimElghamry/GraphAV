@@ -1,4 +1,4 @@
-import React, { ReactElement, useState } from 'react';
+import React, {ReactElement, useState} from 'react';
 import Navbar from '../Navbar/Navbar';
 import SideNav from '../SideNav/SideNav';
 import GraphCanvas from '../GraphCanvas/GraphCanvas';
@@ -27,19 +27,20 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
     if (isConnecting) {
       if (edgeFirstNode) {
         const newAdjacencyList = adjacencyList.slice();
-        newAdjacencyList[edgeFirstNode].push(nodeIndex)
-        setAdjacencyList(newAdjacencyList)
+        newAdjacencyList[edgeFirstNode].push(nodeIndex);
+        setAdjacencyList(newAdjacencyList);
         setEdgeFirstNode(undefined);
         setIsConnecting(false);
       } else {
         setEdgeFirstNode(nodeIndex);
       }
     }
-  }
+  };
 
   const onCreateEdge = () => {
     setEdgeFirstNode(undefined);
     setIsConnecting(true);
+  };
 
   const addNewNode = () => {
     let newAdjacencyList = adjacencyList.slice();
