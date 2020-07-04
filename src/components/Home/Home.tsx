@@ -48,6 +48,7 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
         adjacencyList={adjacencyList}
         addNewNode={addNewNode}
         setZoomPercentage={setZoomPercentage}
+        zoomPercentage={zoomPercentage}
       />
       <Navbar changeTheme={props.changeTheme}></Navbar>
       <GraphCanvas
