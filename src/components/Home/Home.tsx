@@ -43,7 +43,6 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
     let newAdjacencyList = adjacencyList.slice();
     newAdjacencyList.push([]);
     setAdjacencyList((prev: Array<Array<number>>) => newAdjacencyList);
-    console.log(adjacencyList);
   };
 
   //TODO: switch case between algorithms
@@ -65,7 +64,6 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
     if (isVisualizing) return;
     setVisualizationSpeed(speed);
   };
-  console.log(zoomPercentage);
 
   return (
     <div>

@@ -104,7 +104,6 @@ const SideNav: React.FC<Props> = (props: Props): ReactElement => {
           onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
             const val: number = +e.target.value;
             const speed: number = +e.target.max + +e.target.min - val;
-            console.log(speed);
             props.setVisualizationSpeed(speed);
           }}
         />
