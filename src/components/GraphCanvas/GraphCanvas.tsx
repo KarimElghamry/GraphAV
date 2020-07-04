@@ -7,6 +7,7 @@ interface Props {
   adjacencyList: Array<Array<number>>;
   visited: Array<number>;
   zoomPercentage: number;
+  onNodeConnect: (nodeIndex: number) => void;
 }
 
 const GraphCanvas: React.FC<Props> = (props: Props): ReactElement => {
@@ -35,6 +36,7 @@ const GraphCanvas: React.FC<Props> = (props: Props): ReactElement => {
       {adjacencyList.map((val: Array<number>, index: number) => {
         return (
           <GraphNode
+            connectNode={() => props.onNodeConnect(index)}
             key={index}
             canvasRef={canvasRef}
             isActive={visited.includes(index)}
@@ -46,9 +48,12 @@ const GraphCanvas: React.FC<Props> = (props: Props): ReactElement => {
           </GraphNode>
         );
       })}
-      {connectedNodePairs.map(([n1, n2]: Array<number>, index: number) => {
-        return <Edge n1={nodeRefs[n2]} n2={nodeRefs[n1]} key={index} />;
-      })}
+
+      {
+        connectedNodePairs.map(([n1, n2]: Array<number>, index: number) => {
+          return <Edge n1={nodeRefs[n2]} n2={nodeRefs[n1]} key={`${n1}${n2}`} />
+        })
+      }
     </Container>
   );
 };

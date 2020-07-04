@@ -1,4 +1,4 @@
-import React, {ReactElement, useState} from 'react';
+import React, { ReactElement, useState } from 'react';
 import StyledSideNav from './SideNavStyle';
 import ZoomSlider from './ZoomSlider';
 import ItemText from './ItemText';
@@ -7,7 +7,7 @@ import Arrow from './Arrow';
 import Dropdown from './Dropdown/Dropdown';
 import Row from '../common/Row';
 import OptionButton from './Options/OptionButton';
-import {AddIcon, UndirectedIcon, DirectedIcon} from './Options/OptionIcons';
+import { AddIcon, UndirectedIcon, DirectedIcon } from './Options/OptionIcons';
 
 interface Props {
   adjacencyList: Array<Array<number>>;
@@ -16,6 +16,7 @@ interface Props {
   setStartingNode: Function;
   setZoomPercentage: Function;
   zoomPercentage: number;
+  onUndirectedEdgeClick: VoidFunction;
 }
 
 const sampleAlgorithms: Array<string> = [
@@ -36,7 +37,7 @@ const SideNav: React.FC<Props> = (props: Props): ReactElement => {
   };
 
   //TODO: Implement set selected algorithm logic
-  const setSelectedAlgorithm = (val: number) => {};
+  const setSelectedAlgorithm = (val: number) => { };
 
   return (
     <StyledSideNav isVisible={isVisible}>
@@ -77,10 +78,12 @@ const SideNav: React.FC<Props> = (props: Props): ReactElement => {
         <OptionButton tooltipContent="Add node" onClick={props.addNewNode}>
           <AddIcon></AddIcon>
         </OptionButton>
-        <OptionButton tooltipContent="Add undirected edge" onClick={() => {}}>
+        <OptionButton tooltipContent="Add undirected edge" onClick={() => {
+          props.onUndirectedEdgeClick()
+        }}>
           <UndirectedIcon></UndirectedIcon>
         </OptionButton>
-        <OptionButton tooltipContent="Add directed edge" onClick={() => {}}>
+        <OptionButton tooltipContent="Add directed edge" onClick={() => { }}>
           <DirectedIcon></DirectedIcon>
         </OptionButton>
       </Row>

@@ -1,4 +1,4 @@
-import React, {ReactElement, useState} from 'react';
+import React, { ReactElement, useState } from 'react';
 import Navbar from '../Navbar/Navbar';
 import SideNav from '../SideNav/SideNav';
 import GraphCanvas from '../GraphCanvas/GraphCanvas';
@@ -20,6 +20,26 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
   const [startingNode, setStartingNode] = useState<number>(0);
   const [isVisualizing, setIsVisualizing] = useState<boolean>(false);
   const [zoomPercentage, setZoomPercentage] = useState<number>(1);
+  const [isConnecting, setIsConnecting] = useState<boolean>(false);
+  const [edgeFirstNode, setEdgeFirstNode] = useState<number>();
+
+  const onNodeConnect = (nodeIndex: number) => {
+    if (isConnecting) {
+      if (edgeFirstNode) {
+        const newAdjacencyList = adjacencyList.slice();
+        newAdjacencyList[edgeFirstNode].push(nodeIndex)
+        setAdjacencyList(newAdjacencyList)
+        setEdgeFirstNode(undefined);
+        setIsConnecting(false);
+      } else {
+        setEdgeFirstNode(nodeIndex);
+      }
+    }
+  }
+
+  const onCreateEdge = () => {
+    setEdgeFirstNode(undefined);
+    setIsConnecting(true);
 
   const addNewNode = () => {
     let newAdjacencyList = adjacencyList.slice();
@@ -43,6 +63,7 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
   return (
     <div>
       <SideNav
+        onUndirectedEdgeClick={onCreateEdge}
         startingNode={startingNode}
         setStartingNode={setStartingNode}
         adjacencyList={adjacencyList}
@@ -52,6 +73,7 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
       />
       <Navbar changeTheme={props.changeTheme}></Navbar>
       <GraphCanvas
+        onNodeConnect={(nodeIndex: number) => onNodeConnect(nodeIndex)}
         visited={visited}
         adjacencyList={adjacencyList}
         zoomPercentage={zoomPercentage}
