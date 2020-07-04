@@ -52,7 +52,12 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
     if (isVisualizing) return;
     setIsVisualizing(true);
     setVisited([]);
-    await algorithms.dfs(adjacencyList, startingNode, setVisited);
+    await algorithms.dfs(
+      adjacencyList,
+      startingNode,
+      setVisited,
+      visualizationSpeed
+    );
     setIsVisualizing(false);
   };
 
