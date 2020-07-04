@@ -19,6 +19,7 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
   const [visited, setVisited] = useState<Array<number>>([]);
   const [startingNode, setStartingNode] = useState<number>(0);
   const [isVisualizing, setIsVisualizing] = useState<boolean>(false);
+  const [zoomPercentage, setZoomPercentage] = useState<number>(1);
   const [isConnecting, setIsConnecting] = useState<boolean>(false);
   const [edgeFirstNode, setEdgeFirstNode] = useState<number>();
 
@@ -39,7 +40,6 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
   const onCreateEdge = () => {
     setEdgeFirstNode(undefined);
     setIsConnecting(true);
-  }
 
   const addNewNode = () => {
     let newAdjacencyList = adjacencyList.slice();
@@ -58,6 +58,8 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
     setIsVisualizing(false);
   };
 
+  console.log(zoomPercentage);
+
   return (
     <div>
       <SideNav
@@ -66,12 +68,15 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
         setStartingNode={setStartingNode}
         adjacencyList={adjacencyList}
         addNewNode={addNewNode}
+        setZoomPercentage={setZoomPercentage}
+        zoomPercentage={zoomPercentage}
       />
       <Navbar changeTheme={props.changeTheme}></Navbar>
       <GraphCanvas
         onNodeConnect={(nodeIndex: number) => onNodeConnect(nodeIndex)}
         visited={visited}
         adjacencyList={adjacencyList}
+        zoomPercentage={zoomPercentage}
       ></GraphCanvas>
       <VisualizeButton
         isVisualizing={isVisualizing}

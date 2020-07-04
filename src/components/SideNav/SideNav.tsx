@@ -14,6 +14,8 @@ interface Props {
   addNewNode: () => void;
   startingNode: number;
   setStartingNode: Function;
+  setZoomPercentage: Function;
+  zoomPercentage: number;
   onUndirectedEdgeClick: VoidFunction;
 }
 
@@ -44,7 +46,17 @@ const SideNav: React.FC<Props> = (props: Props): ReactElement => {
       </ToggleButton>
       <ItemText>Zoom</ItemText>
       <ZoomSlider>
-        <input type="range" className="slider" />
+        <input
+          type="range"
+          className="slider"
+          min={0.5}
+          max={1.5}
+          step={0.1}
+          value={props.zoomPercentage}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+            props.setZoomPercentage(e.target.value)
+          }
+        />
       </ZoomSlider>
       <ItemText>Algorithm</ItemText>
       <Dropdown

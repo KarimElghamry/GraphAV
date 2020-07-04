@@ -1,4 +1,4 @@
-import React, { ReactElement, useState, useRef, useEffect } from 'react';
+import React, {ReactElement, useState, useRef, useEffect} from 'react';
 import Container from './Container';
 import Position from '../../models/Position';
 
@@ -8,11 +8,12 @@ interface Props {
   canvasRef: React.RefObject<HTMLDivElement>;
   children: React.ReactChild | React.ReactChildren;
   edgeRef: React.RefObject<HTMLSpanElement> | null;
+  zoomPercentage: number;
   connectNode: VoidFunction;
 }
 
 const GraphNode: React.FC<Props> = (props: Props): ReactElement => {
-  const [position, setPosition] = useState<Position>({ top: 100, left: 100 });
+  const [position, setPosition] = useState<Position>({top: 100, left: 100});
   const nodeRef: React.RefObject<HTMLDivElement> = useRef<HTMLDivElement>(null);
   const canvasRef: React.RefObject<HTMLDivElement> = props.canvasRef;
 
@@ -21,10 +22,10 @@ const GraphNode: React.FC<Props> = (props: Props): ReactElement => {
       const nodeWidth: number = +nodeRef.current.offsetWidth;
       const canvasWidth: number = +canvasRef.current.offsetWidth;
       const canvasHeight: number = +canvasRef.current.offsetHeight;
+      const temp: number = canvasWidth < 700 ? 90 : 50;
 
       let newLeft: number = e.clientX - nodeWidth / 2;
-      let newTop: number =
-        e.clientY - nodeWidth * (canvasHeight < 700 ? 1.5 : 1);
+      let newTop: number = e.clientY - temp - nodeWidth / 2;
 
       if (e.clientX - nodeWidth / 2 <= 0) {
         newLeft = 0;
@@ -57,8 +58,13 @@ const GraphNode: React.FC<Props> = (props: Props): ReactElement => {
   useEffect(() => {
     if (props.edgeRef?.current && nodeRef.current) {
       const halfNodeWidth: number = +nodeRef.current.offsetWidth / 2;
-      const edgePosition: Position = { top: position.top + halfNodeWidth, left: position.left + halfNodeWidth };
-      const event = new CustomEvent<Position>('position', { detail: edgePosition });
+      const edgePosition: Position = {
+        top: position.top + halfNodeWidth,
+        left: position.left + halfNodeWidth,
+      };
+      const event = new CustomEvent<Position>('position', {
+        detail: edgePosition,
+      });
       props.edgeRef.current.dispatchEvent(event);
     }
   });
@@ -68,7 +74,7 @@ const GraphNode: React.FC<Props> = (props: Props): ReactElement => {
     if (canvasRef.current && nodeRef.current) {
       const canvasWidth = canvasRef.current.offsetWidth;
       const canvasHeight = canvasRef.current.offsetHeight;
-      setPosition({ left: canvasWidth / 2, top: canvasHeight / 2 });
+      setPosition({left: canvasWidth / 2, top: canvasHeight / 2});
     }
   }, [canvasRef, nodeRef, setPosition]);
 
@@ -112,6 +118,7 @@ const GraphNode: React.FC<Props> = (props: Props): ReactElement => {
       onMouseUp={handleMouseUp}
       position={position}
       ref={nodeRef}
+      zoomPercentage={props.zoomPercentage}
     >
       {props.content}
       {props.children}
