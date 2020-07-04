@@ -48,6 +48,7 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
   //TODO: switch case between algorithms
   //TODO: lift state of the selected Algorithm to Home
   const handleVisualize = async () => {
+    if (adjacencyList.length === 0) return;
     if (isVisualizing) return;
     setIsVisualizing(true);
     setVisited([]);
