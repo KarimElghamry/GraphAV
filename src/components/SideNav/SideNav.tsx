@@ -9,6 +9,7 @@ import Row from '../common/Row';
 import OptionButton from './Options/OptionButton';
 import {AddIcon, UndirectedIcon, DirectedIcon} from './Options/OptionIcons';
 import ClearButton from './ClearButton';
+import algorithms from '../../algorithms';
 
 interface Props {
   adjacencyList: Array<Array<number>>;
@@ -22,15 +23,6 @@ interface Props {
   setVisualizationSpeed: Function;
   clearCanvas: Function;
 }
-
-const sampleAlgorithms: Array<string> = [
-  'DFS',
-  'BFS',
-  'Dijkstra',
-  'Prim',
-  'A*',
-  'Bellman',
-];
 
 const SideNav: React.FC<Props> = (props: Props): ReactElement => {
   const [isVisible, setIsVisible] = useState<boolean>(true);
@@ -66,7 +58,7 @@ const SideNav: React.FC<Props> = (props: Props): ReactElement => {
       <Dropdown
         selectedTile={0}
         setSelectedTile={setSelectedAlgorithm}
-        content={sampleAlgorithms}
+        content={algorithms.labels}
       ></Dropdown>
       <ItemText>Starting Node</ItemText>
       <Dropdown
