@@ -67,7 +67,7 @@ const SideNav: React.FC<Props> = (props: Props): ReactElement => {
       </Slider>
       <ItemText>Algorithm</ItemText>
       <Dropdown
-        selectedTile={0}
+        selectedTile={availableAlgorithms.indexOf(props.selectedAlgorithm)}
         setSelectedTile={setSelectedAlgorithm}
         content={availableAlgorithms}
       ></Dropdown>
