@@ -26,7 +26,7 @@ const dijkstra = async (
   visited = [];
   let currentNode: number = startingNode;
 
-  while (visited.length !== adjacencyList.length) {
+  while (!visited.includes(currentNode)) {
     helpers.asyncTimout(1000);
     visited.push(currentNode);
     setVisited(currentNode);
