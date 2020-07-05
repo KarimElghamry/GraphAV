@@ -89,6 +89,8 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
         visualizationSpeed={visualizationSpeed}
         setVisualizationSpeed={changeVisualizationSpeed}
         clearCanvas={clearCanvas}
+        selectedAlgorithm={selectedAlgorithm}
+        setSelectedAlgorithm={setSelectedAlgorithm}
       />
       <Navbar changeTheme={props.changeTheme}></Navbar>
       <GraphCanvas

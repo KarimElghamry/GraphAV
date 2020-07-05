@@ -9,7 +9,6 @@ import Row from '../common/Row';
 import OptionButton from './Options/OptionButton';
 import {AddIcon, UndirectedIcon, DirectedIcon} from './Options/OptionIcons';
 import ClearButton from './ClearButton';
-import algorithms from '../../algorithms';
 import Algorithms from '../../models/Algorithms';
 
 interface Props {
@@ -23,6 +22,8 @@ interface Props {
   visualizationSpeed: number;
   setVisualizationSpeed: Function;
   clearCanvas: Function;
+  selectedAlgorithm: Algorithms;
+  setSelectedAlgorithm: Function;
 }
 
 const availableAlgorithms: Array<Algorithms> = [
@@ -40,7 +41,10 @@ const SideNav: React.FC<Props> = (props: Props): ReactElement => {
   };
 
   //TODO: Implement set selected algorithm logic
-  const setSelectedAlgorithm = (val: number) => {};
+  const setSelectedAlgorithm = (val: number) => {
+    const newSelectedAlgorithm = availableAlgorithms[val];
+    props.setSelectedAlgorithm(newSelectedAlgorithm);
+  };
 
   return (
     <StyledSideNav isVisible={isVisible}>
