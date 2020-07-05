@@ -5,7 +5,7 @@ import asyncTimout from '../helpers/asyncTimout'
 //     prevNode: number | undefined;
 // }> = [];
 
-const visited = new Map<number, boolean>();
+const visited: Array<number> = [];
 
 const bfs = async (
     adjacencyList: Array<Array<number>>,
@@ -13,31 +13,29 @@ const bfs = async (
     startingNode: number,
     visualizationSpeed: number
 ) => {
-    console.log(startingNode)
-    visited.clear();
-    setVisited(Array.from(visited.keys()))
-    if (visited.get(startingNode)) return;
-    await visitNode(setVisited, startingNode, visualizationSpeed);
+    setVisited([])
+    if (visited.includes(startingNode)) return;
+    await visitNode(setVisited, startingNode, visualizationSpeed, visited);
     for (const neighbour of adjacencyList[startingNode]) {
-        await visitNode(setVisited, neighbour, visualizationSpeed);
+        await visitNode(setVisited, neighbour, visualizationSpeed, visited);
     }
 
     for (const neighbour of adjacencyList[startingNode]) {
-        await exploreNode(adjacencyList, setVisited, neighbour, visualizationSpeed);
+        await exploreNode(adjacencyList, setVisited, neighbour, visualizationSpeed, visited);
     }
 }
 
-export default bfs
 
 const visitNode = async (
     setVisited: Function,
     node: number,
-    visualizationSpeed: number
+    visualizationSpeed: number,
+    visited: Array<number>
 ) => {
-    if (!visited.get(node)) {
+    if (!visited.includes(node)) {
         await asyncTimout(visualizationSpeed)
-        visited.set(node, true)
-        setVisited(Array.from(visited.keys()))
+        visited.push(node);
+        setVisited(visited.slice())
     }
 }
 
@@ -45,10 +43,13 @@ const exploreNode = async (
     adjacencyList: Array<Array<number>>,
     setVisited: Function,
     node: number,
-    visualizationSpeed: number
+    visualizationSpeed: number,
+    visited: Array<number>
 ) => {
     for (const neighbour of adjacencyList[node]) {
-        await visitNode(setVisited, neighbour, visualizationSpeed);
+        await visitNode(setVisited, neighbour, visualizationSpeed, visited);
+
     }
 }
 
+export default bfs;
