@@ -10,6 +10,7 @@ import OptionButton from './Options/OptionButton';
 import {AddIcon, UndirectedIcon, DirectedIcon} from './Options/OptionIcons';
 import ClearButton from './ClearButton';
 import algorithms from '../../algorithms';
+import Algorithms from '../../models/Algorithms';
 
 interface Props {
   adjacencyList: Array<Array<number>>;
@@ -23,6 +24,12 @@ interface Props {
   setVisualizationSpeed: Function;
   clearCanvas: Function;
 }
+
+const availableAlgorithms: Array<Algorithms> = [
+  Algorithms.dfs,
+  Algorithms.bfs,
+  Algorithms.dijkstra,
+];
 
 const SideNav: React.FC<Props> = (props: Props): ReactElement => {
   const [isVisible, setIsVisible] = useState<boolean>(true);
@@ -58,7 +65,7 @@ const SideNav: React.FC<Props> = (props: Props): ReactElement => {
       <Dropdown
         selectedTile={0}
         setSelectedTile={setSelectedAlgorithm}
-        content={algorithms.labels}
+        content={availableAlgorithms}
       ></Dropdown>
       <ItemText>Starting Node</ItemText>
       <Dropdown
