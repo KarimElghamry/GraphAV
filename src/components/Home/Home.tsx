@@ -66,6 +66,14 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
         );
         break;
 
+      case Algorithms.dijkstra:
+        await algorithms.dijkstra(
+          adjacencyList,
+          setVisited,
+          startingNode,
+          visualizationSpeed
+        );
+        break;
       default:
         break;
     }
