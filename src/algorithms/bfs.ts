@@ -5,7 +5,7 @@ import asyncTimout from '../helpers/asyncTimout'
 //     prevNode: number | undefined;
 // }> = [];
 
-const visited: Array<number> = [];
+let visited: Array<number> = [];
 
 const bfs = async (
     adjacencyList: Array<Array<number>>,
@@ -13,6 +13,7 @@ const bfs = async (
     startingNode: number,
     visualizationSpeed: number
 ) => {
+    visited = [];
     setVisited([])
     if (visited.includes(startingNode)) return;
     await visitNode(setVisited, startingNode, visualizationSpeed, visited);
