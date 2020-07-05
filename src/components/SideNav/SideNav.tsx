@@ -9,6 +9,7 @@ import Row from '../common/Row';
 import OptionButton from './Options/OptionButton';
 import {AddIcon, UndirectedIcon, DirectedIcon} from './Options/OptionIcons';
 import ClearButton from './ClearButton';
+import Algorithms from '../../models/Algorithms';
 
 interface Props {
   adjacencyList: Array<Array<number>>;
@@ -21,15 +22,14 @@ interface Props {
   visualizationSpeed: number;
   setVisualizationSpeed: Function;
   clearCanvas: Function;
+  selectedAlgorithm: Algorithms;
+  setSelectedAlgorithm: Function;
 }
 
-const sampleAlgorithms: Array<string> = [
-  'DFS',
-  'BFS',
-  'Dijkstra',
-  'Prim',
-  'A*',
-  'Bellman',
+const availableAlgorithms: Array<Algorithms> = [
+  Algorithms.dfs,
+  Algorithms.bfs,
+  Algorithms.dijkstra,
 ];
 
 const SideNav: React.FC<Props> = (props: Props): ReactElement => {
@@ -41,7 +41,10 @@ const SideNav: React.FC<Props> = (props: Props): ReactElement => {
   };
 
   //TODO: Implement set selected algorithm logic
-  const setSelectedAlgorithm = (val: number) => {};
+  const setSelectedAlgorithm = (val: number) => {
+    const newSelectedAlgorithm = availableAlgorithms[val];
+    props.setSelectedAlgorithm(newSelectedAlgorithm);
+  };
 
   return (
     <StyledSideNav isVisible={isVisible}>
@@ -64,9 +67,9 @@ const SideNav: React.FC<Props> = (props: Props): ReactElement => {
       </Slider>
       <ItemText>Algorithm</ItemText>
       <Dropdown
-        selectedTile={0}
+        selectedTile={availableAlgorithms.indexOf(props.selectedAlgorithm)}
         setSelectedTile={setSelectedAlgorithm}
-        content={sampleAlgorithms}
+        content={availableAlgorithms}
       ></Dropdown>
       <ItemText>Starting Node</ItemText>
       <Dropdown

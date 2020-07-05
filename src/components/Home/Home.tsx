@@ -4,6 +4,7 @@ import SideNav from '../SideNav/SideNav';
 import GraphCanvas from '../GraphCanvas/GraphCanvas';
 import VisualizeButton from '../VisualizeButton/VisualizeButton';
 import algorithms from '../../algorithms';
+import Algorithms from '../../models/Algorithms';
 
 interface HomeProps {
   changeTheme: Function;
@@ -13,6 +14,9 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
   const [adjacencyList, setAdjacencyList] = useState<Array<Array<number>>>([]);
   const [visited, setVisited] = useState<Array<number>>([]);
   const [startingNode, setStartingNode] = useState<number>(0);
+  const [selectedAlgorithm, setSelectedAlgorithm] = useState<Algorithms>(
+    Algorithms.dfs
+  );
   const [isVisualizing, setIsVisualizing] = useState<boolean>(false);
   const [zoomPercentage, setZoomPercentage] = useState<number>(1);
   const [visualizationSpeed, setVisualizationSpeed] = useState<number>(1000);
@@ -46,18 +50,25 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
   };
 
   //TODO: switch case between algorithms
-  //TODO: lift state of the selected Algorithm to Home
   const handleVisualize = async () => {
     if (adjacencyList.length === 0) return;
     if (isVisualizing) return;
     setIsVisualizing(true);
     setVisited([]);
-    await algorithms.dfs(
-      adjacencyList,
-      startingNode,
-      setVisited,
-      visualizationSpeed
-    );
+
+    switch (selectedAlgorithm) {
+      case Algorithms.dfs:
+        await algorithms.dfs(
+          adjacencyList,
+          startingNode,
+          setVisited,
+          visualizationSpeed
+        );
+        break;
+
+      default:
+        break;
+    }
     setIsVisualizing(false);
   };
 
@@ -85,6 +96,8 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
         visualizationSpeed={visualizationSpeed}
         setVisualizationSpeed={changeVisualizationSpeed}
         clearCanvas={clearCanvas}
+        selectedAlgorithm={selectedAlgorithm}
+        setSelectedAlgorithm={setSelectedAlgorithm}
       />
       <Navbar changeTheme={props.changeTheme}></Navbar>
       <GraphCanvas
