@@ -66,6 +66,8 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
         );
         break;
 
+      case Algorithms.dijkstra:
+        break;
       default:
         break;
     }
