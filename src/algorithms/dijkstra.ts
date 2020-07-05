@@ -12,7 +12,8 @@ let visited: Array<number> = [];
 const dijkstra = async (
   adjacencyList: Array<Array<number>>,
   setVisited: Function,
-  startingNode: number
+  startingNode: number,
+  visualizationSpeed: number
 ) => {
   //initialize info table
   infoTable = [];
@@ -27,9 +28,9 @@ const dijkstra = async (
   let currentNode: number = startingNode;
 
   while (!visited.includes(currentNode)) {
-    helpers.asyncTimout(1000);
-    visited.push(currentNode);
-    setVisited(currentNode);
+    await helpers.asyncTimout(visualizationSpeed);
+    visited = visited.concat(currentNode);
+    setVisited(visited);
 
     for (let neighbour of adjacencyList[currentNode]) {
       if (visited.includes(neighbour)) continue;
@@ -55,7 +56,10 @@ const dijkstra = async (
       if (row.shortestDistance === undefined) continue;
       if (visited.includes(i)) continue;
 
-      if (minimumDistance > row.shortestDistance) currentNode = i;
+      if (minimumDistance > row.shortestDistance) {
+        currentNode = i;
+        minimumDistance = row.shortestDistance;
+      }
     }
   }
 
