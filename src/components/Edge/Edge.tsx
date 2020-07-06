@@ -8,6 +8,7 @@ interface EdgeProps {
   n1: RefObject<HTMLSpanElement>;
   n2: RefObject<HTMLSpanElement>;
   isDirected: boolean;
+  isVisited: boolean;
   zoomPercentage: number;
 }
 

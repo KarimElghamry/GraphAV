@@ -51,6 +51,12 @@ const GraphCanvas: React.FC<Props> = (props: Props): ReactElement => {
 
       {/* TODO:add directed logic */}
       {connectedNodePairs.map(([n1, n2]: Array<number>, index: number) => {
+        const isVisited: boolean =
+          visited.length <= 1
+            ? false
+            : n1 === visited[visited.length - 2] &&
+              n2 === visited[visited.length - 1];
+
         return (
           <Edge
             n1={nodeRefs[n1]}
@@ -58,6 +64,7 @@ const GraphCanvas: React.FC<Props> = (props: Props): ReactElement => {
             key={`${n1}${n2}`}
             isDirected={false}
             zoomPercentage={props.zoomPercentage}
+            isVisited={isVisited}
           />
         );
       })}
