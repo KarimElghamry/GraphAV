@@ -7,23 +7,35 @@ import asyncTimout from '../helpers/asyncTimout'
 
 let visited: Array<number> = [];
 
-const bfs = async (
+const bfsWrapper = async (
     adjacencyList: Array<Array<number>>,
     setVisited: Function,
     startingNode: number,
     visualizationSpeed: number
 ) => {
     visited = [];
-    setVisited([])
-    if (visited.includes(startingNode)) return;
-    await visitNode(setVisited, startingNode, visualizationSpeed, visited);
-    for (const neighbour of adjacencyList[startingNode]) {
-        await visitNode(setVisited, neighbour, visualizationSpeed, visited);
-    }
+    setVisited([]);
+    await visitNode(setVisited, startingNode, visualizationSpeed);
+    return await bfs(adjacencyList, setVisited, visualizationSpeed, [startingNode])
+}
 
-    for (const neighbour of adjacencyList[startingNode]) {
-        await exploreNode(adjacencyList, setVisited, neighbour, visualizationSpeed, visited);
+const bfs = async (
+    adjacencyList: Array<Array<number>>,
+    setVisited: Function,
+    visualizationSpeed: number,
+    nodesToExplore: Array<number>
+) => {
+    if (visited.length === adjacencyList.length) return;
+
+    const nextNodesToExplore: Array<number> = [];
+    for (const nodeToExplore of nodesToExplore) {
+        for (const nodeToVisit of adjacencyList[nodeToExplore]) {
+            await visitNode(setVisited, nodeToVisit, visualizationSpeed)
+            nextNodesToExplore.push(nodeToVisit);
+        }
     }
+    console.log(nextNodesToExplore)
+    bfs(adjacencyList, setVisited, visualizationSpeed, nextNodesToExplore);
 }
 
 
@@ -31,7 +43,6 @@ const visitNode = async (
     setVisited: Function,
     node: number,
     visualizationSpeed: number,
-    visited: Array<number>
 ) => {
     if (!visited.includes(node)) {
         await asyncTimout(visualizationSpeed)
@@ -40,17 +51,4 @@ const visitNode = async (
     }
 }
 
-const exploreNode = async (
-    adjacencyList: Array<Array<number>>,
-    setVisited: Function,
-    node: number,
-    visualizationSpeed: number,
-    visited: Array<number>
-) => {
-    for (const neighbour of adjacencyList[node]) {
-        await visitNode(setVisited, neighbour, visualizationSpeed, visited);
-
-    }
-}
-
-export default bfs;
+export default bfsWrapper;
