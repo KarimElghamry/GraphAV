@@ -7,6 +7,7 @@ import StyledPolygon from './StyledPolygon';
 interface EdgeProps {
   n1: RefObject<HTMLSpanElement>;
   n2: RefObject<HTMLSpanElement>;
+  isDirected: boolean;
 }
 
 const Edge: React.FC<EdgeProps> = (props: EdgeProps): ReactElement => {
@@ -103,7 +104,7 @@ const Edge: React.FC<EdgeProps> = (props: EdgeProps): ReactElement => {
         points={`${pos1Left},${pos1Top},${(pos1Left + pos2Left) / 2},${
           (pos1Top + pos2Top) / 2
         },${pos2Left},${pos2Top}`}
-        markerMid="url(#arrowhead)"
+        markerMid={props.isDirected ? 'url(#arrowhead)' : 'none'}
       />
     </StyledEdgeContainer>
   );
