@@ -69,7 +69,7 @@ const bfs = async (
             nextNodesToExplore.push(nodeToVisit);
         }
     }
-    bfs(
+    await bfs(
         adjacencyList,
         setVisited,
         visualizationSpeed,
