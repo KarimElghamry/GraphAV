@@ -1,7 +1,11 @@
 import styled from 'styled-components';
 
-const StyledPolygon = styled.polygon`
-  fill: ${(props) => props.theme.edge.background};
+interface Props {
+  isVisited: boolean;
+}
+
+const StyledPolygon = styled.polygon<Props>`
+  fill: ${(props) => (props.isVisited ? 'green' : props.theme.edge.background)};
   transition-duration: 0.3s;
 `;
 
