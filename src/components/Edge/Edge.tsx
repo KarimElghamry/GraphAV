@@ -2,6 +2,7 @@ import React, {ReactElement, RefObject, useEffect, useState} from 'react';
 import StyledEdgeLine from './StyledEdgeLine';
 import Position from '../../models/Position';
 import StyledEdgeContainer from './StyledEdgeContainer';
+import StyledPolygon from './StyledPolygon';
 
 interface EdgeProps {
   n1: RefObject<HTMLSpanElement>;
@@ -88,7 +89,6 @@ const Edge: React.FC<EdgeProps> = (props: EdgeProps): ReactElement => {
     >
       <defs>
         <marker
-          viewBox="0 0 10 7"
           orient="auto"
           id="arrowhead"
           markerWidth="10"
@@ -96,7 +96,7 @@ const Edge: React.FC<EdgeProps> = (props: EdgeProps): ReactElement => {
           refX={5}
           refY={3.5}
         >
-          <polygon points="0 0, 10 3.5, 0 7" fill="white" />
+          <StyledPolygon points="0 0, 10 3.5, 0 7" />
         </marker>
       </defs>
       <StyledEdgeLine
