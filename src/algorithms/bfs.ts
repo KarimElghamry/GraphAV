@@ -5,7 +5,7 @@ interface NodeInfo {
     prevNode: number | undefined;
 }
 
-
+let explored: Array<number> = [];
 
 const bfsWrapper = async (
     adjacencyList: Array<Array<number>>,
@@ -39,6 +39,7 @@ const bfsWrapper = async (
         depth,
         infoTable
     )
+
 }
 
 const bfs = async (
@@ -50,7 +51,7 @@ const bfs = async (
     depth: number,
     infoTable: Array<NodeInfo>,
 ) => {
-    if (visited.length === adjacencyList.length) return;    //base case: all nodes visited
+    if (nodesToExplore.length === 0) return //base case
     const currentDepth: number = ++depth;   //TODO: change increment value when using weighted graphs
 
     const nextNodesToExplore: Array<number> = [];
@@ -66,9 +67,13 @@ const bfs = async (
                 nodeToExplore,
                 infoTable
             );
-            nextNodesToExplore.push(nodeToVisit);
+            if (!explored.includes(nodeToVisit)) {
+                nextNodesToExplore.push(nodeToVisit);
+            }
         }
+        explored.push(nodeToExplore);
     }
+
     await bfs(
         adjacencyList,
         setVisited,
@@ -106,6 +111,7 @@ const initBfs = async (
 ) => {
     visited = [];
     infoTable = [];
+    explored = [];
     setVisited(visited);
 }
 
