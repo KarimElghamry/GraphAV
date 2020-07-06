@@ -60,7 +60,8 @@ const GraphCanvas: React.FC<Props> = (props: Props): ReactElement => {
       {/* TODO:add directed logic */}
       {connectedNodePairs.map(([n1, n2]: Array<number>, index: number) => {
         const isVisited: boolean =
-          visitedEdge[0] === n1 && visitedEdge[1] === n2;
+          (visitedEdge[0] === n1 && visitedEdge[1] === n2) ||
+          (visitedEdge[0] === n2 && visitedEdge[1] === n1);
         return (
           <Edge
             n1={nodeRefs[n1]}
