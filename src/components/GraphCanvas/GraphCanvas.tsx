@@ -49,11 +49,9 @@ const GraphCanvas: React.FC<Props> = (props: Props): ReactElement => {
         );
       })}
 
-      {
-        connectedNodePairs.map(([n1, n2]: Array<number>, index: number) => {
-          return <Edge n1={nodeRefs[n2]} n2={nodeRefs[n1]} key={`${n1}${n2}`} />
-        })
-      }
+      {connectedNodePairs.map(([n1, n2]: Array<number>, index: number) => {
+        return <Edge n1={nodeRefs[n1]} n2={nodeRefs[n2]} key={`${n1}${n2}`} />;
+      })}
     </Container>
   );
 };

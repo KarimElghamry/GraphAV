@@ -70,22 +70,40 @@ const Edge: React.FC<EdgeProps> = (props: EdgeProps): ReactElement => {
     }
   }, [props.n2, position2]);
 
+  const pos1top = position1 ? position1.top : 0;
+  const pos2top = position2 ? position2.top : 0;
+  const pos1left = position1 ? position1.left : 0;
+  const pos2left = position2 ? position2.left : 0;
+
   return (
     <StyledEdgeContainer
       height={Math.max(
-        position1 ? position1.top + 3 : 0,
-        position2 ? position2.top + 3 : 0
+        position1 ? position1.top + 10 : 0,
+        position2 ? position2.top + 10 : 0
       )}
       width={Math.max(
-        position1 ? position1.left + 3 : 0,
-        position2 ? position2.left + 3 : 0
+        position1 ? position1.left + 10 : 0,
+        position2 ? position2.left + 10 : 0
       )}
     >
+      <defs>
+        <marker
+          viewBox="0 0 10 7"
+          orient="auto"
+          id="arrowhead"
+          markerWidth="10"
+          markerHeight="7"
+          refX={5}
+          refY={3.5}
+        >
+          <polygon points="0 0, 10 3.5, 0 7" fill="white" />
+        </marker>
+      </defs>
       <StyledEdgeLine
-        x1={position1 ? position1.left : 0}
-        y1={position1 ? position1.top : 0}
-        x2={position2 ? position2.left : 0}
-        y2={position2 ? position2.top : 0}
+        points={`${pos1left},${pos1top},${(pos1left + pos2left) / 2},${
+          (pos1top + pos2top) / 2
+        },${pos2left},${pos2top}`}
+        markerMid="url(#arrowhead)"
       />
     </StyledEdgeContainer>
   );
