@@ -16,9 +16,29 @@ const bfsWrapper = async (
 
     const infoTable: Array<NodeInfo> = [];
     const visited: Array<number> = [];
-    initBfs(setVisited, infoTable, adjacencyList, startingNode, visited);
-    await visitNode(setVisited, startingNode, visualizationSpeed, visited);
-    return await bfs(adjacencyList, setVisited, visualizationSpeed, [startingNode], visited)
+    const depth: number = 0;
+
+    initBfs(setVisited, infoTable, visited);
+
+    await visitNode(
+        setVisited,
+        startingNode,
+        visualizationSpeed,
+        visited,
+        depth,
+        -1,     // previous node of first node
+        infoTable
+    );
+
+    return await bfs(
+        adjacencyList,
+        setVisited,
+        visualizationSpeed,
+        [startingNode],
+        visited,
+        depth,
+        infoTable
+    )
 }
 
 const bfs = async (
@@ -26,18 +46,38 @@ const bfs = async (
     setVisited: Function,
     visualizationSpeed: number,
     nodesToExplore: Array<number>,
-    visited: Array<number>
+    visited: Array<number>,
+    depth: number,
+    infoTable: Array<NodeInfo>,
 ) => {
-    if (visited.length === adjacencyList.length) return;
+    if (visited.length === adjacencyList.length) return;    //base case: all nodes visited
+    const currentDepth: number = ++depth;   //TODO: change increment value when using weighted graphs
 
     const nextNodesToExplore: Array<number> = [];
+
     for (const nodeToExplore of nodesToExplore) {
         for (const nodeToVisit of adjacencyList[nodeToExplore]) {
-            await visitNode(setVisited, nodeToVisit, visualizationSpeed, visited)
+            await visitNode(
+                setVisited,
+                nodeToVisit,
+                visualizationSpeed,
+                visited,
+                currentDepth,
+                nodeToExplore,
+                infoTable
+            );
             nextNodesToExplore.push(nodeToVisit);
         }
     }
-    bfs(adjacencyList, setVisited, visualizationSpeed, nextNodesToExplore, visited);
+    bfs(
+        adjacencyList,
+        setVisited,
+        visualizationSpeed,
+        nextNodesToExplore,
+        visited,
+        currentDepth,
+        infoTable
+    );
 }
 
 
@@ -45,32 +85,28 @@ const visitNode = async (
     setVisited: Function,
     node: number,
     visualizationSpeed: number,
-    visited: Array<number>
+    visited: Array<number>,
+    depth: number,
+    prevNode: number,
+    infoTable: Array<NodeInfo>
 ) => {
     if (!visited.includes(node)) {
         await asyncTimout(visualizationSpeed)
         visited.push(node);
         setVisited(visited.slice())
+        const nodeInfo: NodeInfo = { shortestDistance: depth, prevNode: prevNode };
+        infoTable[node] = nodeInfo;
     }
 }
 
 const initBfs = async (
     setVisited: Function,
     infoTable: Array<NodeInfo>,
-    adjacencyList: Array<Array<number>>,
-    startingNode: number,
-    visited: Array<number>
+    visited: Array<number>,
 ) => {
     visited = [];
-    setVisited([]);
     infoTable = [];
-    adjacencyList.forEach((_, index: number) => {
-        infoTable.push({
-            shortestDistance: index === startingNode ? 0 : undefined,
-            prevNode: undefined,
-        });
-    });
-
+    setVisited(visited);
 }
 
 export default bfsWrapper;
