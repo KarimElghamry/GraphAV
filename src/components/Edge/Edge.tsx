@@ -77,28 +77,26 @@ const Edge: React.FC<EdgeProps> = (props: EdgeProps): ReactElement => {
   const pos2Top = position2 ? position2.top : 0;
   const pos1Left = position1 ? position1.left : 0;
   const pos2Left = position2 ? position2.left : 0;
+  const arrowWidth = 11 * props.zoomPercentage;
+  const arrowHeight = 8 * props.zoomPercentage;
 
   return (
     <StyledEdgeContainer
-      height={Math.max(
-        position1 ? position1.top + 10 : 0,
-        position2 ? position2.top + 10 : 0
-      )}
-      width={Math.max(
-        position1 ? position1.left + 10 : 0,
-        position2 ? position2.left + 10 : 0
-      )}
+      height={Math.max(pos1Top, pos2Top) + arrowHeight * 2}
+      width={Math.max(pos1Left, pos2Left) + arrowWidth * 2}
     >
       <defs>
         <marker
           orient="auto"
           id="arrowhead"
-          markerWidth="10"
-          markerHeight="7"
+          markerWidth={arrowWidth}
+          markerHeight={arrowHeight}
           refX={5}
-          refY={3.5}
+          refY={arrowHeight / 2}
         >
-          <StyledPolygon points="0 0, 10 3.5, 0 7" />
+          <StyledPolygon
+            points={`0 0, ${arrowWidth} ${arrowHeight / 2}, 0 ${arrowHeight}`}
+          />
         </marker>
       </defs>
       <StyledEdgeLine
