@@ -5,11 +5,8 @@ interface Props {
 }
 
 const StyledPolygon = styled.polygon<Props>`
-  fill: ${(props) =>
-    props.isVisited
-      ? props.theme.nodeActive.background
-      : props.theme.edge.background};
-  transition-duration: 0.3s;
+  fill: ${(props) => (props.isVisited ? 'red' : props.theme.edge.background)};
+  transition: 0.3s fill;
 `;
 
 export default StyledPolygon;

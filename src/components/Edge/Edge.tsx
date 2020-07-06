@@ -15,6 +15,13 @@ interface EdgeProps {
 const Edge: React.FC<EdgeProps> = (props: EdgeProps): ReactElement => {
   const [position1, setPosition1] = useState<Position | null>(null);
   const [position2, setPosition2] = useState<Position | null>(null);
+  const [makrerId, setMarkerId] = useState<string>('eminem');
+
+  useEffect(() => {
+    setMarkerId(
+      new Date().getMilliseconds() + Math.floor(Math.random() * 1000).toString()
+    );
+  }, [setMarkerId]);
 
   useEffect(() => {
     if (props.n1.current && props.n1.current.parentElement) {
@@ -78,8 +85,8 @@ const Edge: React.FC<EdgeProps> = (props: EdgeProps): ReactElement => {
   const pos2Top = position2 ? position2.top : 0;
   const pos1Left = position1 ? position1.left : 0;
   const pos2Left = position2 ? position2.left : 0;
-  const arrowWidth = 11 * props.zoomPercentage;
-  const arrowHeight = 8 * props.zoomPercentage;
+  const arrowWidth = 10 * props.zoomPercentage;
+  const arrowHeight = 7 * props.zoomPercentage;
 
   return (
     <StyledEdgeContainer
@@ -89,7 +96,7 @@ const Edge: React.FC<EdgeProps> = (props: EdgeProps): ReactElement => {
       <defs>
         <marker
           orient="auto"
-          id="arrowhead"
+          id={makrerId}
           markerWidth={arrowWidth}
           markerHeight={arrowHeight}
           refX={5}
@@ -106,7 +113,7 @@ const Edge: React.FC<EdgeProps> = (props: EdgeProps): ReactElement => {
           (pos1Top + pos2Top) / 2
         },${pos2Left},${pos2Top}`}
         isVisited={props.isVisited}
-        markerMid={props.isDirected ? 'url(#arrowhead)' : 'none'}
+        markerMid={props.isDirected ? `url(#${makrerId})` : 'none'}
       />
     </StyledEdgeContainer>
   );
