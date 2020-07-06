@@ -31,7 +31,8 @@ const GraphCanvas: React.FC<Props> = (props: Props): ReactElement => {
     }
   });
 
-  let visitedEdge = [0, 0];
+  //TODO: change visitedEdge to be more efficient
+  let visitedEdge: [number, number] = [-1, -1];
   for (let node of visited.reverse()) {
     if (adjacencyList[visited[visited.length - 1]].includes(node)) {
       visitedEdge = [node, visited[visited.length - 1]];
