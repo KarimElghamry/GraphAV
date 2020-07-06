@@ -31,6 +31,15 @@ const GraphCanvas: React.FC<Props> = (props: Props): ReactElement => {
     }
   });
 
+  //TODO: change visitedEdge to be more efficient
+  let visitedEdge: [number, number] = [-1, -1];
+  for (let node of visited.reverse()) {
+    if (adjacencyList[visited[visited.length - 1]].includes(node)) {
+      visitedEdge = [node, visited[visited.length - 1]];
+      break;
+    }
+  }
+
   return (
     <Container ref={canvasRef}>
       {adjacencyList.map((val: Array<number>, index: number) => {
@@ -49,11 +58,22 @@ const GraphCanvas: React.FC<Props> = (props: Props): ReactElement => {
         );
       })}
 
-      {
-        connectedNodePairs.map(([n1, n2]: Array<number>, index: number) => {
-          return <Edge n1={nodeRefs[n2]} n2={nodeRefs[n1]} key={`${n1}${n2}`} />
-        })
-      }
+      {/* TODO:add directed logic */}
+      {connectedNodePairs.map(([n1, n2]: Array<number>, index: number) => {
+        const isVisited: boolean =
+          (visitedEdge[0] === n1 && visitedEdge[1] === n2) ||
+          (visitedEdge[0] === n2 && visitedEdge[1] === n1);
+        return (
+          <Edge
+            n1={nodeRefs[n1]}
+            n2={nodeRefs[n2]}
+            key={`${n1}${n2}`}
+            isDirected={n1 === 0}
+            zoomPercentage={props.zoomPercentage}
+            isVisited={isVisited}
+          />
+        );
+      })}
     </Container>
   );
 };
