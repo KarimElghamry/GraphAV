@@ -32,6 +32,7 @@ const GraphCanvas: React.FC<Props> = (props: Props): ReactElement => {
   });
 
   //TODO: change visitedEdge to be more efficient
+  //TODO: add state for visited edge
   let visitedEdge: [number, number] = [-1, -1];
   for (let node of visited.reverse()) {
     if (adjacencyList[visited[visited.length - 1]].includes(node)) {
