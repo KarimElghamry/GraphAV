@@ -5,9 +5,8 @@ interface Props {
 }
 
 const StyledLink = styled.polyline<Props>`
-  stroke: ${(props) =>
-    props.isVisited ? 'green' : props.theme.edge.background};
-  stroke-width: 3px;
+  stroke: ${(props) => (props.isVisited ? 'red' : props.theme.edge.background)};
+  stroke-width: 5px;
   transition-duration: 0.3s;
   position: absolute;
 `;
