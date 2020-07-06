@@ -1,4 +1,4 @@
-import React, {ReactElement, useState} from 'react';
+import React, { ReactElement, useState } from 'react';
 import Navbar from '../Navbar/Navbar';
 import SideNav from '../SideNav/SideNav';
 import GraphCanvas from '../GraphCanvas/GraphCanvas';
@@ -68,6 +68,14 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
 
       case Algorithms.dijkstra:
         await algorithms.dijkstra(
+          adjacencyList,
+          setVisited,
+          startingNode,
+          visualizationSpeed
+        );
+        break;
+      case Algorithms.bfs:
+        await algorithms.bfs(
           adjacencyList,
           setVisited,
           startingNode,
