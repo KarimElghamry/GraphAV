@@ -15,13 +15,10 @@ interface EdgeProps {
 const Edge: React.FC<EdgeProps> = (props: EdgeProps): ReactElement => {
   const [position1, setPosition1] = useState<Position | null>(null);
   const [position2, setPosition2] = useState<Position | null>(null);
-  const [makrerId, setMarkerId] = useState<string>('eminem');
-
-  useEffect(() => {
-    setMarkerId(
-      new Date().getMilliseconds() + Math.floor(Math.random() * 1000).toString()
-    );
-  }, [setMarkerId]);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [makrerId, _setMarkerId] = useState<string>(
+    new Date().getMilliseconds() + Math.floor(Math.random() * 1000).toString()
+  );
 
   useEffect(() => {
     if (props.n1.current && props.n1.current.parentElement) {
