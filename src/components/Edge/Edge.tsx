@@ -70,10 +70,10 @@ const Edge: React.FC<EdgeProps> = (props: EdgeProps): ReactElement => {
     }
   }, [props.n2, position2]);
 
-  const pos1top = position1 ? position1.top : 0;
-  const pos2top = position2 ? position2.top : 0;
-  const pos1left = position1 ? position1.left : 0;
-  const pos2left = position2 ? position2.left : 0;
+  const pos1Top = position1 ? position1.top : 0;
+  const pos2Top = position2 ? position2.top : 0;
+  const pos1Left = position1 ? position1.left : 0;
+  const pos2Left = position2 ? position2.left : 0;
 
   return (
     <StyledEdgeContainer
@@ -100,9 +100,9 @@ const Edge: React.FC<EdgeProps> = (props: EdgeProps): ReactElement => {
         </marker>
       </defs>
       <StyledEdgeLine
-        points={`${pos1left},${pos1top},${(pos1left + pos2left) / 2},${
-          (pos1top + pos2top) / 2
-        },${pos2left},${pos2top}`}
+        points={`${pos1Left},${pos1Top},${(pos1Left + pos2Left) / 2},${
+          (pos1Top + pos2Top) / 2
+        },${pos2Left},${pos2Top}`}
         markerMid="url(#arrowhead)"
       />
     </StyledEdgeContainer>
