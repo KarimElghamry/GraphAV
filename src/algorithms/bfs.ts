@@ -14,24 +14,23 @@ const bfsWrapper = async (
 ) => {
     const infoTable: Array<NodeInfo> = [];
     const visited: Array<number> = [];
-    let depth: number = 0;
     initBfs(setVisited, infoTable, visited);
-    await visitNode(setVisited, startingNode, visualizationSpeed, visited, depth, -1, infoTable); //visit first node
+    await visitNode(setVisited, startingNode, visualizationSpeed, visited, 0, -1, infoTable); //visit first node
     const nodesToExplore: Array<number> = [startingNode];
     while (nodesToExplore.length > 0) {
 
-        depth++;
         const currentDepthNodes: Array<number> = nodesToExplore.slice();
 
         for (const nodeToExplore of currentDepthNodes) {
             for (const nodeToVisit of adjacencyList[nodeToExplore]) {
+                const newDepth: number = (infoTable[nodeToExplore].shortestDistance ?? 0) + 1; //TODO: replace 1 with weight of nodeToVisit edge
                 if (!visited.includes(nodeToVisit)) {
                     await visitNode(
                         setVisited,
                         nodeToVisit,
                         visualizationSpeed,
                         visited,
-                        depth,
+                        newDepth,
                         nodeToExplore,
                         infoTable
                     );
