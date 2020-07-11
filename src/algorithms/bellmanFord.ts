@@ -64,7 +64,6 @@ const bellmanFord = async (
             }
         }
     }
-    console.log(infoTable);
 }
 
 
