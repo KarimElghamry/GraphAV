@@ -75,7 +75,8 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
           setVisited,
           startingNode,
           visualizationSpeed,
-          setGraphInfo
+          setGraphInfo,
+          setCurrentEdge
         );
         break;
       case Algorithms.bfs:

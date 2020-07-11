@@ -12,7 +12,8 @@ const dijkstra = async (
   setVisited: Function,
   startingNode: number,
   visualizationSpeed: number,
-  setGraphInfo: Function
+  setGraphInfo: Function,
+  setCurrentEdge: Function
 ) => {
   //initialize info table
   infoTable = [];
@@ -23,6 +24,7 @@ const dijkstra = async (
     });
   });
   setGraphInfo(infoTable);
+  setCurrentEdge([-1, -1]);
 
   visited = [];
   let currentNode: number = startingNode;
@@ -31,12 +33,16 @@ const dijkstra = async (
     await helpers.asyncTimout(visualizationSpeed);
     visited = visited.concat(currentNode);
     setVisited(visited);
+    setCurrentEdge([-1, -1]);
+
     for (let neighbour of adjacencyList[currentNode]) {
       if (visited.includes(neighbour)) continue;
 
       //TODO:change 1 when weighted graph is added
       const currentDistance = 1 + (infoTable[currentNode].shortestPath ?? 0);
 
+      await helpers.asyncTimout(visualizationSpeed);
+      setCurrentEdge([currentNode, neighbour]);
       //check against current shortest path
       if (
         infoTable[neighbour].shortestPath === undefined ||
@@ -45,7 +51,9 @@ const dijkstra = async (
       ) {
         infoTable[neighbour].shortestPath = currentDistance;
         infoTable[neighbour].previousNode = currentNode;
+        setGraphInfo(infoTable.slice());
       }
+      console.log('eminem');
     }
 
     let minimumDistance: number = Number.POSITIVE_INFINITY;

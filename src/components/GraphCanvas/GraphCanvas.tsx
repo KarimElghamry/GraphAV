@@ -17,6 +17,7 @@ const GraphCanvas: React.FC<Props> = (props: Props): ReactElement => {
   const canvasRef = useRef<HTMLDivElement>(null);
   const adjacencyList = props.adjacencyList;
   const visited = props.visited;
+  const currentEdge = props.currentEdge;
   const nodeRefs = adjacencyList.map((_) => React.createRef<HTMLSpanElement>());
   const reducedEdges: Map<number, Array<number>> = new Map();
   const connectedNodePairs: Array<Array<number>> = [];
@@ -33,16 +34,6 @@ const GraphCanvas: React.FC<Props> = (props: Props): ReactElement => {
       reducedEdges.set(currentNode, currentNodeEdges);
     }
   });
-
-  //TODO: change visitedEdge to be more efficient
-  //TODO: add state for visited edge
-  let visitedEdge: [number, number] = [-1, -1];
-  for (let node of visited.reverse()) {
-    if (adjacencyList[visited[visited.length - 1]].includes(node)) {
-      visitedEdge = [node, visited[visited.length - 1]];
-      break;
-    }
-  }
 
   return (
     <Container ref={canvasRef}>
@@ -70,8 +61,8 @@ const GraphCanvas: React.FC<Props> = (props: Props): ReactElement => {
       {/* TODO:add directed logic */}
       {connectedNodePairs.map(([n1, n2]: Array<number>, index: number) => {
         const isVisited: boolean =
-          (visitedEdge[0] === n1 && visitedEdge[1] === n2) ||
-          (visitedEdge[0] === n2 && visitedEdge[1] === n1);
+          (currentEdge[0] === n1 && currentEdge[1] === n2) ||
+          (currentEdge[0] === n2 && currentEdge[1] === n1);
         return (
           <Edge
             n1={nodeRefs[n1]}
