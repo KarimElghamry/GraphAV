@@ -2,11 +2,14 @@ import React, {ReactElement, useRef} from 'react';
 import Container from './Container';
 import GraphNode from '../GraphNode/GraphNode';
 import Edge from '../Edge/Edge';
+import NodeInfo from '../../models/NodeInfo';
 
 interface Props {
   adjacencyList: Array<Array<number>>;
   visited: Array<number>;
   zoomPercentage: number;
+  graphInfo: Array<NodeInfo>;
+  currentEdge: [number, number];
   onNodeConnect: (nodeIndex: number) => void;
 }
 
@@ -14,6 +17,7 @@ const GraphCanvas: React.FC<Props> = (props: Props): ReactElement => {
   const canvasRef = useRef<HTMLDivElement>(null);
   const adjacencyList = props.adjacencyList;
   const visited = props.visited;
+  const currentEdge = props.currentEdge;
   const nodeRefs = adjacencyList.map((_) => React.createRef<HTMLSpanElement>());
   const reducedEdges: Map<number, Array<number>> = new Map();
   const connectedNodePairs: Array<Array<number>> = [];
@@ -31,19 +35,13 @@ const GraphCanvas: React.FC<Props> = (props: Props): ReactElement => {
     }
   });
 
-  //TODO: change visitedEdge to be more efficient
-  //TODO: add state for visited edge
-  let visitedEdge: [number, number] = [-1, -1];
-  for (let node of visited.reverse()) {
-    if (adjacencyList[visited[visited.length - 1]].includes(node)) {
-      visitedEdge = [node, visited[visited.length - 1]];
-      break;
-    }
-  }
-
   return (
     <Container ref={canvasRef}>
       {adjacencyList.map((val: Array<number>, index: number) => {
+        const nodeInfo: NodeInfo =
+          index > props.graphInfo.length - 1
+            ? ({shortestPath: undefined, previousNode: undefined} as NodeInfo)
+            : props.graphInfo[index];
         return (
           <GraphNode
             connectNode={() => props.onNodeConnect(index)}
@@ -53,6 +51,7 @@ const GraphCanvas: React.FC<Props> = (props: Props): ReactElement => {
             content={(index + 1).toString()}
             edgeRef={nodeRefs[index]}
             zoomPercentage={props.zoomPercentage}
+            nodeInfo={nodeInfo}
           >
             <span ref={nodeRefs[index]}></span>
           </GraphNode>
@@ -62,8 +61,8 @@ const GraphCanvas: React.FC<Props> = (props: Props): ReactElement => {
       {/* TODO:add directed logic */}
       {connectedNodePairs.map(([n1, n2]: Array<number>, index: number) => {
         const isVisited: boolean =
-          (visitedEdge[0] === n1 && visitedEdge[1] === n2) ||
-          (visitedEdge[0] === n2 && visitedEdge[1] === n1);
+          (currentEdge[0] === n1 && currentEdge[1] === n2) ||
+          (currentEdge[0] === n2 && currentEdge[1] === n1);
         return (
           <Edge
             n1={nodeRefs[n1]}

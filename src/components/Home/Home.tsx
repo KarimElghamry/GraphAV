@@ -1,10 +1,11 @@
-import React, { ReactElement, useState } from 'react';
+import React, {ReactElement, useState} from 'react';
 import Navbar from '../Navbar/Navbar';
 import SideNav from '../SideNav/SideNav';
 import GraphCanvas from '../GraphCanvas/GraphCanvas';
 import VisualizeButton from '../VisualizeButton/VisualizeButton';
 import algorithms from '../../algorithms';
 import Algorithms from '../../models/Algorithms';
+import NodeInfo from '../../models/NodeInfo';
 
 interface HomeProps {
   changeTheme: Function;
@@ -13,6 +14,8 @@ interface HomeProps {
 const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
   const [adjacencyList, setAdjacencyList] = useState<Array<Array<number>>>([]);
   const [visited, setVisited] = useState<Array<number>>([]);
+  const [currentEdge, setCurrentEdge] = useState<[number, number]>([-1, -1]);
+  const [graphInfo, setGraphInfo] = useState<Array<NodeInfo>>([]);
   const [startingNode, setStartingNode] = useState<number>(0);
   const [selectedAlgorithm, setSelectedAlgorithm] = useState<Algorithms>(
     Algorithms.dfs
@@ -71,7 +74,9 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
           adjacencyList,
           setVisited,
           startingNode,
-          visualizationSpeed
+          visualizationSpeed,
+          setGraphInfo,
+          setCurrentEdge
         );
         break;
       case Algorithms.bfs:
@@ -97,6 +102,8 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
     if (isVisualizing) return;
     setVisited([]);
     setAdjacencyList([]);
+    setGraphInfo([]);
+    setCurrentEdge([-1, -1]);
   };
 
   return (
@@ -121,6 +128,8 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
         visited={visited}
         adjacencyList={adjacencyList}
         zoomPercentage={zoomPercentage}
+        graphInfo={graphInfo}
+        currentEdge={currentEdge}
       ></GraphCanvas>
       <VisualizeButton
         isVisualizing={isVisualizing}
