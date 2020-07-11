@@ -6,6 +6,7 @@ import VisualizeButton from '../VisualizeButton/VisualizeButton';
 import algorithms from '../../algorithms';
 import Algorithms from '../../models/Algorithms';
 import NodeInfo from '../../models/NodeInfo';
+import Modal from '../common/Modal/Modal';
 
 interface HomeProps {
   changeTheme: Function;
@@ -25,6 +26,7 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
   const [visualizationSpeed, setVisualizationSpeed] = useState<number>(1000);
   const [isConnecting, setIsConnecting] = useState<boolean>(false);
   const [edgeFirstNode, setEdgeFirstNode] = useState<number>();
+  const [isModalVisible, setIsModalVisible] = useState<boolean>(true);
 
   const onNodeConnect = (nodeIndex: number) => {
     if (isConnecting) {
@@ -106,6 +108,10 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
     setCurrentEdge([-1, -1]);
   };
 
+  const handleModalExit = () => {
+    setIsModalVisible(false);
+  };
+
   return (
     <div>
       <SideNav
@@ -135,6 +141,9 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
         isVisualizing={isVisualizing}
         onClick={handleVisualize}
       ></VisualizeButton>
+      <Modal isVisible={isModalVisible} onExit={handleModalExit}>
+        EMINEM
+      </Modal>
     </div>
   );
 };
