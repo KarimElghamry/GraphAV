@@ -2,11 +2,13 @@ import React, {ReactElement, useRef} from 'react';
 import Container from './Container';
 import GraphNode from '../GraphNode/GraphNode';
 import Edge from '../Edge/Edge';
+import NodeInfo from '../../models/NodeInfo';
 
 interface Props {
   adjacencyList: Array<Array<number>>;
   visited: Array<number>;
   zoomPercentage: number;
+  graphInfo: Array<NodeInfo>;
   onNodeConnect: (nodeIndex: number) => void;
 }
 
@@ -44,6 +46,10 @@ const GraphCanvas: React.FC<Props> = (props: Props): ReactElement => {
   return (
     <Container ref={canvasRef}>
       {adjacencyList.map((val: Array<number>, index: number) => {
+        const nodeInfo: NodeInfo =
+          props.graphInfo.length === 0
+            ? ({shortestPath: undefined, previousNode: undefined} as NodeInfo)
+            : props.graphInfo[index];
         return (
           <GraphNode
             connectNode={() => props.onNodeConnect(index)}
@@ -53,6 +59,7 @@ const GraphCanvas: React.FC<Props> = (props: Props): ReactElement => {
             content={(index + 1).toString()}
             edgeRef={nodeRefs[index]}
             zoomPercentage={props.zoomPercentage}
+            nodeInfo={nodeInfo}
           >
             <span ref={nodeRefs[index]}></span>
           </GraphNode>

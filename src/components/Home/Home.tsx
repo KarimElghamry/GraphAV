@@ -5,7 +5,7 @@ import GraphCanvas from '../GraphCanvas/GraphCanvas';
 import VisualizeButton from '../VisualizeButton/VisualizeButton';
 import algorithms from '../../algorithms';
 import Algorithms from '../../models/Algorithms';
-import GraphInfo from '../../models/GraphInfo';
+import NodeInfo from '../../models/NodeInfo';
 
 interface HomeProps {
   changeTheme: Function;
@@ -14,7 +14,7 @@ interface HomeProps {
 const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
   const [adjacencyList, setAdjacencyList] = useState<Array<Array<number>>>([]);
   const [visited, setVisited] = useState<Array<number>>([]);
-  const [graphInfo, setGraphInfo] = useState<Array<GraphInfo>>([]);
+  const [graphInfo, setGraphInfo] = useState<Array<NodeInfo>>([]);
   const [startingNode, setStartingNode] = useState<number>(0);
   const [selectedAlgorithm, setSelectedAlgorithm] = useState<Algorithms>(
     Algorithms.dfs
@@ -123,6 +123,7 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
         visited={visited}
         adjacencyList={adjacencyList}
         zoomPercentage={zoomPercentage}
+        graphInfo={graphInfo}
       ></GraphCanvas>
       <VisualizeButton
         isVisualizing={isVisualizing}

@@ -8,6 +8,7 @@ import React, {
 import Container from './Container';
 import Position from '../../models/Position';
 import Information from './Information';
+import NodeInfo from '../../models/NodeInfo';
 
 interface Props {
   isActive: boolean;
@@ -17,6 +18,7 @@ interface Props {
   edgeRef: React.RefObject<HTMLSpanElement> | null;
   zoomPercentage: number;
   connectNode: VoidFunction;
+  nodeInfo: NodeInfo;
 }
 
 const GraphNode: React.FC<Props> = (props: Props): ReactElement => {
