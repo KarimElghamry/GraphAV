@@ -47,7 +47,7 @@ const GraphCanvas: React.FC<Props> = (props: Props): ReactElement => {
     <Container ref={canvasRef}>
       {adjacencyList.map((val: Array<number>, index: number) => {
         const nodeInfo: NodeInfo =
-          props.graphInfo.length === 0
+          index > props.graphInfo.length - 1
             ? ({shortestPath: undefined, previousNode: undefined} as NodeInfo)
             : props.graphInfo[index];
         return (

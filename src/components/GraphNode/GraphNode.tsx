@@ -168,9 +168,9 @@ const GraphNode: React.FC<Props> = (props: Props): ReactElement => {
         </div>
         <div>
           {'prev: ' +
-            (props.nodeInfo.shortestPath === undefined
+            (props.nodeInfo.previousNode === undefined
               ? '∞'
-              : props.nodeInfo.shortestPath)}
+              : props.nodeInfo.previousNode)}
         </div>
       </Information>
     </Container>
