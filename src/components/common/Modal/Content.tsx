@@ -6,6 +6,7 @@ const Content = styled.div`
   border-radius: 10px;
   background-color: white;
   z-index: 9999;
+  color: black;
 `;
 
 export default Content;

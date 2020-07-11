@@ -141,7 +141,9 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
         isVisualizing={isVisualizing}
         onClick={handleVisualize}
       ></VisualizeButton>
-      <Modal isVisible={isModalVisible} onExit={handleModalExit}></Modal>
+      <Modal isVisible={isModalVisible} onExit={handleModalExit}>
+        EMINEM
+      </Modal>
     </div>
   );
 };

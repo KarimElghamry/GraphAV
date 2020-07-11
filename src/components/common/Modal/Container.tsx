@@ -6,11 +6,10 @@ const Container = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: black;
   position: fixed;
   top: 0;
-  opacity: 50%;
   z-index: 9998;
+  background-color: rgba(0, 0, 0, 0.5);
 `;
 
 export default Container;
