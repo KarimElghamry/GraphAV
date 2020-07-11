@@ -8,9 +8,15 @@ interface Props {
 
 const Modal: React.FC<Props> = (props: Props): ReactElement => {
   return (
-    <Container>
-      <Content></Content>
-    </Container>
+    <React.Fragment>
+      {props.isVisible ? (
+        <Container>
+          <Content></Content>
+        </Container>
+      ) : (
+        <React.Fragment></React.Fragment>
+      )}
+    </React.Fragment>
   );
 };
 

@@ -26,6 +26,7 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
   const [visualizationSpeed, setVisualizationSpeed] = useState<number>(1000);
   const [isConnecting, setIsConnecting] = useState<boolean>(false);
   const [edgeFirstNode, setEdgeFirstNode] = useState<number>();
+  const [isModalVisible, setIsModalVisible] = useState<boolean>(false);
 
   const onNodeConnect = (nodeIndex: number) => {
     if (isConnecting) {
@@ -136,7 +137,7 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
         isVisualizing={isVisualizing}
         onClick={handleVisualize}
       ></VisualizeButton>
-      <Modal isVisible={false}></Modal>
+      <Modal isVisible={isModalVisible}></Modal>
     </div>
   );
 };
