@@ -17,7 +17,7 @@ const GraphNode: React.FC<Props> = (props: Props): ReactElement => {
   const [position, setPosition] = useState<Position>({top: 100, left: 100});
   const nodeRef: React.RefObject<HTMLDivElement> = useRef<HTMLDivElement>(null);
   const canvasRef: React.RefObject<HTMLDivElement> = props.canvasRef;
-  const infoWidth: number = 20;
+  const infoWidth: number = 50;
   const infoPosition: Position = {
     top: position.top + (nodeRef.current?.offsetHeight ?? 0),
     left:
@@ -81,7 +81,11 @@ const GraphNode: React.FC<Props> = (props: Props): ReactElement => {
     if (canvasRef.current && nodeRef.current) {
       const canvasWidth = canvasRef.current.offsetWidth;
       const canvasHeight = canvasRef.current.offsetHeight;
-      setPosition({left: canvasWidth / 2, top: canvasHeight / 2});
+      const nodeWidth: number = +nodeRef.current.offsetWidth;
+      setPosition({
+        left: (canvasWidth - nodeWidth) / 2,
+        top: (canvasHeight - nodeWidth) / 2,
+      });
     }
   }, [canvasRef, nodeRef, setPosition]);
 
