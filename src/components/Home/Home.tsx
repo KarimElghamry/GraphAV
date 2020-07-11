@@ -6,6 +6,7 @@ import VisualizeButton from '../VisualizeButton/VisualizeButton';
 import algorithms from '../../algorithms';
 import Algorithms from '../../models/Algorithms';
 import NodeInfo from '../../models/NodeInfo';
+import Modal from '../common/Modal/Modal';
 
 interface HomeProps {
   changeTheme: Function;
@@ -135,6 +136,7 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
         isVisualizing={isVisualizing}
         onClick={handleVisualize}
       ></VisualizeButton>
+      <Modal></Modal>
     </div>
   );
 };

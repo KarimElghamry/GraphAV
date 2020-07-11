@@ -1,13 +1,16 @@
 import styled from 'styled-components';
 
 const Container = styled.div`
-  width: 100%;
-  height: 100%;
+  min-width: 100vw;
+  min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
   background-color: black;
-  opacity: 0.5;
+  position: fixed;
+  top: 0;
+  opacity: 50%;
+  z-index: 9999;
 `;
 
 export default Container;
