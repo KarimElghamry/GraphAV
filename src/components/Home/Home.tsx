@@ -1,10 +1,11 @@
-import React, { ReactElement, useState } from 'react';
+import React, {ReactElement, useState} from 'react';
 import Navbar from '../Navbar/Navbar';
 import SideNav from '../SideNav/SideNav';
 import GraphCanvas from '../GraphCanvas/GraphCanvas';
 import VisualizeButton from '../VisualizeButton/VisualizeButton';
 import algorithms from '../../algorithms';
 import Algorithms from '../../models/Algorithms';
+import GraphInfo from '../../models/GraphInfo';
 
 interface HomeProps {
   changeTheme: Function;
@@ -13,6 +14,7 @@ interface HomeProps {
 const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
   const [adjacencyList, setAdjacencyList] = useState<Array<Array<number>>>([]);
   const [visited, setVisited] = useState<Array<number>>([]);
+  const [graphInfo, setGraphInfo] = useState<Array<GraphInfo>>([]);
   const [startingNode, setStartingNode] = useState<number>(0);
   const [selectedAlgorithm, setSelectedAlgorithm] = useState<Algorithms>(
     Algorithms.dfs
