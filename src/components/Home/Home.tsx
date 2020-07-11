@@ -85,7 +85,9 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
       case Algorithms.bellmanFord:
         await algorithms.bellmanFord(
           startingNode,
-          adjacencyList
+          adjacencyList,
+          visualizationSpeed,
+          setVisited,
         );
         break;
       default:
