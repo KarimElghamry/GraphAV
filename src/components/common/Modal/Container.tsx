@@ -10,7 +10,7 @@ const Container = styled.div`
   position: fixed;
   top: 0;
   opacity: 50%;
-  z-index: 9999;
+  z-index: 9998;
 `;
 
 export default Container;

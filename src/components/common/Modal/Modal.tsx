@@ -4,14 +4,23 @@ import Content from './Content';
 
 interface Props {
   isVisible: boolean;
+  onExit: Function;
 }
 
 const Modal: React.FC<Props> = (props: Props): ReactElement => {
   return (
     <React.Fragment>
       {props.isVisible ? (
-        <Container>
-          <Content></Content>
+        <Container
+          onClick={(e: React.MouseEvent) => {
+            props.onExit();
+          }}
+        >
+          <Content
+            onClick={(e: React.MouseEvent) => {
+              e.stopPropagation();
+            }}
+          ></Content>
         </Container>
       ) : (
         <React.Fragment></React.Fragment>
