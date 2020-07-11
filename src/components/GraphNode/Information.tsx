@@ -1,6 +1,12 @@
 import styled from 'styled-components';
 
-const Information = styled.div`
+interface Props {
+  zoomPercentage: number;
+}
+
+const Information = styled.div<Props>`
+  font-size: ${(props) => `${props.zoomPercentage * 15}px`};
+  color: ${(props) => props.theme.sidebar.background};
   position: absolute;
   top: 100%;
   display: flex;
@@ -8,6 +14,8 @@ const Information = styled.div`
   align-items: center;
   flex-direction: column;
   pointer-events: none;
+  margin-top: 2px;
+  transition: 0.3s color;
 `;
 
 export default Information;

@@ -17,12 +17,6 @@ const GraphNode: React.FC<Props> = (props: Props): ReactElement => {
   const [position, setPosition] = useState<Position>({top: 100, left: 100});
   const nodeRef: React.RefObject<HTMLDivElement> = useRef<HTMLDivElement>(null);
   const canvasRef: React.RefObject<HTMLDivElement> = props.canvasRef;
-  const infoWidth: number = 50;
-  const infoPosition: Position = {
-    top: position.top + (nodeRef.current?.offsetHeight ?? 0),
-    left:
-      position.left - infoWidth / 2 + (nodeRef.current?.offsetWidth ?? 0) / 2,
-  };
 
   const handleMouseMove = (e: MouseEvent) => {
     if (nodeRef.current !== null && canvasRef.current !== null) {
@@ -123,23 +117,21 @@ const GraphNode: React.FC<Props> = (props: Props): ReactElement => {
   }, [nodeRef, canvasRef, position]);
 
   return (
-    <div>
-      <Container
-        isActive={props.isActive}
-        onMouseDown={handleMouseDown}
-        onMouseUp={handleMouseUp}
-        position={position}
-        ref={nodeRef}
-        zoomPercentage={props.zoomPercentage}
-      >
-        {props.content}
-        {props.children}
-      </Container>
-      <Information width={infoWidth} position={infoPosition}>
-        <div>50</div>
-        <div>60</div>
+    <Container
+      isActive={props.isActive}
+      onMouseDown={handleMouseDown}
+      onMouseUp={handleMouseUp}
+      position={position}
+      ref={nodeRef}
+      zoomPercentage={props.zoomPercentage}
+    >
+      {props.content}
+      {props.children}
+      <Information zoomPercentage={props.zoomPercentage}>
+        <div>SP: 5</div>
+        <div>prev: 1</div>
       </Information>
-    </div>
+    </Container>
   );
 };
 
