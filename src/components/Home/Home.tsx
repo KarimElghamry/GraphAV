@@ -136,7 +136,7 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
         isVisualizing={isVisualizing}
         onClick={handleVisualize}
       ></VisualizeButton>
-      <Modal></Modal>
+      <Modal isVisible={false}></Modal>
     </div>
   );
 };

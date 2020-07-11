@@ -1,10 +1,15 @@
 import React, {ReactElement} from 'react';
 import Container from './Container';
+import Content from './Content';
 
-const Modal: React.FC = (): ReactElement => {
+interface Props {
+  isVisible: boolean;
+}
+
+const Modal: React.FC<Props> = (props: Props): ReactElement => {
   return (
     <Container>
-      <div></div>
+      <Content></Content>
     </Container>
   );
 };
