@@ -1,4 +1,4 @@
-import React, {ReactElement, useState} from 'react';
+import React, { ReactElement, useState } from 'react';
 import StyledSideNav from './SideNavStyle';
 import Slider from './Slider';
 import ItemText from './ItemText';
@@ -7,7 +7,7 @@ import Arrow from './Arrow';
 import Dropdown from './Dropdown/Dropdown';
 import Row from '../common/Row';
 import OptionButton from './Options/OptionButton';
-import {AddIcon, UndirectedIcon, DirectedIcon} from './Options/OptionIcons';
+import { AddIcon, UndirectedIcon, DirectedIcon } from './Options/OptionIcons';
 import ClearButton from './ClearButton';
 import Algorithms from '../../models/Algorithms';
 
@@ -30,6 +30,7 @@ const availableAlgorithms: Array<Algorithms> = [
   Algorithms.dfs,
   Algorithms.bfs,
   Algorithms.dijkstra,
+  Algorithms.bellmanFord,
 ];
 
 const SideNav: React.FC<Props> = (props: Props): ReactElement => {
@@ -93,7 +94,7 @@ const SideNav: React.FC<Props> = (props: Props): ReactElement => {
         >
           <UndirectedIcon></UndirectedIcon>
         </OptionButton>
-        <OptionButton tooltipContent="Add directed edge" onClick={() => {}}>
+        <OptionButton tooltipContent="Add directed edge" onClick={() => { }}>
           <DirectedIcon></DirectedIcon>
         </OptionButton>
       </Row>
