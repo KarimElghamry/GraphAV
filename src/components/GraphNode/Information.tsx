@@ -5,15 +5,17 @@ interface Props {
 }
 
 const Information = styled.div<Props>`
-  font-size: ${(props) => `${props.zoomPercentage * 15}px`};
+  font-size: ${(props) => `${props.zoomPercentage * 17}px`};
+  font-weight: lighter;
   color: ${(props) => props.theme.sidebar.background};
   position: absolute;
   top: 100%;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   flex-direction: column;
   pointer-events: none;
+  margin-top: 2px;
   transition: 0.3s color;
 `;
 

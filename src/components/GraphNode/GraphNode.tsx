@@ -160,8 +160,18 @@ const GraphNode: React.FC<Props> = (props: Props): ReactElement => {
       {props.content}
       {props.children}
       <Information ref={infoRef} zoomPercentage={props.zoomPercentage}>
-        <div>SP: 100</div>
-        <div>prev: 1</div>
+        <div>
+          {'SP: ' +
+            (props.nodeInfo.shortestPath === undefined
+              ? '∞'
+              : props.nodeInfo.shortestPath)}
+        </div>
+        <div>
+          {'prev: ' +
+            (props.nodeInfo.shortestPath === undefined
+              ? '∞'
+              : props.nodeInfo.shortestPath)}
+        </div>
       </Information>
     </Container>
   );
