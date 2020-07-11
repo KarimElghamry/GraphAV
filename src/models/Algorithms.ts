@@ -3,7 +3,7 @@ enum Algorithms {
   bfs = 'BFS',
   dijkstra = 'Dijkstra',
   prim = 'Prim',
-  bellman = 'Bellman',
+  bellmanFord = 'Bellman-Ford',
 }
 
 export default Algorithms;
