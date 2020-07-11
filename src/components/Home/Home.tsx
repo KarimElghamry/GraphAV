@@ -14,6 +14,7 @@ interface HomeProps {
 const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
   const [adjacencyList, setAdjacencyList] = useState<Array<Array<number>>>([]);
   const [visited, setVisited] = useState<Array<number>>([]);
+  const [currentEdge, setCurrentEdge] = useState<[number, number]>([-1, -1]);
   const [graphInfo, setGraphInfo] = useState<Array<NodeInfo>>([]);
   const [startingNode, setStartingNode] = useState<number>(0);
   const [selectedAlgorithm, setSelectedAlgorithm] = useState<Algorithms>(
@@ -100,6 +101,8 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
     if (isVisualizing) return;
     setVisited([]);
     setAdjacencyList([]);
+    setGraphInfo([]);
+    setCurrentEdge([-1, -1]);
   };
 
   return (
@@ -125,6 +128,7 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
         adjacencyList={adjacencyList}
         zoomPercentage={zoomPercentage}
         graphInfo={graphInfo}
+        currentEdge={currentEdge}
       ></GraphCanvas>
       <VisualizeButton
         isVisualizing={isVisualizing}

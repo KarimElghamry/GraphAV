@@ -9,6 +9,7 @@ interface Props {
   visited: Array<number>;
   zoomPercentage: number;
   graphInfo: Array<NodeInfo>;
+  currentEdge: [number, number];
   onNodeConnect: (nodeIndex: number) => void;
 }
 
