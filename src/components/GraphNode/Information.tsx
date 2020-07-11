@@ -14,7 +14,6 @@ const Information = styled.div<Props>`
   align-items: center;
   flex-direction: column;
   pointer-events: none;
-  margin-top: 2px;
   transition: 0.3s color;
 `;
 
