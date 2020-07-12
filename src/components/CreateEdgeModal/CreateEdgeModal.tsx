@@ -1,6 +1,8 @@
 import React from 'react';
 import Modal from '../common/Modal/Modal';
-
+import Dropdown from '../common/Dropdown/Dropdown';
+import StyledEdgePrompt from './StyledEdgePrompt';
+import StyledDropdownContainer from './StyledDropdownContainer';
 interface Props {
     isVisible: boolean,
     onExit: Function,
@@ -10,8 +12,17 @@ const CreateEdgeModal = (props: Props) => {
 
     return (
         <Modal onExit={() => { }} isVisible={true}>
-            <h1>lorem ipsum</h1>
-        </Modal>
+            <StyledEdgePrompt>
+                <h2>Create undirected edge</h2>
+                <StyledDropdownContainer>
+                    From
+                        <Dropdown content={["1", "2"]} selectedTile={2} setSelectedTile={() => { }} />
+                        To
+                        <Dropdown content={["1", "2"]} selectedTile={2} setSelectedTile={() => { }} />
+                </StyledDropdownContainer>
+
+            </StyledEdgePrompt>
+        </Modal >
     )
 };
 
