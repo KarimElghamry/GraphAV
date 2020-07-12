@@ -1,4 +1,4 @@
-import React, {ReactElement, useState} from 'react';
+import React, { ReactElement, useState } from 'react';
 import Navbar from '../Navbar/Navbar';
 import SideNav from '../SideNav/SideNav';
 import GraphCanvas from '../GraphCanvas/GraphCanvas';
@@ -6,7 +6,7 @@ import VisualizeButton from '../VisualizeButton/VisualizeButton';
 import algorithms from '../../algorithms';
 import Algorithms from '../../models/Algorithms';
 import NodeInfo from '../../models/NodeInfo';
-import Modal from '../common/Modal/Modal';
+import CreateEdgeModal from '../CreateEdgeModal/CreateEdgeModal';
 
 interface HomeProps {
   changeTheme: Function;
@@ -24,28 +24,26 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
   const [isVisualizing, setIsVisualizing] = useState<boolean>(false);
   const [zoomPercentage, setZoomPercentage] = useState<number>(1);
   const [visualizationSpeed, setVisualizationSpeed] = useState<number>(1000);
-  const [isConnecting, setIsConnecting] = useState<boolean>(false);
-  const [edgeFirstNode, setEdgeFirstNode] = useState<number>();
+  const [isConnectingUndirected, setIsConnectingUndirected] = useState<boolean>(false);
+  const [isConnectingDirected, setIsConnectingDirected] = useState<boolean>(false);
   const [isModalVisible, setIsModalVisible] = useState<boolean>(true);
 
-  const onNodeConnect = (nodeIndex: number) => {
-    if (isConnecting) {
-      if (edgeFirstNode !== undefined) {
-        const newAdjacencyList = adjacencyList.slice();
-        newAdjacencyList[edgeFirstNode].push(nodeIndex);
-        newAdjacencyList[nodeIndex].push(edgeFirstNode);
-        setAdjacencyList(newAdjacencyList);
-        setEdgeFirstNode(undefined);
-        setIsConnecting(false);
-      } else {
-        setEdgeFirstNode(nodeIndex);
-      }
-    }
+  const connectNodes = (firstNode: number, secondNode: number, directed: boolean) => {
+    const newAdjacencyList = adjacencyList.slice();
+    newAdjacencyList[firstNode].push(secondNode);
+    if (!directed)
+      newAdjacencyList[secondNode].push(firstNode);
+    setAdjacencyList(newAdjacencyList);
   };
 
-  const onCreateEdge = () => {
-    setEdgeFirstNode(undefined);
-    setIsConnecting(true);
+
+  const handleEdgeModalExit = () => {
+    setIsConnectingUndirected(false);
+    setIsConnectingDirected(false);
+  };
+
+  const onCreateUndirectedEdge = (firstNode: number, secondNode: number) => {
+    connectNodes(firstNode, secondNode, isConnectingDirected);
   };
 
   const addNewNode = () => {
@@ -115,7 +113,8 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
   return (
     <div>
       <SideNav
-        onUndirectedEdgeClick={onCreateEdge}
+        onUndirectedEdgeClick={() => setIsConnectingUndirected(true)}
+        onDirectedEdgeClick={() => setIsConnectingDirected(true)}
         startingNode={startingNode}
         setStartingNode={setStartingNode}
         adjacencyList={adjacencyList}
@@ -130,7 +129,7 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
       />
       <Navbar changeTheme={props.changeTheme}></Navbar>
       <GraphCanvas
-        onNodeConnect={(nodeIndex: number) => onNodeConnect(nodeIndex)}
+        onNodeConnect={() => { }}
         visited={visited}
         adjacencyList={adjacencyList}
         zoomPercentage={zoomPercentage}
@@ -141,9 +140,12 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
         isVisualizing={isVisualizing}
         onClick={handleVisualize}
       ></VisualizeButton>
-      <Modal isVisible={isModalVisible} onExit={handleModalExit}>
-        EMINEM
-      </Modal>
+      <CreateEdgeModal
+        directed={isConnectingDirected}
+        isVisible={isConnectingDirected || isConnectingUndirected}
+        onExit={handleEdgeModalExit}
+        onAddEdge={onCreateUndirectedEdge}
+      />
     </div>
   );
 };
