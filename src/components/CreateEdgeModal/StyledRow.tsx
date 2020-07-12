@@ -1,11 +1,6 @@
 import styled from 'styled-components';
 
-interface Props {
-    alignItems?: string;
-    justifyItems?: string;
-};
-
-const StyledRow = styled.div<Props>`
+const StyledRow = styled.div`
     display: grid;
     grid-template-columns: auto auto auto auto;
     align-items: center;
