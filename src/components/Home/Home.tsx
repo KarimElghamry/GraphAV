@@ -150,6 +150,7 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
       />
       <Navbar changeTheme={props.changeTheme}></Navbar>
       <GraphCanvas
+        onEdgeDelete={deleteEdge}
         onNodeConnect={() => {}}
         visited={visited}
         adjacencyList={adjacencyList}

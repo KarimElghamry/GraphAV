@@ -10,6 +10,7 @@ interface EdgeProps {
   isDirected: boolean;
   isVisited: boolean;
   zoomPercentage: number;
+  onDelete: Function;
 }
 
 const Edge: React.FC<EdgeProps> = (props: EdgeProps): ReactElement => {
