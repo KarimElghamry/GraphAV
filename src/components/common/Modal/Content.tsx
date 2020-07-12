@@ -4,9 +4,9 @@ const Content = styled.div`
   min-width: 400px;
   min-height: 200px;
   border-radius: 10px;
-  background-color: white;
+  background-color: ${(props) => props.theme.sidebar.background};
   z-index: 9999;
-  color: black;
+  color: ${(props) => props.theme.sidebar.foreground};
 `;
 
 export default Content;
