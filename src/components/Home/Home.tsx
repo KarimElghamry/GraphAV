@@ -26,7 +26,6 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
   const [visualizationSpeed, setVisualizationSpeed] = useState<number>(1000);
   const [isConnectingUndirected, setIsConnectingUndirected] = useState<boolean>(false);
   const [isConnectingDirected, setIsConnectingDirected] = useState<boolean>(false);
-  const [isModalVisible, setIsModalVisible] = useState<boolean>(true);
 
   const connectNodes = (firstNode: number, secondNode: number, directed: boolean) => {
     const newAdjacencyList = adjacencyList.slice();
@@ -106,9 +105,7 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
     setCurrentEdge([-1, -1]);
   };
 
-  const handleModalExit = () => {
-    setIsModalVisible(false);
-  };
+
 
   return (
     <div>
