@@ -3,9 +3,11 @@ import Modal from '../common/Modal/Modal';
 
 interface Props {
     isVisible: boolean,
+    onExit: Function,
 }
 
-const EdgePrompt = (props: Props) => {
+const CreateEdgeModal = (props: Props) => {
+
     return (
         <Modal onExit={() => { }} isVisible={true}>
             <h1>lorem ipsum</h1>
@@ -13,4 +15,4 @@ const EdgePrompt = (props: Props) => {
     )
 };
 
-export default EdgePrompt;
+export default CreateEdgeModal;
