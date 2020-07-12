@@ -1,6 +1,8 @@
 import React from 'react';
 import Modal from '../common/Modal/Modal';
 import Dropdown from '../common/Dropdown/Dropdown';
+import TitleText from './TitleText';
+import ContentText from './ContentText';
 import StyledEdgePrompt from './StyledEdgePrompt';
 import StyledRow from './StyledRow';
 import StyledButton from './StyledButton';
@@ -18,11 +20,11 @@ const CreateEdgeModal = (props: Props) => {
         <Modal onExit={() => { }} isVisible={true}>
             <div>
                 <StyledEdgePrompt>
-                    <h2>Create {props.directed ? "directed" : "undirected"} edge</h2>
+                    <TitleText>Create {props.directed ? "directed" : "undirected"} edge</TitleText>
                     <StyledRow>
-                        From
+                        <ContentText>From</ContentText>
                         <Dropdown content={["1", "2"]} selectedTile={2} setSelectedTile={() => { }} />
-                        To
+                        <ContentText>To</ContentText>
                         <Dropdown content={["1", "2"]} selectedTile={2} setSelectedTile={() => { }} />
                     </StyledRow>
                 </StyledEdgePrompt>
