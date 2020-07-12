@@ -24,7 +24,7 @@ const CreateEdgeModal = (props: Props) => {
                         To
                         <Dropdown content={["1", "2"]} selectedTile={2} setSelectedTile={() => { }} />
                     </StyledRow>
-                    <StyledRow justifyItems='right' alignItems='right'>
+                    <StyledRow>
                         <StyledButton>Exit</StyledButton>
                         <StyledButton>Add</StyledButton>
                     </StyledRow>
