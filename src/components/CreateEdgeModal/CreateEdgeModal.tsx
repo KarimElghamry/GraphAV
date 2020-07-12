@@ -4,9 +4,9 @@ import Dropdown from '../common/Dropdown/Dropdown';
 import TitleText from './TitleText';
 import ContentText from './ContentText';
 import StyledEdgePrompt from './StyledEdgePrompt';
-import StyledRow from './StyledRow';
 import StyledButton from './StyledButton';
 import StyledActionContainer from './StyledActionContainer';
+import Row from '../common/Row';
 
 interface Props {
   directed: boolean;
@@ -27,7 +27,7 @@ const CreateEdgeModal = (props: Props) => {
           <TitleText>
             Create {props.directed ? 'directed' : 'undirected'} edge
           </TitleText>
-          <StyledRow>
+          <Row justifyContent="space-between">
             <ContentText>From</ContentText>
             <Dropdown
               content={props.adjacencyList.map(
@@ -44,7 +44,7 @@ const CreateEdgeModal = (props: Props) => {
               selectedTile={secondNode}
               setSelectedTile={setSecondNode}
             />
-          </StyledRow>
+          </Row>
         </StyledEdgePrompt>
         <StyledActionContainer>
           <StyledButton
