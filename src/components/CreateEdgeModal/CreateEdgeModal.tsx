@@ -4,6 +4,7 @@ import Dropdown from '../common/Dropdown/Dropdown';
 import StyledEdgePrompt from './StyledEdgePrompt';
 import StyledRow from './StyledRow';
 import StyledButton from './StyledButton';
+import StyledActionContainer from './StyledActionContainer';
 
 interface Props {
     directed: boolean;
@@ -24,11 +25,11 @@ const CreateEdgeModal = (props: Props) => {
                         To
                         <Dropdown content={["1", "2"]} selectedTile={2} setSelectedTile={() => { }} />
                     </StyledRow>
-                    <StyledRow>
-                        <StyledButton>Exit</StyledButton>
-                        <StyledButton>Add</StyledButton>
-                    </StyledRow>
                 </StyledEdgePrompt>
+                <StyledActionContainer>
+                    <StyledButton>Exit</StyledButton>
+                    <StyledButton>Add</StyledButton>
+                </StyledActionContainer>
 
             </div>
         </Modal >
