@@ -1,6 +1,11 @@
 import styled from 'styled-components';
 
-const StyledDropdownContainer = styled.div`
+interface Props {
+    alignItems?: string;
+    justifyItems?: string;
+};
+
+const StyledRow = styled.div<Props>`
     display: grid;
     grid-template-columns: auto auto auto auto;
     align-items: center;
@@ -8,4 +13,4 @@ const StyledDropdownContainer = styled.div`
     grid-gap: 40px;
 `;
 
-export default StyledDropdownContainer;
+export default StyledRow;
