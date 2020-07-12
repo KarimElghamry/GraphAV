@@ -19,6 +19,7 @@ interface Props {
   setZoomPercentage: Function;
   zoomPercentage: number;
   onUndirectedEdgeClick: VoidFunction;
+  onDirectedEdgeClick: VoidFunction;
   visualizationSpeed: number;
   setVisualizationSpeed: Function;
   clearCanvas: Function;
@@ -93,7 +94,7 @@ const SideNav: React.FC<Props> = (props: Props): ReactElement => {
         >
           <UndirectedIcon></UndirectedIcon>
         </OptionButton>
-        <OptionButton tooltipContent="Add directed edge" onClick={() => { }}>
+        <OptionButton tooltipContent="Add directed edge" onClick={() => { props.onDirectedEdgeClick(); }}>
           <DirectedIcon></DirectedIcon>
         </OptionButton>
       </Row>
