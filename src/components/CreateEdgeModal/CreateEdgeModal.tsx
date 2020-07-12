@@ -17,7 +17,7 @@ interface Props {
 const CreateEdgeModal = (props: Props) => {
 
     return (
-        <Modal onExit={() => { }} isVisible={true}>
+        <Modal onExit={props.onExit} isVisible={props.isVisible}>
             <div>
                 <StyledEdgePrompt>
                     <TitleText>Create {props.directed ? "directed" : "undirected"} edge</TitleText>
@@ -29,7 +29,7 @@ const CreateEdgeModal = (props: Props) => {
                     </StyledRow>
                 </StyledEdgePrompt>
                 <StyledActionContainer>
-                    <StyledButton>Exit</StyledButton>
+                    <StyledButton onClick={() => { props.onExit() }}>Exit</StyledButton>
                     <StyledButton>Add</StyledButton>
                 </StyledActionContainer>
 
