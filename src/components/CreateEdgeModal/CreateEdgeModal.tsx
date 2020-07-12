@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Modal from '../common/Modal/Modal';
 import Dropdown from '../common/Dropdown/Dropdown';
 import TitleText from './TitleText';
@@ -18,7 +18,8 @@ interface Props {
 
 const CreateEdgeModal = (props: Props) => {
 
-    const nodes: Array<string> = props.adjacencyList.map((_, index: number) => `${index + 1}`);
+    const [firstNode, setFirstNode] = useState<number>(0);
+    const [secondNode, setSecondNode] = useState<number>(1);
 
     return (
         <Modal onExit={props.onExit} isVisible={props.isVisible}>
@@ -27,14 +28,20 @@ const CreateEdgeModal = (props: Props) => {
                     <TitleText>Create {props.directed ? "directed" : "undirected"} edge</TitleText>
                     <StyledRow>
                         <ContentText>From</ContentText>
-                        <Dropdown content={nodes} selectedTile={2} setSelectedTile={() => { }} />
+                        <Dropdown
+                            content={props.adjacencyList.map((_, index: number) => `${index + 1}`)}
+                            selectedTile={firstNode}
+                            setSelectedTile={setFirstNode} />
                         <ContentText>To</ContentText>
-                        <Dropdown content={nodes} selectedTile={2} setSelectedTile={() => { }} />
+                        <Dropdown
+                            content={props.adjacencyList.map((_, index: number) => `${index + 1}`)}
+                            selectedTile={secondNode}
+                            setSelectedTile={setSecondNode} />
                     </StyledRow>
                 </StyledEdgePrompt>
                 <StyledActionContainer>
                     <StyledButton onClick={() => { props.onExit() }}>Exit</StyledButton>
-                    <StyledButton onClick={() => { props.onAddEdge() }}>Add</StyledButton>
+                    <StyledButton onClick={() => { props.onAddEdge(firstNode, secondNode) }}>Add</StyledButton>
                 </StyledActionContainer>
 
             </div>
