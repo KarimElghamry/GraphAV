@@ -145,6 +145,7 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
         isVisible={isConnectingDirected || isConnectingUndirected}
         onExit={handleEdgeModalExit}
         onAddEdge={onCreateUndirectedEdge}
+        adjacencyList={adjacencyList}
       />
     </div>
   );

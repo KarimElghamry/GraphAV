@@ -13,9 +13,12 @@ interface Props {
     isVisible: boolean,
     onExit: Function,
     onAddEdge: Function,
+    adjacencyList: Array<Array<number>>,
 }
 
 const CreateEdgeModal = (props: Props) => {
+
+    const nodes: Array<string> = props.adjacencyList.map((_, index: number) => `${index + 1}`);
 
     return (
         <Modal onExit={props.onExit} isVisible={props.isVisible}>
@@ -24,9 +27,9 @@ const CreateEdgeModal = (props: Props) => {
                     <TitleText>Create {props.directed ? "directed" : "undirected"} edge</TitleText>
                     <StyledRow>
                         <ContentText>From</ContentText>
-                        <Dropdown content={["1", "2"]} selectedTile={2} setSelectedTile={() => { }} />
+                        <Dropdown content={nodes} selectedTile={2} setSelectedTile={() => { }} />
                         <ContentText>To</ContentText>
-                        <Dropdown content={["1", "2"]} selectedTile={2} setSelectedTile={() => { }} />
+                        <Dropdown content={nodes} selectedTile={2} setSelectedTile={() => { }} />
                     </StyledRow>
                 </StyledEdgePrompt>
                 <StyledActionContainer>
