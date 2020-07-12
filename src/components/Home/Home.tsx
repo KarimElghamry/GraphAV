@@ -75,7 +75,9 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
           adjacencyList,
           startingNode,
           setVisited,
-          visualizationSpeed
+          visualizationSpeed,
+          setGraphInfo,
+          setCurrentEdge
         );
         break;
 

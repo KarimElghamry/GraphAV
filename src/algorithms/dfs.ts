@@ -23,7 +23,9 @@ const dfsWrapper = async (
   graph: Array<Array<number>>,
   node: number,
   setVisited: Function,
-  visualizationSpeed: number
+  visualizationSpeed: number,
+  setGraphInfo: Function,
+  setCurrentEdge: Function
 ) => {
   globalVisited = [];
   await dfs(graph, node, setVisited, visualizationSpeed);
