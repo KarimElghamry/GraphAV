@@ -64,9 +64,14 @@ const GraphCanvas: React.FC<Props> = (props: Props): ReactElement => {
         const isVisited: boolean =
           (currentEdge[0] === n1 && currentEdge[1] === n2) ||
           (currentEdge[0] === n2 && currentEdge[1] === n1);
+
+        const onDelete = () => {
+          props.onEdgeDelete(n1, n2);
+        };
+
         return (
           <Edge
-            onDelete={() => {}}
+            onDelete={onDelete}
             n1={nodeRefs[n1]}
             n2={nodeRefs[n2]}
             key={`${n1}${n2}`}
