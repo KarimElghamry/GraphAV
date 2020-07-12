@@ -5,7 +5,6 @@ const StyledActionContainer = styled.div`
     grid-template-columns: 120px 120px;
     justify-content: right;
     margin-top: 32px;
-
     width: 95%;
 `;
 
