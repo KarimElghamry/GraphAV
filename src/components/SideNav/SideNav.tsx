@@ -1,4 +1,4 @@
-import React, { ReactElement, useState } from 'react';
+import React, {ReactElement, useState} from 'react';
 import StyledSideNav from './SideNavStyle';
 import Slider from './Slider';
 import ItemText from './ItemText';
@@ -7,7 +7,7 @@ import Arrow from './Arrow';
 import Dropdown from '../common/Dropdown/Dropdown';
 import Row from '../common/Row';
 import OptionButton from './Options/OptionButton';
-import { AddIcon, UndirectedIcon, DirectedIcon } from './Options/OptionIcons';
+import {AddIcon, UndirectedIcon, DirectedIcon} from './Options/OptionIcons';
 import ClearButton from './ClearButton';
 import Algorithms from '../../models/Algorithms';
 
@@ -67,19 +67,25 @@ const SideNav: React.FC<Props> = (props: Props): ReactElement => {
         />
       </Slider>
       <ItemText>Algorithm</ItemText>
-      <Dropdown
-        selectedTile={availableAlgorithms.indexOf(props.selectedAlgorithm)}
-        setSelectedTile={setSelectedAlgorithm}
-        content={availableAlgorithms}
-      ></Dropdown>
+      <Row justifyContent="center">
+        <Dropdown
+          selectedTile={availableAlgorithms.indexOf(props.selectedAlgorithm)}
+          setSelectedTile={setSelectedAlgorithm}
+          content={availableAlgorithms}
+        ></Dropdown>
+      </Row>
       <ItemText>Starting Node</ItemText>
-      <Dropdown
-        selectedTile={props.startingNode}
-        setSelectedTile={props.setStartingNode}
-        content={adjacencyList.map((val: Array<number>, index: number) => {
-          return (index + 1).toString();
-        })}
-      ></Dropdown>
+
+      <Row justifyContent="center">
+        <Dropdown
+          selectedTile={props.startingNode}
+          setSelectedTile={props.setStartingNode}
+          content={adjacencyList.map((val: Array<number>, index: number) => {
+            return (index + 1).toString();
+          })}
+        ></Dropdown>
+      </Row>
+
       <ItemText>Options</ItemText>
       <Row justifyContent="space-evenly" margin="10px 0px">
         {/* add new node */}
@@ -94,7 +100,12 @@ const SideNav: React.FC<Props> = (props: Props): ReactElement => {
         >
           <UndirectedIcon></UndirectedIcon>
         </OptionButton>
-        <OptionButton tooltipContent="Add directed edge" onClick={() => { props.onDirectedEdgeClick(); }}>
+        <OptionButton
+          tooltipContent="Add directed edge"
+          onClick={() => {
+            props.onDirectedEdgeClick();
+          }}
+        >
           <DirectedIcon></DirectedIcon>
         </OptionButton>
       </Row>

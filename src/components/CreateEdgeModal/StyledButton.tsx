@@ -17,6 +17,10 @@ const StyledButton = styled.div`
   user-select: none;
   cursor: pointer;
   transition-duration: 0.3s;
+
+  &:hover {
+    filter: brightness(0.7);
+  }
 `;
 
 export default StyledButton;

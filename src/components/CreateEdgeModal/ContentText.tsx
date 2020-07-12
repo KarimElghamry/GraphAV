@@ -1,10 +1,8 @@
-import styled from "styled-components";
-
+import styled from 'styled-components';
 
 const ContentText = styled.div`
-    color: ${(props) => props.theme.sidebar.background};
-    font-size: 18px;
-    text-align: center;
+  color: ${(props) => props.theme.sidebar.foreground};
+  font-size: 18px;
 `;
 
 export default ContentText;
