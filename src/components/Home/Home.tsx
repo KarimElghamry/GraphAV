@@ -68,6 +68,8 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
     if (isVisualizing) return;
     setIsVisualizing(true);
     setVisited([]);
+    setCurrentEdge([-1, -1]);
+    setGraphInfo([]);
 
     switch (selectedAlgorithm) {
       case Algorithms.dfs:
@@ -75,7 +77,8 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
           adjacencyList,
           startingNode,
           setVisited,
-          visualizationSpeed
+          visualizationSpeed,
+          setCurrentEdge
         );
         break;
 
