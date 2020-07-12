@@ -16,7 +16,7 @@ const Edge: React.FC<EdgeProps> = (props: EdgeProps): ReactElement => {
   const [position1, setPosition1] = useState<Position | null>(null);
   const [position2, setPosition2] = useState<Position | null>(null);
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [makrerId, _setMarkerId] = useState<string>(
+  const [markerId, _setMarkerId] = useState<string>(
     new Date().getMilliseconds() + Math.floor(Math.random() * 1000).toString()
   );
 
@@ -93,7 +93,7 @@ const Edge: React.FC<EdgeProps> = (props: EdgeProps): ReactElement => {
       <defs>
         <marker
           orient="auto"
-          id={makrerId}
+          id={markerId}
           markerWidth={arrowWidth}
           markerHeight={arrowHeight}
           refX={5}
@@ -110,7 +110,7 @@ const Edge: React.FC<EdgeProps> = (props: EdgeProps): ReactElement => {
           (pos1Top + pos2Top) / 2
         },${pos2Left},${pos2Top}`}
         isVisited={props.isVisited}
-        markerMid={props.isDirected ? `url(#${makrerId})` : 'none'}
+        markerMid={props.isDirected ? `url(#${markerId})` : 'none'}
       />
     </StyledEdgeContainer>
   );
