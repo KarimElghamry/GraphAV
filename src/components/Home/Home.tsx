@@ -1,4 +1,4 @@
-import React, { ReactElement, useState } from 'react';
+import React, {ReactElement, useState} from 'react';
 import Navbar from '../Navbar/Navbar';
 import SideNav from '../SideNav/SideNav';
 import GraphCanvas from '../GraphCanvas/GraphCanvas';
@@ -24,17 +24,25 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
   const [isVisualizing, setIsVisualizing] = useState<boolean>(false);
   const [zoomPercentage, setZoomPercentage] = useState<number>(1);
   const [visualizationSpeed, setVisualizationSpeed] = useState<number>(1000);
-  const [isConnectingUndirected, setIsConnectingUndirected] = useState<boolean>(false);
-  const [isConnectingDirected, setIsConnectingDirected] = useState<boolean>(false);
+  const [isConnectingUndirected, setIsConnectingUndirected] = useState<boolean>(
+    false
+  );
+  const [isConnectingDirected, setIsConnectingDirected] = useState<boolean>(
+    false
+  );
 
-  const connectNodes = (firstNode: number, secondNode: number, directed: boolean) => {
+  const connectNodes = (
+    firstNode: number,
+    secondNode: number,
+    directed: boolean
+  ) => {
+    if (firstNode === undefined || secondNode === undefined) return;
+
     const newAdjacencyList = adjacencyList.slice();
     newAdjacencyList[firstNode].push(secondNode);
-    if (!directed)
-      newAdjacencyList[secondNode].push(firstNode);
+    if (!directed) newAdjacencyList[secondNode].push(firstNode);
     setAdjacencyList(newAdjacencyList);
   };
-
 
   const handleEdgeModalExit = () => {
     setIsConnectingUndirected(false);
@@ -105,8 +113,6 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
     setCurrentEdge([-1, -1]);
   };
 
-
-
   return (
     <div>
       <SideNav
@@ -126,7 +132,7 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
       />
       <Navbar changeTheme={props.changeTheme}></Navbar>
       <GraphCanvas
-        onNodeConnect={() => { }}
+        onNodeConnect={() => {}}
         visited={visited}
         adjacencyList={adjacencyList}
         zoomPercentage={zoomPercentage}
