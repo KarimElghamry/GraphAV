@@ -1,4 +1,4 @@
-import React, {ReactElement, useRef} from 'react';
+import React, { ReactElement, useRef } from 'react';
 import Container from './Container';
 import GraphNode from '../GraphNode/GraphNode';
 import Edge from '../Edge/Edge';
@@ -40,7 +40,7 @@ const GraphCanvas: React.FC<Props> = (props: Props): ReactElement => {
       {adjacencyList.map((val: Array<number>, index: number) => {
         const nodeInfo: NodeInfo =
           index > props.graphInfo.length - 1
-            ? ({shortestPath: undefined, previousNode: undefined} as NodeInfo)
+            ? ({ shortestPath: undefined, previousNode: undefined } as NodeInfo)
             : props.graphInfo[index];
         return (
           <GraphNode
@@ -68,7 +68,7 @@ const GraphCanvas: React.FC<Props> = (props: Props): ReactElement => {
             n1={nodeRefs[n1]}
             n2={nodeRefs[n2]}
             key={`${n1}${n2}`}
-            isDirected={n1 === 0}
+            isDirected={!adjacencyList[n2].includes(n1)}
             zoomPercentage={props.zoomPercentage}
             isVisited={isVisited}
           />
