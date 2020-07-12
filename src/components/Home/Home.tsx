@@ -47,6 +47,18 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
     setAdjacencyList(newAdjacencyList);
   };
 
+  const deleteEdge = (firstNode: number, secondNode: number) => {
+    const newAdjacencyList = adjacencyList.slice();
+    newAdjacencyList[firstNode] = newAdjacencyList[firstNode].filter(
+      (val: number) => val !== secondNode
+    );
+    newAdjacencyList[secondNode] = newAdjacencyList[secondNode].filter(
+      (val: number) => val !== firstNode
+    );
+
+    setAdjacencyList(newAdjacencyList);
+  };
+
   const handleEdgeModalExit = () => {
     setIsConnectingUndirected(false);
     setIsConnectingDirected(false);
