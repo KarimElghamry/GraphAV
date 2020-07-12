@@ -12,6 +12,7 @@ interface Props {
     directed: boolean;
     isVisible: boolean,
     onExit: Function,
+    onAddEdge: Function,
 }
 
 const CreateEdgeModal = (props: Props) => {
@@ -30,7 +31,7 @@ const CreateEdgeModal = (props: Props) => {
                 </StyledEdgePrompt>
                 <StyledActionContainer>
                     <StyledButton onClick={() => { props.onExit() }}>Exit</StyledButton>
-                    <StyledButton>Add</StyledButton>
+                    <StyledButton onClick={() => { props.onAddEdge() }}>Add</StyledButton>
                 </StyledActionContainer>
 
             </div>
