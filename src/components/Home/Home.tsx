@@ -37,6 +37,7 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
     directed: boolean
   ) => {
     if (firstNode === undefined || secondNode === undefined) return;
+    if (firstNode === secondNode) return;
 
     const newAdjacencyList = adjacencyList.slice();
     newAdjacencyList[firstNode].push(secondNode);
