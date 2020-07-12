@@ -58,6 +58,18 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
 
     setAdjacencyList(newAdjacencyList);
   };
+  const deleteNode = (node: number) => {
+    setAdjacencyList((prev) => {
+      const result = prev.map((val: Array<number>) => {
+        return val.filter((num: number) => num !== node);
+      });
+      const newAdjacencyList = result.filter(
+        (_, index: number) => index !== node
+      );
+
+      return newAdjacencyList;
+    });
+  };
 
   const handleEdgeModalExit = () => {
     setIsConnectingUndirected(false);
@@ -150,6 +162,7 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
       />
       <Navbar changeTheme={props.changeTheme}></Navbar>
       <GraphCanvas
+        onNodeDelete={deleteNode}
         onEdgeDelete={deleteEdge}
         onNodeConnect={() => {}}
         visited={visited}
