@@ -14,6 +14,7 @@ interface HomeProps {
 
 const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
   const [adjacencyList, setAdjacencyList] = useState<Array<Array<number>>>([]);
+  const [nodeKeys, setNodeKeys] = useState<Array<string>>([]);
   const [visited, setVisited] = useState<Array<number>>([]);
   const [currentEdge, setCurrentEdge] = useState<[number, number]>([-1, -1]);
   const [graphInfo, setGraphInfo] = useState<Array<NodeInfo>>([]);
