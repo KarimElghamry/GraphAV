@@ -10,7 +10,6 @@ interface EdgeProps {
   n2: RefObject<HTMLSpanElement>;
   isDirected: boolean;
   isVisited: boolean;
-  isSelected: boolean;
   zoomPercentage: number;
 }
 
@@ -130,18 +129,7 @@ const Edge: React.FC<EdgeProps> = (props: EdgeProps): ReactElement => {
           (pos1Top + pos2Top) / 2
         },${pos2Left},${pos2Top}`}
         isVisited={props.isVisited}
-        isSelected={props.isSelected}
-        onDoubleClick={() => console.log('eminem')}
         markerMid={props.isDirected ? `url(#${markerId})` : 'none'}
-      />
-      <polyline
-        points={`${pos1Left},${pos1Top},${(pos1Left + pos2Left) / 2},${
-          (pos1Top + pos2Top) / 2
-        },${pos2Left},${pos2Top}`}
-        strokeWidth="35px"
-        stroke="transparent"
-        style={{cursor: 'pointer'}}
-        onDoubleClick={() => console.log('eminem')}
       />
     </StyledEdgeContainer>
   );
