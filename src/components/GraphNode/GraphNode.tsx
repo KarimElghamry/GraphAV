@@ -20,6 +20,7 @@ interface Props {
   connectNode: VoidFunction;
   nodeInfo: NodeInfo;
   isSelected: boolean;
+  onSelect: Function;
 }
 
 const GraphNode: React.FC<Props> = (props: Props): ReactElement => {
@@ -151,6 +152,7 @@ const GraphNode: React.FC<Props> = (props: Props): ReactElement => {
 
   return (
     <Container
+      onClick={() => props.onSelect()}
       isActive={props.isActive}
       isSelected={props.isSelected}
       onMouseDown={handleMouseDown}

@@ -70,6 +70,7 @@ const GraphCanvas: React.FC<Props> = (props: Props): ReactElement => {
             zoomPercentage={props.zoomPercentage}
             nodeInfo={nodeInfo}
             isSelected={isSelected}
+            onSelect={onSelect}
           >
             <span ref={nodeRefs[index]}></span>
           </GraphNode>
