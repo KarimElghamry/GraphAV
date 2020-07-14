@@ -87,6 +87,7 @@ const GraphCanvas: React.FC<Props> = (props: Props): ReactElement => {
             n1={nodeRefs[n1]}
             n2={nodeRefs[n2]}
             key={`${props.nodeKeys[n1]}${props.nodeKeys[n2]}`}
+            edgeKey={`${props.nodeKeys[n1]}${props.nodeKeys[n2]}`}
             isDirected={!adjacencyList[n2].includes(n1)}
             zoomPercentage={props.zoomPercentage}
             isVisited={isVisited}

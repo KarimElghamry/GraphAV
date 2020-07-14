@@ -3,7 +3,6 @@ import StyledEdgeLine from './StyledEdgeLine';
 import Position from '../../models/Position';
 import StyledEdgeContainer from './StyledEdgeContainer';
 import StyledPolygon from './StyledPolygon';
-import {v4 as uuidv4} from 'uuid';
 
 interface EdgeProps {
   n1: RefObject<HTMLSpanElement>;
@@ -11,6 +10,7 @@ interface EdgeProps {
   isDirected: boolean;
   isVisited: boolean;
   zoomPercentage: number;
+  edgeKey: string;
 }
 
 const Edge: React.FC<EdgeProps> = (props: EdgeProps): ReactElement => {
@@ -22,8 +22,6 @@ const Edge: React.FC<EdgeProps> = (props: EdgeProps): ReactElement => {
   const [currentN2, setCurrentN2] = useState<HTMLSpanElement | null>(
     props.n2.current
   );
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [markerId, _setMarkerId] = useState<string>(uuidv4());
 
   useEffect(() => {
     if (currentN1 === null) setCurrentN1(props.n1.current);
@@ -112,7 +110,7 @@ const Edge: React.FC<EdgeProps> = (props: EdgeProps): ReactElement => {
       <defs>
         <marker
           orient="auto"
-          id={markerId}
+          id={props.edgeKey}
           markerWidth={arrowWidth}
           markerHeight={arrowHeight}
           refX={5}
@@ -129,7 +127,7 @@ const Edge: React.FC<EdgeProps> = (props: EdgeProps): ReactElement => {
           (pos1Top + pos2Top) / 2
         },${pos2Left},${pos2Top}`}
         isVisited={props.isVisited}
-        markerMid={props.isDirected ? `url(#${markerId})` : 'none'}
+        markerMid={props.isDirected ? `url(#${props.edgeKey})` : 'none'}
       />
     </StyledEdgeContainer>
   );
