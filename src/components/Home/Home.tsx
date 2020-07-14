@@ -76,8 +76,10 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
       (_, index: number) => index !== node
     );
 
+    const newNodeKeys = nodeKeys.filter((_, index: number) => index !== node);
+
+    setNodeKeys(newNodeKeys);
     setAdjacencyList(newAdjacencyList);
-    console.log(newAdjacencyList);
   };
 
   const handleEdgeModalExit = () => {
