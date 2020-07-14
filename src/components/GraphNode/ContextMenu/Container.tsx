@@ -19,8 +19,9 @@ const Container = styled.div<Props>`
   position: absolute;
   height: 100px;
   width: 200px;
-  background-color: red;
+  background-color: ${(props) => props.theme.nodeActive.background};
   border-radius: 10px;
+  border: 2px solid ${(props) => props.theme.edge.background};
   left: 50%;
   top: 50%;
   z-index: 200;
