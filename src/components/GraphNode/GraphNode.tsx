@@ -150,6 +150,9 @@ const GraphNode: React.FC<Props> = (props: Props): ReactElement => {
 
   return (
     <Container
+      onContextMenu={(e: React.MouseEvent) => {
+        e.preventDefault();
+      }}
       onDoubleClick={() => props.onSelect()}
       isActive={props.isActive}
       isSelected={props.isSelected}
