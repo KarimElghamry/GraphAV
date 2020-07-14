@@ -45,7 +45,9 @@ const Container = styled.div.attrs((props: Props) => ({
   user-select: none;
   cursor: move;
   box-shadow: ${(props) =>
-    `0px 0px 20px 5px ${props.theme.nodeActive.background}`};
+    props.isSelected
+      ? `0px 0px 20px 5px ${props.theme.nodeActive.background}`
+      : 'none'};
 `;
 
 export default Container;

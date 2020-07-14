@@ -131,6 +131,7 @@ const Edge: React.FC<EdgeProps> = (props: EdgeProps): ReactElement => {
           (pos1Top + pos2Top) / 2
         },${pos2Left},${pos2Top}`}
         isVisited={props.isVisited}
+        isSelected={props.isSelected}
         markerMid={props.isDirected ? `url(#${markerId})` : 'none'}
       />
     </StyledEdgeContainer>
