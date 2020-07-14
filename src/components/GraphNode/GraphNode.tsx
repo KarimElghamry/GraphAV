@@ -9,6 +9,7 @@ import Container from './Container';
 import Position from '../../models/Position';
 import Information from './Information';
 import NodeInfo from '../../models/NodeInfo';
+import ContextMenu from './ContextMenu/ContextMenu';
 
 interface Props {
   isActive: boolean;
@@ -164,6 +165,7 @@ const GraphNode: React.FC<Props> = (props: Props): ReactElement => {
     >
       {props.content}
       {props.children}
+      <ContextMenu></ContextMenu>
       <Information ref={infoRef} zoomPercentage={props.zoomPercentage}>
         <div>
           {'SP: ' +
