@@ -25,6 +25,9 @@ interface Props {
 
 const GraphNode: React.FC<Props> = (props: Props): ReactElement => {
   const [position, setPosition] = useState<Position>({top: 100, left: 100});
+  const [isContextMenuVisible, setIsContextMenuVisible] = useState<boolean>(
+    false
+  );
   const nodeRef: React.RefObject<HTMLDivElement> = useRef<HTMLDivElement>(null);
   const infoRef: React.RefObject<HTMLDivElement> = useRef<HTMLDivElement>(null);
   const canvasRef: React.RefObject<HTMLDivElement> = props.canvasRef;
