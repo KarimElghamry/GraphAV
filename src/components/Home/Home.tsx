@@ -7,6 +7,7 @@ import algorithms from '../../algorithms';
 import Algorithms from '../../models/Algorithms';
 import NodeInfo from '../../models/NodeInfo';
 import CreateEdgeModal from '../CreateEdgeModal/CreateEdgeModal';
+import {v4 as uuidv4} from 'uuid';
 
 interface HomeProps {
   changeTheme: Function;
@@ -89,8 +90,11 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
   };
 
   const addNewNode = () => {
-    let newAdjacencyList = adjacencyList.slice();
+    const newAdjacencyList = adjacencyList.slice();
+    const newNodeKeys = nodeKeys.slice();
     newAdjacencyList.push([]);
+    newNodeKeys.push(uuidv4());
+    setNodeKeys(newNodeKeys);
     setAdjacencyList((prev: Array<Array<number>>) => newAdjacencyList);
   };
 
