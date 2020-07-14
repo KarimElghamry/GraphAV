@@ -59,16 +59,23 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
     setAdjacencyList(newAdjacencyList);
   };
   const deleteNode = (node: number) => {
-    setAdjacencyList((prev) => {
-      const result = prev.map((val: Array<number>) => {
-        return val.filter((num: number) => num !== node);
-      });
-      const newAdjacencyList = result.filter(
-        (_, index: number) => index !== node
-      );
-
-      return newAdjacencyList;
+    let newAdjacencyList = adjacencyList.map((val: Array<number>) => {
+      //remove node from neighbours and decrement all nodes bigger than the
+      //removed node
+      return val
+        .filter((neighbour: number) => node !== neighbour)
+        .map((current: number) => {
+          if (current >= node) return current - 1;
+          return current;
+        });
     });
+
+    newAdjacencyList = newAdjacencyList.filter(
+      (_, index: number) => index !== node
+    );
+
+    setAdjacencyList(newAdjacencyList);
+    console.log(newAdjacencyList);
   };
 
   const handleEdgeModalExit = () => {
