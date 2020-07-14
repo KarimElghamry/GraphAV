@@ -10,7 +10,6 @@ interface EdgeProps {
   isDirected: boolean;
   isVisited: boolean;
   zoomPercentage: number;
-  onDelete: Function;
 }
 
 const Edge: React.FC<EdgeProps> = (props: EdgeProps): ReactElement => {
@@ -127,7 +126,6 @@ const Edge: React.FC<EdgeProps> = (props: EdgeProps): ReactElement => {
         </marker>
       </defs>
       <StyledEdgeLine
-        onClick={() => props.onDelete()}
         points={`${pos1Left},${pos1Top},${(pos1Left + pos2Left) / 2},${
           (pos1Top + pos2Top) / 2
         },${pos2Left},${pos2Top}`}
