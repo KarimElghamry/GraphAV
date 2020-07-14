@@ -156,6 +156,7 @@ const GraphNode: React.FC<Props> = (props: Props): ReactElement => {
     <Container
       onContextMenu={(e: React.MouseEvent) => {
         e.preventDefault();
+        setIsContextMenuVisible((prev) => !prev);
       }}
       onDoubleClick={() => props.onSelect()}
       isActive={props.isActive}
@@ -168,7 +169,10 @@ const GraphNode: React.FC<Props> = (props: Props): ReactElement => {
     >
       {props.content}
       {props.children}
-      <ContextMenu isVisible={isContextMenuVisible}></ContextMenu>
+      <ContextMenu
+        isVisible={isContextMenuVisible}
+        setIsVisible={setIsContextMenuVisible}
+      ></ContextMenu>
       <Information ref={infoRef} zoomPercentage={props.zoomPercentage}>
         <div>
           {'SP: ' +
