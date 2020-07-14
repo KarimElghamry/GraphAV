@@ -40,6 +40,11 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
   ) => {
     if (firstNode === undefined || secondNode === undefined) return;
     if (firstNode === secondNode) return;
+    if (
+      firstNode > adjacencyList.length - 1 ||
+      secondNode > adjacencyList.length - 1
+    )
+      return;
     if (adjacencyList[firstNode].includes(secondNode)) return;
     if (adjacencyList[secondNode].includes(firstNode)) return;
 
