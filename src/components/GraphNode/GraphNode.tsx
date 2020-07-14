@@ -152,42 +152,49 @@ const GraphNode: React.FC<Props> = (props: Props): ReactElement => {
     }
   }, [canvasRef, nodeRef, setPosition]);
 
+  const contextMenuPosition: Position = {
+    top: position.top + (nodeRef.current?.offsetHeight ?? 0) / 2,
+    left: position.left + (nodeRef.current?.offsetWidth ?? 0) / 2,
+  };
   return (
-    <Container
-      onContextMenu={(e: React.MouseEvent) => {
-        e.preventDefault();
-        setIsContextMenuVisible((prev) => !prev);
-      }}
-      onDoubleClick={() => props.onSelect()}
-      isActive={props.isActive}
-      isSelected={props.isSelected}
-      onMouseDown={handleMouseDown}
-      onMouseUp={handleMouseUp}
-      position={position}
-      ref={nodeRef}
-      zoomPercentage={props.zoomPercentage}
-    >
-      {props.content}
-      {props.children}
+    <React.Fragment>
+      <Container
+        onContextMenu={(e: React.MouseEvent) => {
+          e.preventDefault();
+          setIsContextMenuVisible((prev) => !prev);
+        }}
+        onDoubleClick={() => props.onSelect()}
+        isActive={props.isActive}
+        isSelected={props.isSelected}
+        onMouseDown={handleMouseDown}
+        onMouseUp={handleMouseUp}
+        position={position}
+        ref={nodeRef}
+        zoomPercentage={props.zoomPercentage}
+      >
+        {props.content}
+        {props.children}
+        <Information ref={infoRef} zoomPercentage={props.zoomPercentage}>
+          <div>
+            {'SP: ' +
+              (props.nodeInfo.shortestPath === undefined
+                ? '∞'
+                : props.nodeInfo.shortestPath)}
+          </div>
+          <div>
+            {'PREV: ' +
+              (props.nodeInfo.previousNode === undefined
+                ? '∞'
+                : props.nodeInfo.previousNode + 1)}
+          </div>
+        </Information>
+      </Container>
       <ContextMenu
+        position={contextMenuPosition}
         isVisible={isContextMenuVisible}
         setIsVisible={setIsContextMenuVisible}
       ></ContextMenu>
-      <Information ref={infoRef} zoomPercentage={props.zoomPercentage}>
-        <div>
-          {'SP: ' +
-            (props.nodeInfo.shortestPath === undefined
-              ? '∞'
-              : props.nodeInfo.shortestPath)}
-        </div>
-        <div>
-          {'PREV: ' +
-            (props.nodeInfo.previousNode === undefined
-              ? '∞'
-              : props.nodeInfo.previousNode + 1)}
-        </div>
-      </Information>
-    </Container>
+    </React.Fragment>
   );
 };
 

@@ -10,7 +10,8 @@ const ContextTile = styled.div`
   align-items: center;
   justify-content: space-between;
   color: ${(props) => props.theme.nodeInactive.foreground};
-  transition-duration: 0.3s;
+  transition: background-color 0.3s;
+  overflow: hidden;
 
   &:hover {
     background-color: ${(props) => props.theme.nodeInactive.background};
