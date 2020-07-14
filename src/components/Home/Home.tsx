@@ -155,6 +155,7 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
     setAdjacencyList([]);
     setGraphInfo([]);
     setCurrentEdge([-1, -1]);
+    setNodeKeys([]);
   };
 
   return (
