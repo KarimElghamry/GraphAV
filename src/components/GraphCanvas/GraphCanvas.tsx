@@ -54,6 +54,7 @@ const GraphCanvas: React.FC<Props> = (props: Props): ReactElement => {
             edgeRef={nodeRefs[index]}
             zoomPercentage={props.zoomPercentage}
             nodeInfo={nodeInfo}
+            isSelected={false}
           >
             <span ref={nodeRefs[index]}></span>
           </GraphNode>

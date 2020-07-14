@@ -19,6 +19,7 @@ interface Props {
   zoomPercentage: number;
   connectNode: VoidFunction;
   nodeInfo: NodeInfo;
+  isSelected: boolean;
 }
 
 const GraphNode: React.FC<Props> = (props: Props): ReactElement => {
