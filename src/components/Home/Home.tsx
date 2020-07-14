@@ -178,7 +178,6 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
       <GraphCanvas
         onNodeDelete={deleteNode}
         onEdgeDelete={deleteEdge}
-        onNodeConnect={() => {}}
         visited={visited}
         adjacencyList={adjacencyList}
         nodeKeys={nodeKeys}

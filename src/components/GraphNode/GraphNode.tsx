@@ -17,7 +17,6 @@ interface Props {
   children: React.ReactChild | React.ReactChildren;
   edgeRef: React.RefObject<HTMLSpanElement> | null;
   zoomPercentage: number;
-  connectNode: VoidFunction;
   nodeInfo: NodeInfo;
   isSelected: boolean;
   onSelect: Function;
@@ -72,7 +71,6 @@ const GraphNode: React.FC<Props> = (props: Props): ReactElement => {
   const handleMouseDown = () => {
     document.onmousemove = handleMouseMove;
     document.onmouseup = handleMouseUp;
-    props.connectNode();
   };
   const handleMouseUp = () => {
     document.onmousemove = null;

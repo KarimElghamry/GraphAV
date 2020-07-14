@@ -11,7 +11,6 @@ interface Props {
   zoomPercentage: number;
   graphInfo: Array<NodeInfo>;
   currentEdge: [number, number];
-  onNodeConnect: (nodeIndex: number) => void;
   onEdgeDelete: (firstNode: number, secondNode: number) => void;
   onNodeDelete: (node: number) => void;
 }
@@ -62,7 +61,6 @@ const GraphCanvas: React.FC<Props> = (props: Props): ReactElement => {
         };
         return (
           <GraphNode
-            connectNode={() => props.onNodeConnect(index)}
             key={props.nodeKeys[index]}
             canvasRef={canvasRef}
             isActive={visited.includes(index)}
