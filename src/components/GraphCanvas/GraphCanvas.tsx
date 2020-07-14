@@ -75,6 +75,7 @@ const GraphCanvas: React.FC<Props> = (props: Props): ReactElement => {
             isDirected={!adjacencyList[n2].includes(n1)}
             zoomPercentage={props.zoomPercentage}
             isVisited={isVisited}
+            isSelected={false}
           />
         );
       })}
