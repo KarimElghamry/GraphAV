@@ -6,6 +6,7 @@ import NodeInfo from '../../models/NodeInfo';
 
 interface Props {
   adjacencyList: Array<Array<number>>;
+  nodeKeys: Array<string>;
   visited: Array<number>;
   zoomPercentage: number;
   graphInfo: Array<NodeInfo>;
@@ -62,7 +63,7 @@ const GraphCanvas: React.FC<Props> = (props: Props): ReactElement => {
         return (
           <GraphNode
             connectNode={() => props.onNodeConnect(index)}
-            key={index}
+            key={props.nodeKeys[index]}
             canvasRef={canvasRef}
             isActive={visited.includes(index)}
             content={(index + 1).toString()}
@@ -87,7 +88,7 @@ const GraphCanvas: React.FC<Props> = (props: Props): ReactElement => {
           <Edge
             n1={nodeRefs[n1]}
             n2={nodeRefs[n2]}
-            key={`${n1}${n2}`}
+            key={`${props.nodeKeys[n1]}${props.nodeKeys[n2]}`}
             isDirected={!adjacencyList[n2].includes(n1)}
             zoomPercentage={props.zoomPercentage}
             isVisited={isVisited}

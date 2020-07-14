@@ -179,6 +179,7 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
         onNodeConnect={() => {}}
         visited={visited}
         adjacencyList={adjacencyList}
+        nodeKeys={nodeKeys}
         zoomPercentage={zoomPercentage}
         graphInfo={graphInfo}
         currentEdge={currentEdge}
