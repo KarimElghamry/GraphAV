@@ -168,7 +168,7 @@ const GraphNode: React.FC<Props> = (props: Props): ReactElement => {
     >
       {props.content}
       {props.children}
-      <ContextMenu></ContextMenu>
+      <ContextMenu isVisible={isContextMenuVisible}></ContextMenu>
       <Information ref={infoRef} zoomPercentage={props.zoomPercentage}>
         <div>
           {'SP: ' +

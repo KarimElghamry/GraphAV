@@ -1,6 +1,10 @@
 import styled from 'styled-components';
 
-const Container = styled.div`
+interface Props {
+  isVisible: boolean;
+}
+
+const Container = styled.div<Props>`
   position: absolute;
   height: 100px;
   width: 200px;
@@ -10,6 +14,7 @@ const Container = styled.div`
   top: 50%;
   z-index: 200;
   cursor: pointer;
+  display: ${(props) => (props.isVisible ? 'flex' : 'none')};
 `;
 
 export default Container;
