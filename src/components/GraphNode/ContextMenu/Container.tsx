@@ -29,7 +29,7 @@ const Container = styled.div.attrs((props: Props) => ({
   background-color: ${(props) => props.theme.nodeActive.background};
   border-radius: 10px;
   border: 2px solid ${(props) => props.theme.edge.background};
-  z-index: 200;
+  z-index: 2;
   cursor: pointer;
   display: ${(props) => (props.isVisible ? 'flex' : 'none')};
   flex-direction: column;

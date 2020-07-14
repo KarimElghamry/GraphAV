@@ -8,6 +8,7 @@ interface Props {
   isVisible: boolean;
   setIsVisible: Function;
   position: Position;
+  deleteNode: Function;
 }
 
 const ContextMenu: React.FC<Props> = (props: Props): ReactElement => {
@@ -42,7 +43,9 @@ const ContextMenu: React.FC<Props> = (props: Props): ReactElement => {
           isVisible={props.isVisible}
           position={props.position}
         >
-          <ContextTile>Delete node</ContextTile>
+          <ContextTile onClick={() => props.deleteNode()}>
+            Delete node
+          </ContextTile>
           <ContextTile>
             <div>Delete edge</div>
             <Arrow></Arrow>

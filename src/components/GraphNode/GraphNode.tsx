@@ -21,6 +21,7 @@ interface Props {
   nodeInfo: NodeInfo;
   isSelected: boolean;
   onSelect: Function;
+  onDelete: Function;
 }
 
 const GraphNode: React.FC<Props> = (props: Props): ReactElement => {
@@ -191,6 +192,7 @@ const GraphNode: React.FC<Props> = (props: Props): ReactElement => {
       </Container>
       <ContextMenu
         position={contextMenuPosition}
+        deleteNode={props.onDelete}
         isVisible={isContextMenuVisible}
         setIsVisible={setIsContextMenuVisible}
       ></ContextMenu>
