@@ -1,4 +1,4 @@
-import React, { ReactElement, useRef } from 'react';
+import React, {ReactElement, useRef} from 'react';
 import Container from './Container';
 import GraphNode from '../GraphNode/GraphNode';
 import Edge from '../Edge/Edge';
@@ -11,6 +11,8 @@ interface Props {
   graphInfo: Array<NodeInfo>;
   currentEdge: [number, number];
   onNodeConnect: (nodeIndex: number) => void;
+  onEdgeDelete: (firstNode: number, secondNode: number) => void;
+  onNodeDelete: (node: number) => void;
 }
 
 const GraphCanvas: React.FC<Props> = (props: Props): ReactElement => {
@@ -40,7 +42,7 @@ const GraphCanvas: React.FC<Props> = (props: Props): ReactElement => {
       {adjacencyList.map((val: Array<number>, index: number) => {
         const nodeInfo: NodeInfo =
           index > props.graphInfo.length - 1
-            ? ({ shortestPath: undefined, previousNode: undefined } as NodeInfo)
+            ? ({shortestPath: undefined, previousNode: undefined} as NodeInfo)
             : props.graphInfo[index];
         return (
           <GraphNode
@@ -63,6 +65,7 @@ const GraphCanvas: React.FC<Props> = (props: Props): ReactElement => {
         const isVisited: boolean =
           (currentEdge[0] === n1 && currentEdge[1] === n2) ||
           (currentEdge[0] === n2 && currentEdge[1] === n1);
+
         return (
           <Edge
             n1={nodeRefs[n1]}

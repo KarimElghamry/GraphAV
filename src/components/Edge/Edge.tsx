@@ -15,10 +15,21 @@ interface EdgeProps {
 const Edge: React.FC<EdgeProps> = (props: EdgeProps): ReactElement => {
   const [position1, setPosition1] = useState<Position | null>(null);
   const [position2, setPosition2] = useState<Position | null>(null);
+  const [currentN1, setCurrentN1] = useState<HTMLSpanElement | null>(
+    props.n1.current
+  );
+  const [currentN2, setCurrentN2] = useState<HTMLSpanElement | null>(
+    props.n2.current
+  );
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [markerId, _setMarkerId] = useState<string>(
     new Date().getMilliseconds() + Math.floor(Math.random() * 1000).toString()
   );
+
+  useEffect(() => {
+    if (currentN1 === null) setCurrentN1(props.n1.current);
+    if (currentN2 === null) setCurrentN2(props.n2.current);
+  }, [props.n1, currentN1, setCurrentN1, props.n2, currentN2]);
 
   useEffect(() => {
     if (props.n1.current && props.n1.current.parentElement) {
@@ -36,18 +47,23 @@ const Edge: React.FC<EdgeProps> = (props: EdgeProps): ReactElement => {
         left: initialLeft + nodeRadius,
       };
       const handler = (e: CustomEventInit<Position>) => {
+        if (!props.n1.current && currentN1 !== null) {
+          currentN1.removeEventListener('position', handler);
+          return;
+        }
         if (e?.detail) {
           const newPosition1: Position = e.detail;
           setPosition1(newPosition1);
         }
       };
-      props.n1.current.addEventListener('position', handler);
       if (!position1) {
         setPosition1(initialPosition1);
       }
+      props.n1.current.addEventListener('position', handler);
+
       return () => props.n1.current?.removeEventListener('position', handler);
     }
-  }, [props.n1, position1]);
+  }, [props.n1, position1, currentN1]);
 
   useEffect(() => {
     if (props.n2.current && props.n2.current.parentElement) {
@@ -65,18 +81,22 @@ const Edge: React.FC<EdgeProps> = (props: EdgeProps): ReactElement => {
         left: initialLeft + nodeRadius,
       };
       const handler = (e: CustomEventInit<Position>) => {
+        if (!props.n2.current && currentN2 !== null) {
+          currentN2.removeEventListener('position', handler);
+          return;
+        }
         if (e?.detail) {
           const newPosition2: Position = e.detail;
           setPosition2(newPosition2);
         }
       };
-      props.n2.current.addEventListener('position', handler);
       if (!position2) {
         setPosition2(initialPosition1);
       }
+      props.n2.current.addEventListener('position', handler);
       return () => props.n2.current?.removeEventListener('position', handler);
     }
-  }, [props.n2, position2]);
+  }, [props.n2, position2, currentN2]);
 
   const pos1Top = position1 ? position1.top : 0;
   const pos2Top = position2 ? position2.top : 0;

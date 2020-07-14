@@ -47,6 +47,37 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
     setAdjacencyList(newAdjacencyList);
   };
 
+  const deleteEdge = (firstNode: number, secondNode: number) => {
+    const newAdjacencyList = adjacencyList.slice();
+    newAdjacencyList[firstNode] = newAdjacencyList[firstNode].filter(
+      (val: number) => val !== secondNode
+    );
+    newAdjacencyList[secondNode] = newAdjacencyList[secondNode].filter(
+      (val: number) => val !== firstNode
+    );
+
+    setAdjacencyList(newAdjacencyList);
+  };
+  const deleteNode = (node: number) => {
+    let newAdjacencyList = adjacencyList.map((val: Array<number>) => {
+      //remove node from neighbours and decrement all nodes bigger than the
+      //removed node
+      return val
+        .filter((neighbour: number) => node !== neighbour)
+        .map((current: number) => {
+          if (current >= node) return current - 1;
+          return current;
+        });
+    });
+
+    newAdjacencyList = newAdjacencyList.filter(
+      (_, index: number) => index !== node
+    );
+
+    setAdjacencyList(newAdjacencyList);
+    console.log(newAdjacencyList);
+  };
+
   const handleEdgeModalExit = () => {
     setIsConnectingUndirected(false);
     setIsConnectingDirected(false);
@@ -138,6 +169,8 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
       />
       <Navbar changeTheme={props.changeTheme}></Navbar>
       <GraphCanvas
+        onNodeDelete={deleteNode}
+        onEdgeDelete={deleteEdge}
         onNodeConnect={() => {}}
         visited={visited}
         adjacencyList={adjacencyList}
