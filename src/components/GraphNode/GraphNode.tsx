@@ -152,7 +152,7 @@ const GraphNode: React.FC<Props> = (props: Props): ReactElement => {
 
   return (
     <Container
-      onClick={() => props.onSelect()}
+      onDoubleClick={() => props.onSelect()}
       isActive={props.isActive}
       isSelected={props.isSelected}
       onMouseDown={handleMouseDown}
