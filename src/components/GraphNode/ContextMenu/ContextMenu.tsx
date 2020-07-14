@@ -1,5 +1,7 @@
 import React, {ReactElement, useRef, useEffect} from 'react';
 import Container from './Container';
+import ContextTile from './ContextTile';
+import Arrow from './Arrow';
 
 interface Props {
   isVisible: boolean;
@@ -33,7 +35,11 @@ const ContextMenu: React.FC<Props> = (props: Props): ReactElement => {
       onMouseUp={(e: React.MouseEvent) => e.stopPropagation()}
       isVisible={props.isVisible}
     >
-      <div></div>
+      <ContextTile>Delete node</ContextTile>
+      <ContextTile>
+        <div>Delete edge</div>
+        <Arrow></Arrow>
+      </ContextTile>
     </Container>
   );
 };

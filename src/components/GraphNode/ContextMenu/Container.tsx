@@ -27,7 +27,11 @@ const Container = styled.div<Props>`
   z-index: 200;
   cursor: pointer;
   display: ${(props) => (props.isVisible ? 'flex' : 'none')};
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   animation: ${sizeAnim} 0.3s;
+  overflow: hidden;
 `;
 
 export default Container;
