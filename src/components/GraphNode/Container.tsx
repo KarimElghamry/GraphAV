@@ -5,6 +5,7 @@ import Position from '../../models/Position';
 interface Props {
   theme: Theme;
   isActive: boolean;
+  isSelected: boolean;
   position: Position;
   zoomPercentage: number;
 }
@@ -43,6 +44,10 @@ const Container = styled.div.attrs((props: Props) => ({
   transition-property: background-color, border;
   user-select: none;
   cursor: move;
+  box-shadow: ${(props) =>
+    props.isSelected
+      ? `0px 0px 20px 5px ${props.theme.nodeActive.background}`
+      : 'none'};
 `;
 
 export default Container;

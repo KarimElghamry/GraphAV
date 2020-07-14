@@ -7,6 +7,7 @@ import algorithms from '../../algorithms';
 import Algorithms from '../../models/Algorithms';
 import NodeInfo from '../../models/NodeInfo';
 import CreateEdgeModal from '../CreateEdgeModal/CreateEdgeModal';
+import {v4 as uuidv4} from 'uuid';
 
 interface HomeProps {
   changeTheme: Function;
@@ -14,6 +15,7 @@ interface HomeProps {
 
 const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
   const [adjacencyList, setAdjacencyList] = useState<Array<Array<number>>>([]);
+  const [nodeKeys, setNodeKeys] = useState<Array<string>>([]);
   const [visited, setVisited] = useState<Array<number>>([]);
   const [currentEdge, setCurrentEdge] = useState<[number, number]>([-1, -1]);
   const [graphInfo, setGraphInfo] = useState<Array<NodeInfo>>([]);
@@ -74,8 +76,10 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
       (_, index: number) => index !== node
     );
 
+    const newNodeKeys = nodeKeys.filter((_, index: number) => index !== node);
+
+    setNodeKeys(newNodeKeys);
     setAdjacencyList(newAdjacencyList);
-    console.log(newAdjacencyList);
   };
 
   const handleEdgeModalExit = () => {
@@ -88,8 +92,11 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
   };
 
   const addNewNode = () => {
-    let newAdjacencyList = adjacencyList.slice();
+    const newAdjacencyList = adjacencyList.slice();
+    const newNodeKeys = nodeKeys.slice();
     newAdjacencyList.push([]);
+    newNodeKeys.push(uuidv4());
+    setNodeKeys(newNodeKeys);
     setAdjacencyList((prev: Array<Array<number>>) => newAdjacencyList);
   };
 
@@ -171,9 +178,9 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
       <GraphCanvas
         onNodeDelete={deleteNode}
         onEdgeDelete={deleteEdge}
-        onNodeConnect={() => {}}
         visited={visited}
         adjacencyList={adjacencyList}
+        nodeKeys={nodeKeys}
         zoomPercentage={zoomPercentage}
         graphInfo={graphInfo}
         currentEdge={currentEdge}

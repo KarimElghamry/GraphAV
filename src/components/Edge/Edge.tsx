@@ -3,6 +3,7 @@ import StyledEdgeLine from './StyledEdgeLine';
 import Position from '../../models/Position';
 import StyledEdgeContainer from './StyledEdgeContainer';
 import StyledPolygon from './StyledPolygon';
+import {v4 as uuidv4} from 'uuid';
 
 interface EdgeProps {
   n1: RefObject<HTMLSpanElement>;
@@ -22,9 +23,7 @@ const Edge: React.FC<EdgeProps> = (props: EdgeProps): ReactElement => {
     props.n2.current
   );
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [markerId, _setMarkerId] = useState<string>(
-    new Date().getMilliseconds() + Math.floor(Math.random() * 1000).toString()
-  );
+  const [markerId, _setMarkerId] = useState<string>(uuidv4());
 
   useEffect(() => {
     if (currentN1 === null) setCurrentN1(props.n1.current);

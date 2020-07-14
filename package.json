@@ -11,11 +11,13 @@
     "@types/react": "^16.9.38",
     "@types/react-dom": "^16.9.8",
     "@types/styled-components": "^5.1.0",
+    "@types/uuid": "^8.0.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.1",
     "styled-components": "^5.1.1",
-    "typescript": "^3.7.5"
+    "typescript": "^3.7.5",
+    "uuid": "^8.2.0"
   },
   "scripts": {
     "start": "react-scripts start",
