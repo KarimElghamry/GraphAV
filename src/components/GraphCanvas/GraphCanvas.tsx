@@ -51,11 +51,17 @@ const GraphCanvas: React.FC<Props> = (props: Props): ReactElement => {
     <Container
       ref={canvasRef}
       onContextMenu={(e: React.MouseEvent) => {
-        e.preventDefault();
-        const left = e.clientX;
-        const top = e.clientY;
-        setContextMenuPosition({top: top, left: left} as Position);
-        setIsContextMenuVisible(true);
+        if (canvasRef.current) {
+          e.preventDefault();
+          const navbarHeight = canvasRef.current.offsetWidth < 700 ? 90 : 50;
+          const left = e.clientX;
+          const top = e.clientY;
+          setContextMenuPosition({
+            top: top - navbarHeight,
+            left: left,
+          } as Position);
+          setIsContextMenuVisible(true);
+        }
       }}
     >
       {adjacencyList.map((val: Array<number>, index: number) => {
