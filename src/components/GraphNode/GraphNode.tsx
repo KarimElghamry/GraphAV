@@ -16,6 +16,7 @@ import DeleteEdgeTile from './DeleteEdgeTile';
 interface Props {
   isActive: boolean;
   content: string;
+  initialPosition?: Position;
   canvasRef: React.RefObject<HTMLDivElement>;
   children: React.ReactChild | React.ReactChildren;
   edgeRef: React.RefObject<HTMLSpanElement> | null;
@@ -27,7 +28,10 @@ interface Props {
 }
 
 const GraphNode: React.FC<Props> = (props: Props): ReactElement => {
-  const [position, setPosition] = useState<Position>({top: 100, left: 100});
+  const initialPosition = props.initialPosition;
+  const [position, setPosition] = useState<Position>(
+    initialPosition ?? {top: 100, left: 100}
+  );
   const [isContextMenuVisible, setIsContextMenuVisible] = useState<boolean>(
     false
   );
@@ -144,6 +148,7 @@ const GraphNode: React.FC<Props> = (props: Props): ReactElement => {
 
   //side effect for centering position on initial render
   useEffect(() => {
+    if (position.top !== -100) return;
     if (canvasRef.current && nodeRef.current) {
       const canvasWidth = canvasRef.current.offsetWidth;
       const canvasHeight = canvasRef.current.offsetHeight;
@@ -153,7 +158,7 @@ const GraphNode: React.FC<Props> = (props: Props): ReactElement => {
         top: (canvasHeight - nodeWidth) / 2,
       });
     }
-  }, [canvasRef, nodeRef, setPosition]);
+  }, [canvasRef, nodeRef, setPosition, position]);
 
   const contextMenuPosition: Position = {
     top: position.top + (nodeRef.current?.offsetHeight ?? 0) / 2,

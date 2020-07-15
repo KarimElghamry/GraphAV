@@ -16,6 +16,7 @@ interface Props {
   currentEdge: [number, number];
   onEdgeDelete: (firstNode: number, secondNode: number) => void;
   onNodeDelete: (node: number) => void;
+  addNewNode: () => void;
 }
 
 const GraphCanvas: React.FC<Props> = (props: Props): ReactElement => {
@@ -23,8 +24,8 @@ const GraphCanvas: React.FC<Props> = (props: Props): ReactElement => {
     false
   );
   const [contextMenuPosition, setContextMenuPosition] = useState<Position>({
-    top: 0,
-    left: 0,
+    top: -100,
+    left: -100,
   });
   const canvasRef = useRef<HTMLDivElement>(null);
   const adjacencyList = props.adjacencyList;
@@ -90,6 +91,7 @@ const GraphCanvas: React.FC<Props> = (props: Props): ReactElement => {
             onDelete={onDelete}
             onEdgeDelete={onEdgeDelete}
             neighbours={adjacencyList[index]}
+            initialPosition={contextMenuPosition}
           >
             <span ref={nodeRefs[index]}></span>
           </GraphNode>
@@ -121,7 +123,17 @@ const GraphCanvas: React.FC<Props> = (props: Props): ReactElement => {
         setIsVisible={setIsContextMenuVisible}
         canvasRef={canvasRef}
       >
-        <ContextTile>EMINEM</ContextTile>
+        <ContextTile
+          onClick={() => {
+            props.addNewNode();
+            setTimeout(
+              () => setContextMenuPosition({top: -100, left: -100}),
+              0
+            );
+          }}
+        >
+          Add node
+        </ContextTile>
         <ContextTile>EMINEM</ContextTile>
       </ContextMenu>
     </Container>

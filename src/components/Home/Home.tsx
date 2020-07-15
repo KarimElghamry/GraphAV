@@ -190,6 +190,7 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
         zoomPercentage={zoomPercentage}
         graphInfo={graphInfo}
         currentEdge={currentEdge}
+        addNewNode={addNewNode}
       ></GraphCanvas>
       <VisualizeButton
         isVisualizing={isVisualizing}
