@@ -6,7 +6,6 @@ interface Props {
   isVisible: boolean;
   setIsVisible: Function;
   position: Position;
-  deleteNode: Function;
   canvasRef: React.RefObject<HTMLDivElement>;
   children:
     | Array<ReactElement>
