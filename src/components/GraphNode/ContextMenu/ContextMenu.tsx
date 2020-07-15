@@ -14,9 +14,19 @@ interface Props {
 
 const ContextMenu: React.FC<Props> = (props: Props): ReactElement => {
   const contextMenuRef = useRef<HTMLDivElement>(null);
+  const canvasRef = props.canvasRef;
   const isVisible = props.isVisible;
   const setIsVisible = props.setIsVisible;
   const position = props.position;
+  const contextWidth = 204;
+  let isReversed = false;
+
+  //TODO: remove magic number
+  if (canvasRef.current) {
+    if (position.left + contextWidth > canvasRef.current.offsetWidth) {
+      position.left = canvasRef.current.offsetWidth - contextWidth;
+    }
+  }
 
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
@@ -44,6 +54,7 @@ const ContextMenu: React.FC<Props> = (props: Props): ReactElement => {
           onMouseUp={(e: React.MouseEvent) => e.stopPropagation()}
           isVisible={props.isVisible}
           position={props.position}
+          isReversed={isReversed}
         >
           <ContextTile onClick={() => props.deleteNode()}>
             Delete node
