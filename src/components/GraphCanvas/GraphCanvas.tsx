@@ -1,4 +1,4 @@
-import React, {ReactElement, useRef} from 'react';
+import React, {ReactElement, useRef, useState} from 'react';
 import Container from './Container';
 import GraphNode from '../GraphNode/GraphNode';
 import Edge from '../Edge/Edge';
@@ -19,6 +19,9 @@ interface Props {
 
 const GraphCanvas: React.FC<Props> = (props: Props): ReactElement => {
   const canvasRef = useRef<HTMLDivElement>(null);
+  const [isContextMenuVisible, setIsContextMenuVisible] = useState<boolean>(
+    false
+  );
   const adjacencyList = props.adjacencyList;
   const visited = props.visited;
   const currentEdge = props.currentEdge;
@@ -93,7 +96,7 @@ const GraphCanvas: React.FC<Props> = (props: Props): ReactElement => {
       })}
 
       <ContextMenu
-        isVisible={true}
+        isVisible={isContextMenuVisible}
         position={{top: 300, left: 300}}
         setIsVisible={() => {}}
         canvasRef={canvasRef}
