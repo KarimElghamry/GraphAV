@@ -11,7 +11,7 @@ import Information from './Information';
 import NodeInfo from '../../models/NodeInfo';
 import ContextMenu from '../common/ContextMenu/ContextMenu';
 import ContextTile from '../common/ContextMenu/ContextTile';
-import Arrow from '../common/ContextMenu/Arrow';
+import DeleteEdgeTile from './DeleteEdgeTile';
 
 interface Props {
   isActive: boolean;
@@ -200,10 +200,7 @@ const GraphNode: React.FC<Props> = (props: Props): ReactElement => {
         setIsVisible={setIsContextMenuVisible}
       >
         <ContextTile onClick={() => props.onDelete()}>Delete node</ContextTile>
-        <ContextTile>
-          <div>Delete edge</div>
-          <Arrow></Arrow>
-        </ContextTile>
+        <DeleteEdgeTile></DeleteEdgeTile>
       </ContextMenu>
     </React.Fragment>
   );

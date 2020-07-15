@@ -8,7 +8,11 @@ interface Props {
   position: Position;
   deleteNode: Function;
   canvasRef: React.RefObject<HTMLDivElement>;
-  children: Array<ReactElement>;
+  children:
+    | Array<ReactElement>
+    | ReactElement
+    | React.ReactChild
+    | React.ReactChildren;
 }
 
 const ContextMenu: React.FC<Props> = (props: Props): ReactElement => {
