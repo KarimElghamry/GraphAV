@@ -200,6 +200,7 @@ const GraphNode: React.FC<Props> = (props: Props): ReactElement => {
         <DeleteEdgeTile
           onEdgeDelete={props.onEdgeDelete}
           neighbours={props.neighbours}
+          canvasRef={canvasRef}
         ></DeleteEdgeTile>
       </ContextMenu>
     </React.Fragment>
