@@ -1,7 +1,5 @@
 import React, {ReactElement, useRef, useEffect} from 'react';
 import Container from './Container';
-import ContextTile from './ContextTile';
-import Arrow from './Arrow';
 import Position from '../../../models/Position';
 
 interface Props {
@@ -10,6 +8,7 @@ interface Props {
   position: Position;
   deleteNode: Function;
   canvasRef: React.RefObject<HTMLDivElement>;
+  children: Array<ReactElement>;
 }
 
 const ContextMenu: React.FC<Props> = (props: Props): ReactElement => {
@@ -20,7 +19,6 @@ const ContextMenu: React.FC<Props> = (props: Props): ReactElement => {
   const position = props.position;
   const contextWidth = 204;
   const contextHeight = 104;
-  let isReversed = false;
 
   //TODO: remove magic number
   if (canvasRef.current) {
@@ -59,15 +57,8 @@ const ContextMenu: React.FC<Props> = (props: Props): ReactElement => {
           onMouseUp={(e: React.MouseEvent) => e.stopPropagation()}
           isVisible={props.isVisible}
           position={props.position}
-          isReversed={isReversed}
         >
-          <ContextTile onClick={() => props.deleteNode()}>
-            Delete node
-          </ContextTile>
-          <ContextTile>
-            <div>Delete edge</div>
-            <Arrow></Arrow>
-          </ContextTile>
+          {props.children}
         </Container>
       ) : null}
     </React.Fragment>

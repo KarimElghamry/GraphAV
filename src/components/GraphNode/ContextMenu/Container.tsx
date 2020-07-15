@@ -4,7 +4,6 @@ import Position from '../../../models/Position';
 interface Props {
   isVisible: boolean;
   position: Position;
-  isReversed: boolean;
 }
 
 const sizeAnim = keyframes`
