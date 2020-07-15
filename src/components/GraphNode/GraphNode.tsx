@@ -9,21 +9,32 @@ import Container from './Container';
 import Position from '../../models/Position';
 import Information from './Information';
 import NodeInfo from '../../models/NodeInfo';
+import ContextMenu from '../common/ContextMenu/ContextMenu';
+import ContextTile from '../common/ContextMenu/ContextTile';
+import DeleteEdgeTile from './DeleteEdgeTile';
 
 interface Props {
   isActive: boolean;
   content: string;
+  initialPosition?: Position;
   canvasRef: React.RefObject<HTMLDivElement>;
   children: React.ReactChild | React.ReactChildren;
   edgeRef: React.RefObject<HTMLSpanElement> | null;
   zoomPercentage: number;
   nodeInfo: NodeInfo;
-  isSelected: boolean;
-  onSelect: Function;
+  neighbours: Array<number>;
+  onDelete: Function;
+  onEdgeDelete: Function;
 }
 
 const GraphNode: React.FC<Props> = (props: Props): ReactElement => {
-  const [position, setPosition] = useState<Position>({top: 100, left: 100});
+  const initialPosition = props.initialPosition;
+  const [position, setPosition] = useState<Position>(
+    initialPosition ?? {top: 100, left: 100}
+  );
+  const [isContextMenuVisible, setIsContextMenuVisible] = useState<boolean>(
+    false
+  );
   const nodeRef: React.RefObject<HTMLDivElement> = useRef<HTMLDivElement>(null);
   const infoRef: React.RefObject<HTMLDivElement> = useRef<HTMLDivElement>(null);
   const canvasRef: React.RefObject<HTMLDivElement> = props.canvasRef;
@@ -137,6 +148,7 @@ const GraphNode: React.FC<Props> = (props: Props): ReactElement => {
 
   //side effect for centering position on initial render
   useEffect(() => {
+    if (position.top !== -100) return;
     if (canvasRef.current && nodeRef.current) {
       const canvasWidth = canvasRef.current.offsetWidth;
       const canvasHeight = canvasRef.current.offsetHeight;
@@ -146,36 +158,58 @@ const GraphNode: React.FC<Props> = (props: Props): ReactElement => {
         top: (canvasHeight - nodeWidth) / 2,
       });
     }
-  }, [canvasRef, nodeRef, setPosition]);
+  }, [canvasRef, nodeRef, setPosition, position]);
 
+  const contextMenuPosition: Position = {
+    top: position.top + (nodeRef.current?.offsetHeight ?? 0) / 2,
+    left: position.left + (nodeRef.current?.offsetWidth ?? 0) / 2,
+  };
   return (
-    <Container
-      onDoubleClick={() => props.onSelect()}
-      isActive={props.isActive}
-      isSelected={props.isSelected}
-      onMouseDown={handleMouseDown}
-      onMouseUp={handleMouseUp}
-      position={position}
-      ref={nodeRef}
-      zoomPercentage={props.zoomPercentage}
-    >
-      {props.content}
-      {props.children}
-      <Information ref={infoRef} zoomPercentage={props.zoomPercentage}>
-        <div>
-          {'SP: ' +
-            (props.nodeInfo.shortestPath === undefined
-              ? '∞'
-              : props.nodeInfo.shortestPath)}
-        </div>
-        <div>
-          {'PREV: ' +
-            (props.nodeInfo.previousNode === undefined
-              ? '∞'
-              : props.nodeInfo.previousNode + 1)}
-        </div>
-      </Information>
-    </Container>
+    <React.Fragment>
+      <Container
+        onContextMenu={(e: React.MouseEvent) => {
+          e.preventDefault();
+          e.stopPropagation();
+          setIsContextMenuVisible((prev) => !prev);
+        }}
+        isActive={props.isActive}
+        onMouseDown={handleMouseDown}
+        onMouseUp={handleMouseUp}
+        position={position}
+        ref={nodeRef}
+        zoomPercentage={props.zoomPercentage}
+      >
+        {props.content}
+        {props.children}
+        <Information ref={infoRef} zoomPercentage={props.zoomPercentage}>
+          <div>
+            {'SP: ' +
+              (props.nodeInfo.shortestPath === undefined
+                ? '∞'
+                : props.nodeInfo.shortestPath)}
+          </div>
+          <div>
+            {'PREV: ' +
+              (props.nodeInfo.previousNode === undefined
+                ? '∞'
+                : props.nodeInfo.previousNode + 1)}
+          </div>
+        </Information>
+      </Container>
+      <ContextMenu
+        canvasRef={canvasRef}
+        position={contextMenuPosition}
+        isVisible={isContextMenuVisible}
+        setIsVisible={setIsContextMenuVisible}
+      >
+        <ContextTile onClick={() => props.onDelete()}>Delete node</ContextTile>
+        <DeleteEdgeTile
+          onEdgeDelete={props.onEdgeDelete}
+          neighbours={props.neighbours}
+          canvasRef={canvasRef}
+        ></DeleteEdgeTile>
+      </ContextMenu>
+    </React.Fragment>
   );
 };
 

@@ -29,25 +29,21 @@ const Edge: React.FC<EdgeProps> = (props: EdgeProps): ReactElement => {
   }, [props.n1, currentN1, setCurrentN1, props.n2, currentN2]);
 
   useEffect(() => {
-    if (props.n1.current && props.n1.current.parentElement) {
-      const initialTop: number = +props.n1.current.parentElement.style.top.replace(
+    if (currentN1 && currentN1.parentElement) {
+      const initialTop: number = +currentN1.parentElement.style.top.replace(
         'px',
         ''
       );
-      const initialLeft: number = +props.n1.current.parentElement.style.left.replace(
+      const initialLeft: number = +currentN1.parentElement.style.left.replace(
         'px',
         ''
       );
-      const nodeRadius: number = props.n1.current.parentElement.offsetWidth / 2;
+      const nodeRadius: number = currentN1.parentElement.offsetWidth / 2;
       const initialPosition1: Position = {
         top: initialTop + nodeRadius,
         left: initialLeft + nodeRadius,
       };
       const handler = (e: CustomEventInit<Position>) => {
-        if (!props.n1.current && currentN1 !== null) {
-          currentN1.removeEventListener('position', handler);
-          return;
-        }
         if (e?.detail) {
           const newPosition1: Position = e.detail;
           setPosition1(newPosition1);
@@ -56,32 +52,28 @@ const Edge: React.FC<EdgeProps> = (props: EdgeProps): ReactElement => {
       if (!position1) {
         setPosition1(initialPosition1);
       }
-      props.n1.current.addEventListener('position', handler);
+      currentN1.addEventListener('position', handler);
 
-      return () => props.n1.current?.removeEventListener('position', handler);
+      return () => currentN1?.removeEventListener('position', handler);
     }
-  }, [props.n1, position1, currentN1]);
+  }, [position1, currentN1]);
 
   useEffect(() => {
-    if (props.n2.current && props.n2.current.parentElement) {
-      const initialTop: number = +props.n2.current.parentElement.style.top.replace(
+    if (currentN2 && currentN2.parentElement) {
+      const initialTop: number = +currentN2.parentElement.style.top.replace(
         'px',
         ''
       );
-      const initialLeft: number = +props.n2.current.parentElement.style.left.replace(
+      const initialLeft: number = +currentN2.parentElement.style.left.replace(
         'px',
         ''
       );
-      const nodeRadius: number = props.n2.current.parentElement.offsetWidth / 2;
+      const nodeRadius: number = currentN2.parentElement.offsetWidth / 2;
       const initialPosition1: Position = {
         top: initialTop + nodeRadius,
         left: initialLeft + nodeRadius,
       };
       const handler = (e: CustomEventInit<Position>) => {
-        if (!props.n2.current && currentN2 !== null) {
-          currentN2.removeEventListener('position', handler);
-          return;
-        }
         if (e?.detail) {
           const newPosition2: Position = e.detail;
           setPosition2(newPosition2);
@@ -90,8 +82,8 @@ const Edge: React.FC<EdgeProps> = (props: EdgeProps): ReactElement => {
       if (!position2) {
         setPosition2(initialPosition1);
       }
-      props.n2.current.addEventListener('position', handler);
-      return () => props.n2.current?.removeEventListener('position', handler);
+      currentN2.addEventListener('position', handler);
+      return () => currentN2?.removeEventListener('position', handler);
     }
   }, [props.n2, position2, currentN2]);
 

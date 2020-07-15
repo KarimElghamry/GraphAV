@@ -3,6 +3,9 @@ import Container from './Container';
 import GraphNode from '../GraphNode/GraphNode';
 import Edge from '../Edge/Edge';
 import NodeInfo from '../../models/NodeInfo';
+import ContextMenu from '../common/ContextMenu/ContextMenu';
+import ContextTile from '../common/ContextMenu/ContextTile';
+import Position from '../../models/Position';
 
 interface Props {
   adjacencyList: Array<Array<number>>;
@@ -13,10 +16,18 @@ interface Props {
   currentEdge: [number, number];
   onEdgeDelete: (firstNode: number, secondNode: number) => void;
   onNodeDelete: (node: number) => void;
+  addNewNode: () => void;
+  clearCanvas: () => void;
 }
 
 const GraphCanvas: React.FC<Props> = (props: Props): ReactElement => {
-  const [selectedNodes, setSelectedNodes] = useState<Array<number>>([]);
+  const [isContextMenuVisible, setIsContextMenuVisible] = useState<boolean>(
+    false
+  );
+  const [contextMenuPosition, setContextMenuPosition] = useState<Position>({
+    top: -100,
+    left: -100,
+  });
   const canvasRef = useRef<HTMLDivElement>(null);
   const adjacencyList = props.adjacencyList;
   const visited = props.visited;
@@ -39,26 +50,36 @@ const GraphCanvas: React.FC<Props> = (props: Props): ReactElement => {
   });
 
   return (
-    <Container ref={canvasRef}>
+    <Container
+      ref={canvasRef}
+      onContextMenu={(e: React.MouseEvent) => {
+        if (canvasRef.current) {
+          e.preventDefault();
+          const navbarHeight = canvasRef.current.offsetWidth < 700 ? 90 : 50;
+          const left = e.clientX;
+          const top = e.clientY;
+          setContextMenuPosition({
+            top: top - navbarHeight,
+            left: left,
+          } as Position);
+          setIsContextMenuVisible(true);
+        }
+      }}
+    >
       {adjacencyList.map((val: Array<number>, index: number) => {
         const nodeInfo: NodeInfo =
           index > props.graphInfo.length - 1
             ? ({shortestPath: undefined, previousNode: undefined} as NodeInfo)
             : props.graphInfo[index];
 
-        const isSelected = selectedNodes.includes(index);
-        const onSelect = () => {
-          let newSelectedNodes;
-          if (isSelected) {
-            newSelectedNodes = selectedNodes.filter(
-              (node: number) => node !== index
-            );
-          } else {
-            newSelectedNodes = selectedNodes.concat([index]);
-          }
-
-          setSelectedNodes(newSelectedNodes);
+        const onDelete = () => {
+          props.onNodeDelete(index);
         };
+
+        const onEdgeDelete = (secondNode: number) => {
+          props.onEdgeDelete(index, secondNode);
+        };
+
         return (
           <GraphNode
             key={props.nodeKeys[index]}
@@ -68,8 +89,10 @@ const GraphCanvas: React.FC<Props> = (props: Props): ReactElement => {
             edgeRef={nodeRefs[index]}
             zoomPercentage={props.zoomPercentage}
             nodeInfo={nodeInfo}
-            isSelected={isSelected}
-            onSelect={onSelect}
+            onDelete={onDelete}
+            onEdgeDelete={onEdgeDelete}
+            neighbours={adjacencyList[index]}
+            initialPosition={contextMenuPosition}
           >
             <span ref={nodeRefs[index]}></span>
           </GraphNode>
@@ -94,6 +117,38 @@ const GraphCanvas: React.FC<Props> = (props: Props): ReactElement => {
           />
         );
       })}
+
+      <ContextMenu
+        isVisible={isContextMenuVisible}
+        position={contextMenuPosition}
+        setIsVisible={(val: boolean) => {
+          setContextMenuPosition({top: -100, left: -100});
+          setIsContextMenuVisible(val);
+        }}
+        canvasRef={canvasRef}
+      >
+        <ContextTile
+          onClick={() => {
+            props.addNewNode();
+            setIsContextMenuVisible(false);
+            setTimeout(
+              () => setContextMenuPosition({top: -100, left: -100}),
+              0
+            );
+          }}
+        >
+          Add node
+        </ContextTile>
+        <ContextTile
+          onClick={() => {
+            props.clearCanvas();
+            setIsContextMenuVisible(false);
+            setContextMenuPosition({top: -100, left: -100});
+          }}
+        >
+          Clear canvas
+        </ContextTile>
+      </ContextMenu>
     </Container>
   );
 };
