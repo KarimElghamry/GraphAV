@@ -21,7 +21,7 @@ const DeleteEdgeTile: React.FC<Props> = (props: Props): ReactElement => {
       {isHovered && props.neighbours.length !== 0 ? (
         <SubMenu>
           {props.neighbours.map((val: number) => (
-            <ContextTile onClick={() => props.onEdgeDelete(val)}>
+            <ContextTile key={val} onClick={() => props.onEdgeDelete(val)}>
               {val + 1}
             </ContextTile>
           ))}
