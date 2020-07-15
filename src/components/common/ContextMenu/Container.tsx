@@ -39,6 +39,7 @@ const Container = styled.div.attrs((props: Props) => ({
   justify-content: center;
   font-size: 20px;
   animation: ${sizeAnim} 0.3s;
+  user-select: none;
 `;
 
 export default Container;
