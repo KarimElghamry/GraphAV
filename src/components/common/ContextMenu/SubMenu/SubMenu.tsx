@@ -14,7 +14,7 @@ const SubMenu: React.FC<Props> = (props: Props): ReactElement => {
   const eminem = useRef<HTMLDivElement>(null);
   const canvasRef = props.canvasRef;
   const menuWidth = 408;
-  const menuHeight = 408;
+  const menuHeight = 208;
   const [isXReversed, setIsXReversed] = useState<boolean>(true);
   const [isYReversed, setIsYReversed] = useState<boolean>(true);
 
