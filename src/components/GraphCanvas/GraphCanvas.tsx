@@ -5,6 +5,7 @@ import Edge from '../Edge/Edge';
 import NodeInfo from '../../models/NodeInfo';
 import ContextMenu from '../common/ContextMenu/ContextMenu';
 import ContextTile from '../common/ContextMenu/ContextTile';
+import Position from '../../models/Position';
 
 interface Props {
   adjacencyList: Array<Array<number>>;
@@ -22,6 +23,10 @@ const GraphCanvas: React.FC<Props> = (props: Props): ReactElement => {
   const [isContextMenuVisible, setIsContextMenuVisible] = useState<boolean>(
     false
   );
+  const [contextMenuPosition, setContextMenuPosition] = useState<Position>({
+    top: 0,
+    left: 0,
+  });
   const adjacencyList = props.adjacencyList;
   const visited = props.visited;
   const currentEdge = props.currentEdge;
@@ -97,7 +102,7 @@ const GraphCanvas: React.FC<Props> = (props: Props): ReactElement => {
 
       <ContextMenu
         isVisible={isContextMenuVisible}
-        position={{top: 300, left: 300}}
+        position={contextMenuPosition}
         setIsVisible={() => {}}
         canvasRef={canvasRef}
       >
