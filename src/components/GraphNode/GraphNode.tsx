@@ -21,9 +21,7 @@ interface Props {
   edgeRef: React.RefObject<HTMLSpanElement> | null;
   zoomPercentage: number;
   nodeInfo: NodeInfo;
-  isSelected: boolean;
   neighbours: Array<number>;
-  onSelect: Function;
   onDelete: Function;
   onEdgeDelete: Function;
 }
@@ -168,9 +166,7 @@ const GraphNode: React.FC<Props> = (props: Props): ReactElement => {
           e.preventDefault();
           setIsContextMenuVisible((prev) => !prev);
         }}
-        onDoubleClick={() => props.onSelect()}
         isActive={props.isActive}
-        isSelected={props.isSelected}
         onMouseDown={handleMouseDown}
         onMouseUp={handleMouseUp}
         position={position}

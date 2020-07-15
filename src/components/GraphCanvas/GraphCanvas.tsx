@@ -1,4 +1,4 @@
-import React, {ReactElement, useRef, useState} from 'react';
+import React, {ReactElement, useRef} from 'react';
 import Container from './Container';
 import GraphNode from '../GraphNode/GraphNode';
 import Edge from '../Edge/Edge';
@@ -16,7 +16,6 @@ interface Props {
 }
 
 const GraphCanvas: React.FC<Props> = (props: Props): ReactElement => {
-  const [selectedNodes, setSelectedNodes] = useState<Array<number>>([]);
   const canvasRef = useRef<HTMLDivElement>(null);
   const adjacencyList = props.adjacencyList;
   const visited = props.visited;
@@ -46,20 +45,6 @@ const GraphCanvas: React.FC<Props> = (props: Props): ReactElement => {
             ? ({shortestPath: undefined, previousNode: undefined} as NodeInfo)
             : props.graphInfo[index];
 
-        const isSelected = selectedNodes.includes(index);
-        const onSelect = () => {
-          let newSelectedNodes;
-          if (isSelected) {
-            newSelectedNodes = selectedNodes.filter(
-              (node: number) => node !== index
-            );
-          } else {
-            newSelectedNodes = selectedNodes.concat([index]);
-          }
-
-          setSelectedNodes(newSelectedNodes);
-        };
-
         const onDelete = () => {
           props.onNodeDelete(index);
         };
@@ -67,6 +52,7 @@ const GraphCanvas: React.FC<Props> = (props: Props): ReactElement => {
         const onEdgeDelete = (secondNode: number) => {
           props.onEdgeDelete(index, secondNode);
         };
+
         return (
           <GraphNode
             key={props.nodeKeys[index]}
@@ -76,8 +62,6 @@ const GraphCanvas: React.FC<Props> = (props: Props): ReactElement => {
             edgeRef={nodeRefs[index]}
             zoomPercentage={props.zoomPercentage}
             nodeInfo={nodeInfo}
-            isSelected={isSelected}
-            onSelect={onSelect}
             onDelete={onDelete}
             onEdgeDelete={onEdgeDelete}
             neighbours={adjacencyList[index]}
