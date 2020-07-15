@@ -191,6 +191,7 @@ const GraphNode: React.FC<Props> = (props: Props): ReactElement => {
         </Information>
       </Container>
       <ContextMenu
+        canvasRef={canvasRef}
         position={contextMenuPosition}
         deleteNode={props.onDelete}
         isVisible={isContextMenuVisible}

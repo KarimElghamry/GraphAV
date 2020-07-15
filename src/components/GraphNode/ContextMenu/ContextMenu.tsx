@@ -9,12 +9,14 @@ interface Props {
   setIsVisible: Function;
   position: Position;
   deleteNode: Function;
+  canvasRef: React.RefObject<HTMLDivElement>;
 }
 
 const ContextMenu: React.FC<Props> = (props: Props): ReactElement => {
   const contextMenuRef = useRef<HTMLDivElement>(null);
   const isVisible = props.isVisible;
   const setIsVisible = props.setIsVisible;
+  const position = props.position;
 
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
