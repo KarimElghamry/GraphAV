@@ -11,7 +11,7 @@ interface Props {
 }
 
 const SubMenu: React.FC<Props> = (props: Props): ReactElement => {
-  const eminem = useRef<HTMLDivElement>(null);
+  const subMenuRef = useRef<HTMLDivElement>(null);
   const canvasRef = props.canvasRef;
   const menuWidth = 408;
   const menuHeight = 208;
@@ -21,12 +21,12 @@ const SubMenu: React.FC<Props> = (props: Props): ReactElement => {
   useEffect(() => {
     if (
       canvasRef.current &&
-      eminem.current &&
-      eminem.current.parentElement?.parentElement
+      subMenuRef.current &&
+      subMenuRef.current.parentElement?.parentElement
     ) {
       if (
         canvasRef.current.offsetWidth -
-          eminem.current.parentElement?.parentElement.offsetLeft <=
+          subMenuRef.current.parentElement?.parentElement.offsetLeft <=
         menuWidth
       ) {
         setIsXReversed(true);
@@ -36,7 +36,7 @@ const SubMenu: React.FC<Props> = (props: Props): ReactElement => {
 
       if (
         canvasRef.current.offsetHeight -
-          eminem.current.parentElement?.parentElement.offsetTop <=
+          subMenuRef.current.parentElement?.parentElement.offsetTop <=
         menuHeight
       ) {
         setIsYReversed(true);
@@ -44,10 +44,14 @@ const SubMenu: React.FC<Props> = (props: Props): ReactElement => {
         setIsYReversed(false);
       }
     }
-  }, [eminem, canvasRef, setIsXReversed, setIsYReversed]);
+  }, [subMenuRef, canvasRef, setIsXReversed, setIsYReversed]);
 
   return (
-    <Container isYReversed={isYReversed} isXReversed={isXReversed} ref={eminem}>
+    <Container
+      isYReversed={isYReversed}
+      isXReversed={isXReversed}
+      ref={subMenuRef}
+    >
       {props.children}
     </Container>
   );
