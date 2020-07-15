@@ -10,10 +10,12 @@ const sizeAnim = keyframes`
 from{
     height: 0px;
     width: 0px;
+    font-size: 0px;
 }
 to{
     height: 100px;
     width: 200px;
+    font-size: 20px;
 }
 `;
 
@@ -35,8 +37,8 @@ const Container = styled.div.attrs((props: Props) => ({
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  font-size: 20px;
   animation: ${sizeAnim} 0.3s;
-  overflow: hidden;
 `;
 
 export default Container;
