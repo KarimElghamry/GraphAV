@@ -10,6 +10,18 @@ const Container = styled.div`
   background-color: ${(props) => props.theme.nodeActive.background};
   border-radius: 0px 10px 10px 10px;
   border: 2px solid ${(props) => props.theme.edge.background};
+  overflow-y: scroll;
+  scrollbar-color: white transparent;
+  scrollbar-width: thin;
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+  &::-webkit-scrollbar-track {
+    background-color: transparent;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: white;
+  }
 `;
 
 export default Container;
