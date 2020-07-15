@@ -49,6 +49,15 @@ const ContextMenu: React.FC<Props> = (props: Props): ReactElement => {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, [isVisible, setIsVisible]);
 
+  useEffect(() => {
+    const windowResizeHandler = () => {
+      setIsVisible(false);
+    };
+
+    window.addEventListener('resize', windowResizeHandler);
+    return () => window.removeEventListener('resize', windowResizeHandler);
+  });
+
   return (
     <React.Fragment>
       {isVisible ? (
