@@ -22,8 +22,10 @@ interface Props {
   zoomPercentage: number;
   nodeInfo: NodeInfo;
   isSelected: boolean;
+  neighbours: Array<number>;
   onSelect: Function;
   onDelete: Function;
+  onEdgeDelete: Function;
 }
 
 const GraphNode: React.FC<Props> = (props: Props): ReactElement => {
@@ -200,7 +202,10 @@ const GraphNode: React.FC<Props> = (props: Props): ReactElement => {
         setIsVisible={setIsContextMenuVisible}
       >
         <ContextTile onClick={() => props.onDelete()}>Delete node</ContextTile>
-        <DeleteEdgeTile></DeleteEdgeTile>
+        <DeleteEdgeTile
+          onEdgeDelete={props.onEdgeDelete}
+          neighbours={props.neighbours}
+        ></DeleteEdgeTile>
       </ContextMenu>
     </React.Fragment>
   );

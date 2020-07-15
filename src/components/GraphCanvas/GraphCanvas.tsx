@@ -63,6 +63,10 @@ const GraphCanvas: React.FC<Props> = (props: Props): ReactElement => {
         const onDelete = () => {
           props.onNodeDelete(index);
         };
+
+        const onEdgeDelete = (secondNode: number) => {
+          props.onEdgeDelete(index, secondNode);
+        };
         return (
           <GraphNode
             key={props.nodeKeys[index]}
@@ -75,6 +79,8 @@ const GraphCanvas: React.FC<Props> = (props: Props): ReactElement => {
             isSelected={isSelected}
             onSelect={onSelect}
             onDelete={onDelete}
+            onEdgeDelete={onEdgeDelete}
+            neighbours={adjacencyList[index]}
           >
             <span ref={nodeRefs[index]}></span>
           </GraphNode>
