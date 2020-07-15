@@ -164,6 +164,7 @@ const GraphNode: React.FC<Props> = (props: Props): ReactElement => {
       <Container
         onContextMenu={(e: React.MouseEvent) => {
           e.preventDefault();
+          e.stopPropagation();
           setIsContextMenuVisible((prev) => !prev);
         }}
         isActive={props.isActive}
