@@ -17,6 +17,7 @@ interface Props {
   onEdgeDelete: (firstNode: number, secondNode: number) => void;
   onNodeDelete: (node: number) => void;
   addNewNode: () => void;
+  clearCanvas: () => void;
 }
 
 const GraphCanvas: React.FC<Props> = (props: Props): ReactElement => {
@@ -120,12 +121,16 @@ const GraphCanvas: React.FC<Props> = (props: Props): ReactElement => {
       <ContextMenu
         isVisible={isContextMenuVisible}
         position={contextMenuPosition}
-        setIsVisible={setIsContextMenuVisible}
+        setIsVisible={(val: boolean) => {
+          setContextMenuPosition({top: -100, left: -100});
+          setIsContextMenuVisible(val);
+        }}
         canvasRef={canvasRef}
       >
         <ContextTile
           onClick={() => {
             props.addNewNode();
+            setIsContextMenuVisible(false);
             setTimeout(
               () => setContextMenuPosition({top: -100, left: -100}),
               0
@@ -134,7 +139,15 @@ const GraphCanvas: React.FC<Props> = (props: Props): ReactElement => {
         >
           Add node
         </ContextTile>
-        <ContextTile>EMINEM</ContextTile>
+        <ContextTile
+          onClick={() => {
+            props.clearCanvas();
+            setIsContextMenuVisible(false);
+            setContextMenuPosition({top: -100, left: -100});
+          }}
+        >
+          Clear canvas
+        </ContextTile>
       </ContextMenu>
     </Container>
   );

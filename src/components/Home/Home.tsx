@@ -191,6 +191,7 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
         graphInfo={graphInfo}
         currentEdge={currentEdge}
         addNewNode={addNewNode}
+        clearCanvas={clearCanvas}
       ></GraphCanvas>
       <VisualizeButton
         isVisualizing={isVisualizing}
