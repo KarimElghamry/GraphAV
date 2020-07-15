@@ -19,12 +19,17 @@ const ContextMenu: React.FC<Props> = (props: Props): ReactElement => {
   const setIsVisible = props.setIsVisible;
   const position = props.position;
   const contextWidth = 204;
+  const contextHeight = 104;
   let isReversed = false;
 
   //TODO: remove magic number
   if (canvasRef.current) {
     if (position.left + contextWidth > canvasRef.current.offsetWidth) {
       position.left = canvasRef.current.offsetWidth - contextWidth;
+    }
+
+    if (position.top + contextHeight > canvasRef.current.offsetHeight) {
+      position.top = canvasRef.current.offsetHeight - contextHeight;
     }
   }
 
