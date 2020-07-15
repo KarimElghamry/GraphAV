@@ -3,6 +3,8 @@ import Container from './Container';
 import GraphNode from '../GraphNode/GraphNode';
 import Edge from '../Edge/Edge';
 import NodeInfo from '../../models/NodeInfo';
+import ContextMenu from '../common/ContextMenu/ContextMenu';
+import ContextTile from '../common/ContextMenu/ContextTile';
 
 interface Props {
   adjacencyList: Array<Array<number>>;
@@ -89,6 +91,16 @@ const GraphCanvas: React.FC<Props> = (props: Props): ReactElement => {
           />
         );
       })}
+
+      <ContextMenu
+        isVisible={true}
+        position={{top: 300, left: 300}}
+        setIsVisible={() => {}}
+        canvasRef={canvasRef}
+      >
+        <ContextTile>EMINEM</ContextTile>
+        <ContextTile>EMINEM</ContextTile>
+      </ContextMenu>
     </Container>
   );
 };
