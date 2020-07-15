@@ -29,7 +29,7 @@ const Container = styled.div.attrs((props: Props) => ({
   height: 100px;
   width: 200px;
   background-color: ${(props) => props.theme.nodeActive.background};
-  border-radius: 10px;
+  border-radius: 5px;
   border: 2px solid ${(props) => props.theme.edge.background};
   z-index: 2;
   cursor: pointer;
