@@ -19,7 +19,6 @@ interface Props {
 }
 
 const GraphCanvas: React.FC<Props> = (props: Props): ReactElement => {
-  const canvasRef = useRef<HTMLDivElement>(null);
   const [isContextMenuVisible, setIsContextMenuVisible] = useState<boolean>(
     false
   );
@@ -27,6 +26,7 @@ const GraphCanvas: React.FC<Props> = (props: Props): ReactElement => {
     top: 0,
     left: 0,
   });
+  const canvasRef = useRef<HTMLDivElement>(null);
   const adjacencyList = props.adjacencyList;
   const visited = props.visited;
   const currentEdge = props.currentEdge;
@@ -48,7 +48,16 @@ const GraphCanvas: React.FC<Props> = (props: Props): ReactElement => {
   });
 
   return (
-    <Container ref={canvasRef}>
+    <Container
+      ref={canvasRef}
+      onContextMenu={(e: React.MouseEvent) => {
+        e.preventDefault();
+        const left = e.clientX;
+        const top = e.clientY;
+        setContextMenuPosition({top: top, left: left} as Position);
+        setIsContextMenuVisible(true);
+      }}
+    >
       {adjacencyList.map((val: Array<number>, index: number) => {
         const nodeInfo: NodeInfo =
           index > props.graphInfo.length - 1
@@ -103,7 +112,7 @@ const GraphCanvas: React.FC<Props> = (props: Props): ReactElement => {
       <ContextMenu
         isVisible={isContextMenuVisible}
         position={contextMenuPosition}
-        setIsVisible={() => {}}
+        setIsVisible={setIsContextMenuVisible}
         canvasRef={canvasRef}
       >
         <ContextTile>EMINEM</ContextTile>
