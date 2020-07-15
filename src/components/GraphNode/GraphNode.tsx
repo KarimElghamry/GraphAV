@@ -9,9 +9,9 @@ import Container from './Container';
 import Position from '../../models/Position';
 import Information from './Information';
 import NodeInfo from '../../models/NodeInfo';
-import ContextMenu from './ContextMenu/ContextMenu';
-import ContextTile from './ContextMenu/ContextTile';
-import Arrow from './ContextMenu/Arrow';
+import ContextMenu from '../common/ContextMenu/ContextMenu';
+import ContextTile from '../common/ContextMenu/ContextTile';
+import Arrow from '../common/ContextMenu/Arrow';
 
 interface Props {
   isActive: boolean;
