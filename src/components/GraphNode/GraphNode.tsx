@@ -12,19 +12,21 @@ import NodeInfo from '../../models/NodeInfo';
 import ContextMenu from '../common/ContextMenu/ContextMenu';
 import ContextTile from '../common/ContextMenu/ContextTile';
 import DeleteEdgeTile from './DeleteEdgeTile';
+import AddEdgeTile from './AddEdgeTile';
 
 interface Props {
   isActive: boolean;
-  content: string;
+  nodeIndex: number;
   initialPosition?: Position;
   canvasRef: React.RefObject<HTMLDivElement>;
   children: React.ReactChild | React.ReactChildren;
   edgeRef: React.RefObject<HTMLSpanElement> | null;
   zoomPercentage: number;
   nodeInfo: NodeInfo;
-  neighbours: Array<number>;
+  adjacencyList: Array<Array<number>>;
   onDelete: Function;
   onEdgeDelete: Function;
+  onEdgeAdd: (secondNode: number, isDirected: boolean) => void;
 }
 
 const GraphNode: React.FC<Props> = (props: Props): ReactElement => {
@@ -164,6 +166,7 @@ const GraphNode: React.FC<Props> = (props: Props): ReactElement => {
     top: position.top + (nodeRef.current?.offsetHeight ?? 0) / 2,
     left: position.left + (nodeRef.current?.offsetWidth ?? 0) / 2,
   };
+
   return (
     <React.Fragment>
       <Container
@@ -179,7 +182,7 @@ const GraphNode: React.FC<Props> = (props: Props): ReactElement => {
         ref={nodeRef}
         zoomPercentage={props.zoomPercentage}
       >
-        {props.content}
+        {(props.nodeIndex + 1).toString()}
         {props.children}
         <Information ref={infoRef} zoomPercentage={props.zoomPercentage}>
           <div>
@@ -205,9 +208,23 @@ const GraphNode: React.FC<Props> = (props: Props): ReactElement => {
         <ContextTile onClick={() => props.onDelete()}>Delete node</ContextTile>
         <DeleteEdgeTile
           onEdgeDelete={props.onEdgeDelete}
-          neighbours={props.neighbours}
+          neighbours={props.adjacencyList[props.nodeIndex]}
           canvasRef={canvasRef}
         ></DeleteEdgeTile>
+        <AddEdgeTile
+          adjacencyList={props.adjacencyList}
+          nodeIndex={props.nodeIndex}
+          canvasRef={canvasRef}
+          isDirected={false}
+          onAdd={props.onEdgeAdd}
+        ></AddEdgeTile>
+        <AddEdgeTile
+          adjacencyList={props.adjacencyList}
+          nodeIndex={props.nodeIndex}
+          canvasRef={canvasRef}
+          isDirected={true}
+          onAdd={props.onEdgeAdd}
+        ></AddEdgeTile>
       </ContextMenu>
     </React.Fragment>
   );

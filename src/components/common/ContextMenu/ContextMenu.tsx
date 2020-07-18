@@ -7,11 +7,7 @@ interface Props {
   setIsVisible: Function;
   position: Position;
   canvasRef: React.RefObject<HTMLDivElement>;
-  children:
-    | Array<ReactElement>
-    | ReactElement
-    | React.ReactChild
-    | React.ReactChildren;
+  children: Array<ReactElement>;
 }
 
 const ContextMenu: React.FC<Props> = (props: Props): ReactElement => {
@@ -21,7 +17,7 @@ const ContextMenu: React.FC<Props> = (props: Props): ReactElement => {
   const setIsVisible = props.setIsVisible;
   const position = props.position;
   const contextWidth = 204;
-  const contextHeight = 104;
+  const contextHeight = props.children.length * 40 + 4;
 
   //TODO: remove magic number
   if (canvasRef.current) {
@@ -62,6 +58,7 @@ const ContextMenu: React.FC<Props> = (props: Props): ReactElement => {
     <React.Fragment>
       {isVisible ? (
         <Container
+          height={contextHeight - 4}
           ref={contextMenuRef}
           onDoubleClick={(e: React.MouseEvent) => e.stopPropagation()}
           onClick={(e: React.MouseEvent) => e.stopPropagation()}

@@ -17,6 +17,11 @@ interface Props {
   onEdgeDelete: (firstNode: number, secondNode: number) => void;
   onNodeDelete: (node: number) => void;
   addNewNode: () => void;
+  addNewEdge: (
+    firstNode: number,
+    secondNode: number,
+    isDirected: boolean
+  ) => void;
   clearCanvas: () => void;
 }
 
@@ -80,18 +85,23 @@ const GraphCanvas: React.FC<Props> = (props: Props): ReactElement => {
           props.onEdgeDelete(index, secondNode);
         };
 
+        const onEdgeAdd = (secondNode: number, isDirected: boolean) => {
+          props.addNewEdge(index, secondNode, isDirected);
+        };
+
         return (
           <GraphNode
             key={props.nodeKeys[index]}
+            nodeIndex={index}
             canvasRef={canvasRef}
             isActive={visited.includes(index)}
-            content={(index + 1).toString()}
             edgeRef={nodeRefs[index]}
             zoomPercentage={props.zoomPercentage}
             nodeInfo={nodeInfo}
             onDelete={onDelete}
             onEdgeDelete={onEdgeDelete}
-            neighbours={adjacencyList[index]}
+            onEdgeAdd={onEdgeAdd}
+            adjacencyList={adjacencyList}
             initialPosition={contextMenuPosition}
           >
             <span ref={nodeRefs[index]}></span>

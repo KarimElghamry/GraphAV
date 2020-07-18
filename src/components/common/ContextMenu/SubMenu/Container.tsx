@@ -12,8 +12,7 @@ from{
 }
 to{
     max-height: 100px;
-    width: 200px;
-    font-size: 20px;
+    width: 200px;;
 }
 `;
 
@@ -28,7 +27,8 @@ const Container = styled.div<Props>`
   border-radius: ${(props) =>
     props.isXReversed ? '5px 0px 5px 5px' : '0px 5px 5px 5px'};
   border: 2px solid ${(props) => props.theme.edge.background};
-  animation: ${sizeAnim} 0.1s;
+  user-select: none;
+  animation: ${sizeAnim} 0.3s;
   overflow-y: scroll;
   scrollbar-color: white transparent;
   scrollbar-width: thin;

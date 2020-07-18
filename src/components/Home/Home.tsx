@@ -33,6 +33,23 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
     false
   );
 
+  const resetGraphState = () => {
+    setVisited([]);
+    setCurrentEdge([-1, -1]);
+    setGraphInfo([]);
+  };
+
+  const addNewEdge = (
+    firstNode: number,
+    secondNode: number,
+    isDirected: boolean
+  ) => {
+    const newAdjacencyList = adjacencyList.slice();
+    newAdjacencyList[firstNode].push(secondNode);
+    if (!isDirected) newAdjacencyList[secondNode].push(firstNode);
+    setAdjacencyList(newAdjacencyList);
+  };
+
   const connectNodes = (
     firstNode: number,
     secondNode: number,
@@ -48,10 +65,7 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
     if (adjacencyList[firstNode].includes(secondNode)) return;
     if (adjacencyList[secondNode].includes(firstNode)) return;
 
-    const newAdjacencyList = adjacencyList.slice();
-    newAdjacencyList[firstNode].push(secondNode);
-    if (!directed) newAdjacencyList[secondNode].push(firstNode);
-    setAdjacencyList(newAdjacencyList);
+    addNewEdge(firstNode, secondNode, directed);
   };
 
   const deleteEdge = (firstNode: number, secondNode: number) => {
@@ -64,6 +78,7 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
     );
 
     setAdjacencyList(newAdjacencyList);
+    resetGraphState();
   };
   const deleteNode = (node: number) => {
     let newAdjacencyList = adjacencyList.map((val: Array<number>) => {
@@ -85,6 +100,7 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
 
     setNodeKeys(newNodeKeys);
     setAdjacencyList(newAdjacencyList);
+    resetGraphState();
   };
 
   const handleEdgeModalExit = () => {
@@ -191,6 +207,7 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
         graphInfo={graphInfo}
         currentEdge={currentEdge}
         addNewNode={addNewNode}
+        addNewEdge={addNewEdge}
         clearCanvas={clearCanvas}
       ></GraphCanvas>
       <VisualizeButton
