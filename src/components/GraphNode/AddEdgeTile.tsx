@@ -1,8 +1,13 @@
 import React, {ReactElement, useState} from 'react';
 import ContextTile from '../common/ContextMenu/ContextTile';
 import Arrow from '../common/ContextMenu/Arrow';
+import SubMenu from '../common/ContextMenu/SubMenu/SubMenu';
 
-const AddEdgeTile: React.FC = (): ReactElement => {
+interface Props {
+  canvasRef: React.RefObject<HTMLDivElement>;
+}
+
+const AddEdgeTile: React.FC<Props> = (props: Props): ReactElement => {
   const [isHovered, setIsHovered] = useState<boolean>(false);
 
   return (
@@ -12,6 +17,7 @@ const AddEdgeTile: React.FC = (): ReactElement => {
     >
       <div>Add Edge</div>
       <Arrow></Arrow>
+      {isHovered ? <SubMenu canvasRef={props.canvasRef}></SubMenu> : null}
     </ContextTile>
   );
 };

@@ -209,7 +209,7 @@ const GraphNode: React.FC<Props> = (props: Props): ReactElement => {
           neighbours={props.neighbours}
           canvasRef={canvasRef}
         ></DeleteEdgeTile>
-        <AddEdgeTile></AddEdgeTile>
+        <AddEdgeTile canvasRef={canvasRef}></AddEdgeTile>
       </ContextMenu>
     </React.Fragment>
   );
