@@ -27,6 +27,7 @@ const Container = styled.div<Props>`
   border-radius: ${(props) =>
     props.isXReversed ? '5px 0px 5px 5px' : '0px 5px 5px 5px'};
   border: 2px solid ${(props) => props.theme.edge.background};
+  user-select: none;
   animation: ${sizeAnim} 0.3s;
   overflow-y: scroll;
   scrollbar-color: white transparent;

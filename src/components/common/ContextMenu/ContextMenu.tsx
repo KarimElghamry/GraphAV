@@ -17,7 +17,7 @@ const ContextMenu: React.FC<Props> = (props: Props): ReactElement => {
   const setIsVisible = props.setIsVisible;
   const position = props.position;
   const contextWidth = 204;
-  const contextHeight = props.children.length * 50 + 4;
+  const contextHeight = props.children.length * 40 + 4;
 
   //TODO: remove magic number
   if (canvasRef.current) {
@@ -58,7 +58,7 @@ const ContextMenu: React.FC<Props> = (props: Props): ReactElement => {
     <React.Fragment>
       {isVisible ? (
         <Container
-          height={props.children.length * 50}
+          height={contextHeight - 4}
           ref={contextMenuRef}
           onDoubleClick={(e: React.MouseEvent) => e.stopPropagation()}
           onClick={(e: React.MouseEvent) => e.stopPropagation()}
