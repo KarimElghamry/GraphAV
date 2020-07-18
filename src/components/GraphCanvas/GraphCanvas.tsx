@@ -83,15 +83,15 @@ const GraphCanvas: React.FC<Props> = (props: Props): ReactElement => {
         return (
           <GraphNode
             key={props.nodeKeys[index]}
+            nodeIndex={index}
             canvasRef={canvasRef}
             isActive={visited.includes(index)}
-            content={(index + 1).toString()}
             edgeRef={nodeRefs[index]}
             zoomPercentage={props.zoomPercentage}
             nodeInfo={nodeInfo}
             onDelete={onDelete}
             onEdgeDelete={onEdgeDelete}
-            neighbours={adjacencyList[index]}
+            adjacencyList={adjacencyList}
             initialPosition={contextMenuPosition}
           >
             <span ref={nodeRefs[index]}></span>

@@ -16,14 +16,14 @@ import AddEdgeTile from './AddEdgeTile';
 
 interface Props {
   isActive: boolean;
-  content: string;
+  nodeIndex: number;
   initialPosition?: Position;
   canvasRef: React.RefObject<HTMLDivElement>;
   children: React.ReactChild | React.ReactChildren;
   edgeRef: React.RefObject<HTMLSpanElement> | null;
   zoomPercentage: number;
   nodeInfo: NodeInfo;
-  neighbours: Array<number>;
+  adjacencyList: Array<Array<number>>;
   onDelete: Function;
   onEdgeDelete: Function;
 }
@@ -180,7 +180,7 @@ const GraphNode: React.FC<Props> = (props: Props): ReactElement => {
         ref={nodeRef}
         zoomPercentage={props.zoomPercentage}
       >
-        {props.content}
+        {(props.nodeIndex + 1).toString()}
         {props.children}
         <Information ref={infoRef} zoomPercentage={props.zoomPercentage}>
           <div>
@@ -206,7 +206,7 @@ const GraphNode: React.FC<Props> = (props: Props): ReactElement => {
         <ContextTile onClick={() => props.onDelete()}>Delete node</ContextTile>
         <DeleteEdgeTile
           onEdgeDelete={props.onEdgeDelete}
-          neighbours={props.neighbours}
+          neighbours={props.adjacencyList[props.nodeIndex]}
           canvasRef={canvasRef}
         ></DeleteEdgeTile>
         <AddEdgeTile canvasRef={canvasRef}></AddEdgeTile>
