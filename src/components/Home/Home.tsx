@@ -33,6 +33,12 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
     false
   );
 
+  const resetGraphState = () => {
+    setVisited([]);
+    setCurrentEdge([-1, -1]);
+    setGraphInfo([]);
+  };
+
   const addNewEdge = (
     firstNode: number,
     secondNode: number,
@@ -72,6 +78,7 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
     );
 
     setAdjacencyList(newAdjacencyList);
+    resetGraphState();
   };
   const deleteNode = (node: number) => {
     let newAdjacencyList = adjacencyList.map((val: Array<number>) => {
@@ -93,6 +100,7 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
 
     setNodeKeys(newNodeKeys);
     setAdjacencyList(newAdjacencyList);
+    resetGraphState();
   };
 
   const handleEdgeModalExit = () => {
