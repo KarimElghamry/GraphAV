@@ -2,6 +2,7 @@ import React, {ReactElement, useState} from 'react';
 import ContextTile from '../common/ContextMenu/ContextTile';
 import Arrow from '../common/ContextMenu/Arrow';
 import SubMenu from '../common/ContextMenu/SubMenu/SubMenu';
+import {render} from '@testing-library/react';
 
 interface Props {
   canvasRef: React.RefObject<HTMLDivElement>;
@@ -34,7 +35,11 @@ const AddEdgeTile: React.FC<Props> = (props: Props): ReactElement => {
       <div>Add directed edge</div>
       <Arrow></Arrow>
       {isHovered && renderedList.length !== 0 ? (
-        <SubMenu canvasRef={props.canvasRef}></SubMenu>
+        <SubMenu canvasRef={props.canvasRef}>
+          {renderedList.map((val: number) => (
+            <ContextTile>{val + 1}</ContextTile>
+          ))}
+        </SubMenu>
       ) : null}
     </ContextTile>
   );
