@@ -214,6 +214,7 @@ const GraphNode: React.FC<Props> = (props: Props): ReactElement => {
           adjacencyList={props.adjacencyList}
           nodeIndex={props.nodeIndex}
           canvasRef={canvasRef}
+          isDirected={false}
         ></AddEdgeTile>
       </ContextMenu>
     </React.Fragment>

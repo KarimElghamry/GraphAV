@@ -2,12 +2,12 @@ import React, {ReactElement, useState} from 'react';
 import ContextTile from '../common/ContextMenu/ContextTile';
 import Arrow from '../common/ContextMenu/Arrow';
 import SubMenu from '../common/ContextMenu/SubMenu/SubMenu';
-import {render} from '@testing-library/react';
 
 interface Props {
   canvasRef: React.RefObject<HTMLDivElement>;
   adjacencyList: Array<Array<number>>;
   nodeIndex: number;
+  isDirected: boolean;
 }
 
 const AddEdgeTile: React.FC<Props> = (props: Props): ReactElement => {
@@ -32,7 +32,7 @@ const AddEdgeTile: React.FC<Props> = (props: Props): ReactElement => {
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      <div>Add directed edge</div>
+      <div>{`Add ${props.isDirected ? 'directed' : 'undirected'} edge`}</div>
       <Arrow></Arrow>
       {isHovered && renderedList.length !== 0 ? (
         <SubMenu canvasRef={props.canvasRef}>
