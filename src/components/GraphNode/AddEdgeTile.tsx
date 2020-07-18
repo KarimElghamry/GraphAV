@@ -5,10 +5,26 @@ import SubMenu from '../common/ContextMenu/SubMenu/SubMenu';
 
 interface Props {
   canvasRef: React.RefObject<HTMLDivElement>;
+  adjacencyList: Array<Array<number>>;
+  nodeIndex: number;
 }
 
 const AddEdgeTile: React.FC<Props> = (props: Props): ReactElement => {
   const [isHovered, setIsHovered] = useState<boolean>(false);
+  const nonConnectedNodes = props.adjacencyList.map(
+    (val: Array<number>, index: number) => {
+      if (
+        index !== props.nodeIndex &&
+        !props.adjacencyList[props.nodeIndex].includes(index) &&
+        !val.includes(props.nodeIndex)
+      ) {
+        return index;
+      }
+      return -1;
+    }
+  );
+
+  const renderedList = nonConnectedNodes.filter((val: number) => val !== -1);
 
   return (
     <ContextTile
@@ -17,7 +33,9 @@ const AddEdgeTile: React.FC<Props> = (props: Props): ReactElement => {
     >
       <div>Add directed edge</div>
       <Arrow></Arrow>
-      {isHovered ? <SubMenu canvasRef={props.canvasRef}></SubMenu> : null}
+      {isHovered && renderedList.length !== 0 ? (
+        <SubMenu canvasRef={props.canvasRef}></SubMenu>
+      ) : null}
     </ContextTile>
   );
 };

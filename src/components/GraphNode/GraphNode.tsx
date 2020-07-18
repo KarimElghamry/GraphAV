@@ -165,6 +165,7 @@ const GraphNode: React.FC<Props> = (props: Props): ReactElement => {
     top: position.top + (nodeRef.current?.offsetHeight ?? 0) / 2,
     left: position.left + (nodeRef.current?.offsetWidth ?? 0) / 2,
   };
+
   return (
     <React.Fragment>
       <Container
@@ -209,7 +210,11 @@ const GraphNode: React.FC<Props> = (props: Props): ReactElement => {
           neighbours={props.adjacencyList[props.nodeIndex]}
           canvasRef={canvasRef}
         ></DeleteEdgeTile>
-        <AddEdgeTile canvasRef={canvasRef}></AddEdgeTile>
+        <AddEdgeTile
+          adjacencyList={props.adjacencyList}
+          nodeIndex={props.nodeIndex}
+          canvasRef={canvasRef}
+        ></AddEdgeTile>
       </ContextMenu>
     </React.Fragment>
   );
