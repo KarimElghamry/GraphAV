@@ -12,6 +12,7 @@ import NodeInfo from '../../models/NodeInfo';
 import ContextMenu from '../common/ContextMenu/ContextMenu';
 import ContextTile from '../common/ContextMenu/ContextTile';
 import DeleteEdgeTile from './DeleteEdgeTile';
+import AddEdgeTile from './AddEdgeTile';
 
 interface Props {
   isActive: boolean;
@@ -208,6 +209,7 @@ const GraphNode: React.FC<Props> = (props: Props): ReactElement => {
           neighbours={props.neighbours}
           canvasRef={canvasRef}
         ></DeleteEdgeTile>
+        <AddEdgeTile></AddEdgeTile>
       </ContextMenu>
     </React.Fragment>
   );

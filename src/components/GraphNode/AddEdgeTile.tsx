@@ -1,10 +1,18 @@
-import React, {ReactElement} from 'react';
+import React, {ReactElement, useState} from 'react';
+import ContextTile from '../common/ContextMenu/ContextTile';
+import Arrow from '../common/ContextMenu/Arrow';
 
 const AddEdgeTile: React.FC = (): ReactElement => {
+  const [isHovered, setIsHovered] = useState<boolean>(false);
+
   return (
-    <div>
-      <div></div>
-    </div>
+    <ContextTile
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+      <div>Add Edge</div>
+      <Arrow></Arrow>
+    </ContextTile>
   );
 };
 
