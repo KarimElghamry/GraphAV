@@ -15,7 +15,7 @@ from{
 }
 to{
     width: 200px;
-    font-size: 20px;
+    font-size: 16px;
 }
 `;
 
@@ -37,7 +37,7 @@ const Container = styled.div.attrs((props: Props) => ({
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: 20px;
+  font-size: 16px;
   animation: ${sizeAnim} 0.3s;
   user-select: none;
 `;

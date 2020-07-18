@@ -15,7 +15,7 @@ const AddEdgeTile: React.FC<Props> = (props: Props): ReactElement => {
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      <div>Add Edge</div>
+      <div>Add directed edge</div>
       <Arrow></Arrow>
       {isHovered ? <SubMenu canvasRef={props.canvasRef}></SubMenu> : null}
     </ContextTile>
