@@ -64,6 +64,10 @@ const ContextMenu: React.FC<Props> = (props: Props): ReactElement => {
           onClick={(e: React.MouseEvent) => e.stopPropagation()}
           onMouseDown={(e: React.MouseEvent) => e.stopPropagation()}
           onMouseUp={(e: React.MouseEvent) => e.stopPropagation()}
+          onContextMenu={(e: React.MouseEvent) => {
+            e.stopPropagation();
+            e.preventDefault();
+          }}
           isVisible={props.isVisible}
           position={props.position}
         >
