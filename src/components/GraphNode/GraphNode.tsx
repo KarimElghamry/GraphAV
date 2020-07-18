@@ -26,6 +26,7 @@ interface Props {
   adjacencyList: Array<Array<number>>;
   onDelete: Function;
   onEdgeDelete: Function;
+  onEdgeAdd: (secondNode: number, isDirected: boolean) => void;
 }
 
 const GraphNode: React.FC<Props> = (props: Props): ReactElement => {
@@ -215,6 +216,7 @@ const GraphNode: React.FC<Props> = (props: Props): ReactElement => {
           nodeIndex={props.nodeIndex}
           canvasRef={canvasRef}
           isDirected={false}
+          onAdd={props.onEdgeAdd}
         ></AddEdgeTile>
       </ContextMenu>
     </React.Fragment>

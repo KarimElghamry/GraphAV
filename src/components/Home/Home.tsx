@@ -33,7 +33,7 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
     false
   );
 
-  const addEdge = (
+  const addNewEdge = (
     firstNode: number,
     secondNode: number,
     isDirected: boolean
@@ -59,7 +59,7 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
     if (adjacencyList[firstNode].includes(secondNode)) return;
     if (adjacencyList[secondNode].includes(firstNode)) return;
 
-    addEdge(firstNode, secondNode, directed);
+    addNewEdge(firstNode, secondNode, directed);
   };
 
   const deleteEdge = (firstNode: number, secondNode: number) => {
@@ -199,6 +199,7 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
         graphInfo={graphInfo}
         currentEdge={currentEdge}
         addNewNode={addNewNode}
+        addNewEdge={addNewEdge}
         clearCanvas={clearCanvas}
       ></GraphCanvas>
       <VisualizeButton

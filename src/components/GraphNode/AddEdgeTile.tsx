@@ -8,6 +8,7 @@ interface Props {
   adjacencyList: Array<Array<number>>;
   nodeIndex: number;
   isDirected: boolean;
+  onAdd: (secondNode: number, isDirected: boolean) => void;
 }
 
 const AddEdgeTile: React.FC<Props> = (props: Props): ReactElement => {
@@ -37,7 +38,9 @@ const AddEdgeTile: React.FC<Props> = (props: Props): ReactElement => {
       {isHovered && renderedList.length !== 0 ? (
         <SubMenu canvasRef={props.canvasRef}>
           {renderedList.map((val: number) => (
-            <ContextTile>{val + 1}</ContextTile>
+            <ContextTile onClick={() => props.onAdd(val, props.isDirected)}>
+              {val + 1}
+            </ContextTile>
           ))}
         </SubMenu>
       ) : null}
