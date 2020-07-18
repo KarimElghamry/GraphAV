@@ -58,6 +58,7 @@ const ContextMenu: React.FC<Props> = (props: Props): ReactElement => {
     <React.Fragment>
       {isVisible ? (
         <Container
+          height={props.children.length * 50}
           ref={contextMenuRef}
           onDoubleClick={(e: React.MouseEvent) => e.stopPropagation()}
           onClick={(e: React.MouseEvent) => e.stopPropagation()}

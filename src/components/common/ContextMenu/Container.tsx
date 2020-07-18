@@ -4,6 +4,7 @@ import Position from '../../../models/Position';
 interface Props {
   isVisible: boolean;
   position: Position;
+  height: number;
 }
 
 const sizeAnim = keyframes`
@@ -13,7 +14,6 @@ from{
     font-size: 0px;
 }
 to{
-    height: 100px;
     width: 200px;
     font-size: 20px;
 }
@@ -23,10 +23,10 @@ const Container = styled.div.attrs((props: Props) => ({
   style: {
     top: `${props.position.top}px`,
     left: `${props.position.left}px`,
+    height: `${props.height}px`,
   },
 }))<Props>`
   position: absolute;
-  height: 100px;
   width: 200px;
   background-color: ${(props) => props.theme.nodeActive.background};
   border-radius: 5px;
