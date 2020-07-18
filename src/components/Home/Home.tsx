@@ -33,6 +33,17 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
     false
   );
 
+  const addEdge = (
+    firstNode: number,
+    secondNode: number,
+    isDirected: boolean
+  ) => {
+    const newAdjacencyList = adjacencyList.slice();
+    newAdjacencyList[firstNode].push(secondNode);
+    if (!isDirected) newAdjacencyList[secondNode].push(firstNode);
+    setAdjacencyList(newAdjacencyList);
+  };
+
   const connectNodes = (
     firstNode: number,
     secondNode: number,
@@ -48,10 +59,7 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
     if (adjacencyList[firstNode].includes(secondNode)) return;
     if (adjacencyList[secondNode].includes(firstNode)) return;
 
-    const newAdjacencyList = adjacencyList.slice();
-    newAdjacencyList[firstNode].push(secondNode);
-    if (!directed) newAdjacencyList[secondNode].push(firstNode);
-    setAdjacencyList(newAdjacencyList);
+    addEdge(firstNode, secondNode, directed);
   };
 
   const deleteEdge = (firstNode: number, secondNode: number) => {
