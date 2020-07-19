@@ -1,10 +1,11 @@
 import React, {ReactElement} from 'react';
+import Modal from '../common/Modal/Modal';
 
 const Tutorial: React.FC = (): ReactElement => {
   return (
-    <div>
+    <Modal isVisible={true} onExit={() => {}}>
       <div></div>
-    </div>
+    </Modal>
   );
 };
 
