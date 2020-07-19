@@ -18,9 +18,7 @@ const ArrowContainer = styled.div<Props>`
 
   &:hover {
     background-color: ${(props) =>
-      props.theme.name === 'light'
-        ? 'rgba(255, 255, 255, 0.9)'
-        : 'rgba(0, 0, 0, 0.2)'};
+      props.theme.name === 'light' ? 'white' : '#C4C4C4'};
   }
 `;
 

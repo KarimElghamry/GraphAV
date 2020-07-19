@@ -12,9 +12,13 @@ const App: React.FC<{}> = (): ReactElement => {
   const onTutorialExit = () => {
     setIsTutorialVisible(false);
   };
+
+  const onTutorialOpen = () => {
+    setIsTutorialVisible(true);
+  };
   return (
     <ThemeProvider theme={globalTheme}>
-      <Home changeTheme={setGlobalTheme}></Home>
+      <Home onHelpClick={onTutorialOpen} changeTheme={setGlobalTheme}></Home>
       <Tutorial onExit={onTutorialExit} isVisible={isTutorialVisible} />
     </ThemeProvider>
   );
