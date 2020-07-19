@@ -1,6 +1,7 @@
 import React, {ReactElement} from 'react';
 import Container from './Container';
 import Arrow from './Arrow';
+import Column from '../../common/Column';
 
 interface Props {
   children?: Array<ReactElement>;
@@ -9,16 +10,9 @@ interface Props {
 const Carousel: React.FC<Props> = (props: Props): ReactElement => {
   return (
     <Container>
-      <div
-        style={{
-          display: 'flex',
-          height: '100%',
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}
-      >
-        <Arrow></Arrow>
-      </div>
+      <Column>
+        <Arrow direction="left"></Arrow>
+      </Column>
     </Container>
   );
 };
