@@ -2,9 +2,14 @@ import React, {ReactElement} from 'react';
 import Modal from '../common/Modal/Modal';
 import Carousel from './Carousel/Carousel';
 
-const Tutorial: React.FC = (): ReactElement => {
+interface Props {
+  isVisible: boolean;
+  onExit: () => void;
+}
+
+const Tutorial: React.FC<Props> = (props: Props): ReactElement => {
   return (
-    <Modal isVisible={true} onExit={() => {}}>
+    <Modal isVisible={props.isVisible} onExit={props.onExit}>
       <div style={{width: '600px', height: '500px'}}>
         <Carousel>
           <div>1</div>

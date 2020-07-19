@@ -7,11 +7,15 @@ import Tutorial from './components/Tutorial/Tutorial';
 
 const App: React.FC<{}> = (): ReactElement => {
   const [globalTheme, setGlobalTheme] = useState<Theme>(themes.light);
+  const [isTutorialVisible, setIsTutorialVisible] = useState<boolean>(true);
 
+  const onTutorialExit = () => {
+    setIsTutorialVisible(false);
+  };
   return (
     <ThemeProvider theme={globalTheme}>
       <Home changeTheme={setGlobalTheme}></Home>
-      <Tutorial />
+      <Tutorial onExit={onTutorialExit} isVisible={isTutorialVisible} />
     </ThemeProvider>
   );
 };
