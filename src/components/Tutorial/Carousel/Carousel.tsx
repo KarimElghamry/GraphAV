@@ -15,7 +15,13 @@ const Carousel: React.FC<Props> = (props: Props): ReactElement => {
         <Arrow direction="left"></Arrow>
       </Column>
       <Column width="100%">
-        <Row justifyContent="center">EMINEM</Row>
+        <Row justifyContent="center" style={{height: '90%', width: '100%'}}>
+          EMINEM
+        </Row>
+        <Row
+          justifyContent="center"
+          style={{height: '10%', width: '100%'}}
+        ></Row>
       </Column>
       <Column width="100px">
         <Arrow direction="right"></Arrow>
