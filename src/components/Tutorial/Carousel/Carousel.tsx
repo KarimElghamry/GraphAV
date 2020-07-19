@@ -5,7 +5,7 @@ import Column from '../../common/Column';
 import Row from '../../common/Row';
 
 interface Props {
-  children?: Array<ReactElement>;
+  children?: Array<ReactElement> | ReactElement;
 }
 
 const Carousel: React.FC<Props> = (props: Props): ReactElement => {

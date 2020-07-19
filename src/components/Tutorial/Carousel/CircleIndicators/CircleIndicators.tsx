@@ -1,10 +1,18 @@
 import React, {ReactElement} from 'react';
+import Circle from './Circle';
 
-const CircleIndicators: React.FC = (): ReactElement => {
+interface Props {
+  circlesCount: number;
+  selected: number;
+}
+
+const CircleIndicators: React.FC<Props> = (props: Props): ReactElement => {
   return (
-    <div>
-      <div></div>
-    </div>
+    <React.Fragment>
+      {Array(props.circlesCount).map((_, index: number) => (
+        <Circle></Circle>
+      ))}
+    </React.Fragment>
   );
 };
 

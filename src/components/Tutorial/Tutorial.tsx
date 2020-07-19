@@ -6,7 +6,9 @@ const Tutorial: React.FC = (): ReactElement => {
   return (
     <Modal isVisible={true} onExit={() => {}}>
       <div style={{width: '600px', height: '500px'}}>
-        <Carousel></Carousel>
+        <Carousel>
+          <div></div>
+        </Carousel>
       </div>
     </Modal>
   );
