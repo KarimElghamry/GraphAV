@@ -7,11 +7,11 @@ const Tutorial: React.FC = (): ReactElement => {
     <Modal isVisible={true} onExit={() => {}}>
       <div style={{width: '600px', height: '500px'}}>
         <Carousel>
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
+          <div>1</div>
+          <div>2</div>
+          <div>3</div>
+          <div>4</div>
+          <div>5</div>
         </Carousel>
       </div>
     </Modal>

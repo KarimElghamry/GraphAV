@@ -34,12 +34,12 @@ const Carousel: React.FC<Props> = (props: Props): ReactElement => {
 
   return (
     <Container>
-      <Column width="100px">
+      <Column width="100px" onClick={() => scrollPrevious()}>
         <Arrow direction="left"></Arrow>
       </Column>
       <Column width="100%">
         <Row justifyContent="center" style={{height: '90%', width: '100%'}}>
-          EMINEM
+          {(props.children ?? [<div></div>])[currentSelection]}
         </Row>
         <Row justifyContent="center" style={{height: '10%', width: '100%'}}>
           <CircleIndicators
@@ -49,7 +49,7 @@ const Carousel: React.FC<Props> = (props: Props): ReactElement => {
           ></CircleIndicators>
         </Row>
       </Column>
-      <Column width="100px">
+      <Column width="100px" onClick={() => scrollNext()}>
         <Arrow direction="right"></Arrow>
       </Column>
     </Container>
