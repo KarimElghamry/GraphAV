@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import themes from '../../../themes';
 
 interface Props {
   direction: 'left' | 'right';
@@ -6,10 +7,14 @@ interface Props {
 
 const Arrow = styled.div<Props>`
   margin: 15px;
-  border: solid black;
-  border-width: 0 10px 10px 0;
+  border: solid
+    ${(props) =>
+      props.theme.name === 'dark'
+        ? themes.light.navbar.background
+        : themes.dark.navbar.background};
+  border-width: 0 8px 8px 0;
   display: inline-block;
-  padding: 10px;
+  padding: 8px;
 
   transform: rotate(
     ${(props) => (props.direction === 'left' ? '135deg' : '-45deg')}
