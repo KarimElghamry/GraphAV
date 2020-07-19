@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import themes from '../../../themes';
 
 interface Props {
   direction: 'left' | 'right';
@@ -17,7 +18,10 @@ const ArrowContainer = styled.div<Props>`
     props.direction === 'left' ? '7.5px 0px 0px 7.5px' : '0px 7.5px 7.5px 0px'};
 
   &:hover {
-    background-color: white;
+    background-color: ${(props) =>
+      props.theme.name === 'light'
+        ? 'rgba(255, 255, 255, 0.9)'
+        : 'rgba(0, 0, 0, 0.2)'};
   }
 `;
 
