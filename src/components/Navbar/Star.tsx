@@ -7,6 +7,7 @@ const Star = styled(assets.images.starIcon)`
   margin: 0 10px;
   user-select: none;
   fill: white;
+  cursor: pointer;
 `;
 
 export default Star;
