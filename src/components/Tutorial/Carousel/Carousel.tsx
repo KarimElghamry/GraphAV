@@ -1,10 +1,24 @@
 import React, {ReactElement} from 'react';
 import Container from './Container';
+import Arrow from './Arrow';
 
-const Carousel: React.FC = (): ReactElement => {
+interface Props {
+  children?: Array<ReactElement>;
+}
+
+const Carousel: React.FC<Props> = (props: Props): ReactElement => {
   return (
     <Container>
-      <div></div>
+      <div
+        style={{
+          display: 'flex',
+          height: '100%',
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}
+      >
+        <Arrow></Arrow>
+      </div>
     </Container>
   );
 };
