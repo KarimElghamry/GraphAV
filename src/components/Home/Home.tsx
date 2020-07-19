@@ -159,6 +159,14 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
           visualizationSpeed
         );
         break;
+      case Algorithms.bellmanFord:
+        await algorithms.bellmanFord(
+          startingNode,
+          adjacencyList,
+          visualizationSpeed,
+          setVisited,
+        );
+        break;
       default:
         break;
     }
