@@ -24,6 +24,14 @@ const Carousel: React.FC<Props> = (props: Props): ReactElement => {
     }
   };
 
+  const scrollPrevious = () => {
+    if (currentSelection === 0) {
+      setCurrentSelection((props.children?.length ?? 1) - 1);
+    } else {
+      setCurrentSelection((prev) => prev - 1);
+    }
+  };
+
   return (
     <Container>
       <Column width="100px">
