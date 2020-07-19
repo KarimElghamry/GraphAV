@@ -1,4 +1,4 @@
-import React, {ReactElement, useState} from 'react';
+import React, { ReactElement, useState } from 'react';
 import Navbar from '../Navbar/Navbar';
 import SideNav from '../SideNav/SideNav';
 import GraphCanvas from '../GraphCanvas/GraphCanvas';
@@ -7,7 +7,7 @@ import algorithms from '../../algorithms';
 import Algorithms from '../../models/Algorithms';
 import NodeInfo from '../../models/NodeInfo';
 import CreateEdgeModal from '../CreateEdgeModal/CreateEdgeModal';
-import {v4 as uuidv4} from 'uuid';
+import { v4 as uuidv4 } from 'uuid';
 
 interface HomeProps {
   changeTheme: Function;
@@ -156,7 +156,9 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
           adjacencyList,
           setVisited,
           startingNode,
-          visualizationSpeed
+          visualizationSpeed,
+          setGraphInfo,
+          setCurrentEdge
         );
         break;
       default:
