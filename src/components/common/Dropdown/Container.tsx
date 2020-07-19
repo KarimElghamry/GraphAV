@@ -12,7 +12,6 @@ const Container = styled.div.attrs({
   font-size: 18px;
   width: ${(props) => `${props.width}px`};
   height: 30px;
-  margin-left: calc(50% - ${(props) => `${props.width / 2}px`});
   margin-top: 10px;
   margin-bottom: 10px;
   color: white;

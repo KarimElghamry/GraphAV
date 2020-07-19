@@ -1,10 +1,13 @@
-import React, { ReactElement, useState } from 'react';
+import React, {ReactElement, useState} from 'react';
 import Navbar from '../Navbar/Navbar';
 import SideNav from '../SideNav/SideNav';
 import GraphCanvas from '../GraphCanvas/GraphCanvas';
 import VisualizeButton from '../VisualizeButton/VisualizeButton';
 import algorithms from '../../algorithms';
 import Algorithms from '../../models/Algorithms';
+import NodeInfo from '../../models/NodeInfo';
+import CreateEdgeModal from '../CreateEdgeModal/CreateEdgeModal';
+import {v4 as uuidv4} from 'uuid';
 
 interface HomeProps {
   changeTheme: Function;
@@ -12,7 +15,10 @@ interface HomeProps {
 
 const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
   const [adjacencyList, setAdjacencyList] = useState<Array<Array<number>>>([]);
+  const [nodeKeys, setNodeKeys] = useState<Array<string>>([]);
   const [visited, setVisited] = useState<Array<number>>([]);
+  const [currentEdge, setCurrentEdge] = useState<[number, number]>([-1, -1]);
+  const [graphInfo, setGraphInfo] = useState<Array<NodeInfo>>([]);
   const [startingNode, setStartingNode] = useState<number>(0);
   const [selectedAlgorithm, setSelectedAlgorithm] = useState<Algorithms>(
     Algorithms.dfs
@@ -20,32 +26,98 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
   const [isVisualizing, setIsVisualizing] = useState<boolean>(false);
   const [zoomPercentage, setZoomPercentage] = useState<number>(1);
   const [visualizationSpeed, setVisualizationSpeed] = useState<number>(1000);
-  const [isConnecting, setIsConnecting] = useState<boolean>(false);
-  const [edgeFirstNode, setEdgeFirstNode] = useState<number>();
+  const [isConnectingUndirected, setIsConnectingUndirected] = useState<boolean>(
+    false
+  );
+  const [isConnectingDirected, setIsConnectingDirected] = useState<boolean>(
+    false
+  );
 
-  const onNodeConnect = (nodeIndex: number) => {
-    if (isConnecting) {
-      if (edgeFirstNode !== undefined) {
-        const newAdjacencyList = adjacencyList.slice();
-        newAdjacencyList[edgeFirstNode].push(nodeIndex);
-        newAdjacencyList[nodeIndex].push(edgeFirstNode);
-        setAdjacencyList(newAdjacencyList);
-        setEdgeFirstNode(undefined);
-        setIsConnecting(false);
-      } else {
-        setEdgeFirstNode(nodeIndex);
-      }
-    }
+  const resetGraphState = () => {
+    setVisited([]);
+    setCurrentEdge([-1, -1]);
+    setGraphInfo([]);
   };
 
-  const onCreateEdge = () => {
-    setEdgeFirstNode(undefined);
-    setIsConnecting(true);
+  const addNewEdge = (
+    firstNode: number,
+    secondNode: number,
+    isDirected: boolean
+  ) => {
+    const newAdjacencyList = adjacencyList.slice();
+    newAdjacencyList[firstNode].push(secondNode);
+    if (!isDirected) newAdjacencyList[secondNode].push(firstNode);
+    setAdjacencyList(newAdjacencyList);
+  };
+
+  const connectNodes = (
+    firstNode: number,
+    secondNode: number,
+    directed: boolean
+  ) => {
+    if (firstNode === undefined || secondNode === undefined) return;
+    if (firstNode === secondNode) return;
+    if (
+      firstNode > adjacencyList.length - 1 ||
+      secondNode > adjacencyList.length - 1
+    )
+      return;
+    if (adjacencyList[firstNode].includes(secondNode)) return;
+    if (adjacencyList[secondNode].includes(firstNode)) return;
+
+    addNewEdge(firstNode, secondNode, directed);
+  };
+
+  const deleteEdge = (firstNode: number, secondNode: number) => {
+    const newAdjacencyList = adjacencyList.slice();
+    newAdjacencyList[firstNode] = newAdjacencyList[firstNode].filter(
+      (val: number) => val !== secondNode
+    );
+    newAdjacencyList[secondNode] = newAdjacencyList[secondNode].filter(
+      (val: number) => val !== firstNode
+    );
+
+    setAdjacencyList(newAdjacencyList);
+    resetGraphState();
+  };
+  const deleteNode = (node: number) => {
+    let newAdjacencyList = adjacencyList.map((val: Array<number>) => {
+      //remove node from neighbours and decrement all nodes bigger than the
+      //removed node
+      return val
+        .filter((neighbour: number) => node !== neighbour)
+        .map((current: number) => {
+          if (current >= node) return current - 1;
+          return current;
+        });
+    });
+
+    newAdjacencyList = newAdjacencyList.filter(
+      (_, index: number) => index !== node
+    );
+
+    const newNodeKeys = nodeKeys.filter((_, index: number) => index !== node);
+
+    setNodeKeys(newNodeKeys);
+    setAdjacencyList(newAdjacencyList);
+    resetGraphState();
+  };
+
+  const handleEdgeModalExit = () => {
+    setIsConnectingUndirected(false);
+    setIsConnectingDirected(false);
+  };
+
+  const onCreateUndirectedEdge = (firstNode: number, secondNode: number) => {
+    connectNodes(firstNode, secondNode, isConnectingDirected);
   };
 
   const addNewNode = () => {
-    let newAdjacencyList = adjacencyList.slice();
+    const newAdjacencyList = adjacencyList.slice();
+    const newNodeKeys = nodeKeys.slice();
     newAdjacencyList.push([]);
+    newNodeKeys.push(uuidv4());
+    setNodeKeys(newNodeKeys);
     setAdjacencyList((prev: Array<Array<number>>) => newAdjacencyList);
   };
 
@@ -55,6 +127,8 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
     if (isVisualizing) return;
     setIsVisualizing(true);
     setVisited([]);
+    setCurrentEdge([-1, -1]);
+    setGraphInfo([]);
 
     switch (selectedAlgorithm) {
       case Algorithms.dfs:
@@ -62,7 +136,8 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
           adjacencyList,
           startingNode,
           setVisited,
-          visualizationSpeed
+          visualizationSpeed,
+          setCurrentEdge
         );
         break;
 
@@ -71,7 +146,9 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
           adjacencyList,
           setVisited,
           startingNode,
-          visualizationSpeed
+          visualizationSpeed,
+          setGraphInfo,
+          setCurrentEdge
         );
         break;
       case Algorithms.bfs:
@@ -105,12 +182,16 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
     if (isVisualizing) return;
     setVisited([]);
     setAdjacencyList([]);
+    setGraphInfo([]);
+    setCurrentEdge([-1, -1]);
+    setNodeKeys([]);
   };
 
   return (
     <div>
       <SideNav
-        onUndirectedEdgeClick={onCreateEdge}
+        onUndirectedEdgeClick={() => setIsConnectingUndirected(true)}
+        onDirectedEdgeClick={() => setIsConnectingDirected(true)}
         startingNode={startingNode}
         setStartingNode={setStartingNode}
         adjacencyList={adjacencyList}
@@ -125,15 +206,29 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
       />
       <Navbar changeTheme={props.changeTheme}></Navbar>
       <GraphCanvas
-        onNodeConnect={(nodeIndex: number) => onNodeConnect(nodeIndex)}
+        onNodeDelete={deleteNode}
+        onEdgeDelete={deleteEdge}
         visited={visited}
         adjacencyList={adjacencyList}
+        nodeKeys={nodeKeys}
         zoomPercentage={zoomPercentage}
+        graphInfo={graphInfo}
+        currentEdge={currentEdge}
+        addNewNode={addNewNode}
+        addNewEdge={addNewEdge}
+        clearCanvas={clearCanvas}
       ></GraphCanvas>
       <VisualizeButton
         isVisualizing={isVisualizing}
         onClick={handleVisualize}
       ></VisualizeButton>
+      <CreateEdgeModal
+        directed={isConnectingDirected}
+        isVisible={isConnectingDirected || isConnectingUndirected}
+        onExit={handleEdgeModalExit}
+        onAddEdge={onCreateUndirectedEdge}
+        adjacencyList={adjacencyList}
+      />
     </div>
   );
 };

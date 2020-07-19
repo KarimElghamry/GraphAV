@@ -1,19 +1,42 @@
-import React, {ReactElement, useRef} from 'react';
+import React, {ReactElement, useRef, useState} from 'react';
 import Container from './Container';
 import GraphNode from '../GraphNode/GraphNode';
 import Edge from '../Edge/Edge';
+import NodeInfo from '../../models/NodeInfo';
+import ContextMenu from '../common/ContextMenu/ContextMenu';
+import ContextTile from '../common/ContextMenu/ContextTile';
+import Position from '../../models/Position';
 
 interface Props {
   adjacencyList: Array<Array<number>>;
+  nodeKeys: Array<string>;
   visited: Array<number>;
   zoomPercentage: number;
-  onNodeConnect: (nodeIndex: number) => void;
+  graphInfo: Array<NodeInfo>;
+  currentEdge: [number, number];
+  onEdgeDelete: (firstNode: number, secondNode: number) => void;
+  onNodeDelete: (node: number) => void;
+  addNewNode: () => void;
+  addNewEdge: (
+    firstNode: number,
+    secondNode: number,
+    isDirected: boolean
+  ) => void;
+  clearCanvas: () => void;
 }
 
 const GraphCanvas: React.FC<Props> = (props: Props): ReactElement => {
+  const [isContextMenuVisible, setIsContextMenuVisible] = useState<boolean>(
+    false
+  );
+  const [contextMenuPosition, setContextMenuPosition] = useState<Position>({
+    top: -100,
+    left: -100,
+  });
   const canvasRef = useRef<HTMLDivElement>(null);
   const adjacencyList = props.adjacencyList;
   const visited = props.visited;
+  const currentEdge = props.currentEdge;
   const nodeRefs = adjacencyList.map((_) => React.createRef<HTMLSpanElement>());
   const reducedEdges: Map<number, Array<number>> = new Map();
   const connectedNodePairs: Array<Array<number>> = [];
@@ -31,28 +54,55 @@ const GraphCanvas: React.FC<Props> = (props: Props): ReactElement => {
     }
   });
 
-  //TODO: change visitedEdge to be more efficient
-  //TODO: add state for visited edge
-  let visitedEdge: [number, number] = [-1, -1];
-  for (let node of visited.reverse()) {
-    if (adjacencyList[visited[visited.length - 1]].includes(node)) {
-      visitedEdge = [node, visited[visited.length - 1]];
-      break;
-    }
-  }
-
   return (
-    <Container ref={canvasRef}>
+    <Container
+      ref={canvasRef}
+      onContextMenu={(e: React.MouseEvent) => {
+        if (canvasRef.current) {
+          e.preventDefault();
+          const navbarHeight = canvasRef.current.offsetWidth < 700 ? 90 : 50;
+          const left = e.clientX;
+          const top = e.clientY;
+          setContextMenuPosition({
+            top: top - navbarHeight,
+            left: left,
+          } as Position);
+          setIsContextMenuVisible(true);
+        }
+      }}
+    >
       {adjacencyList.map((val: Array<number>, index: number) => {
+        const nodeInfo: NodeInfo =
+          index > props.graphInfo.length - 1
+            ? ({shortestPath: undefined, previousNode: undefined} as NodeInfo)
+            : props.graphInfo[index];
+
+        const onDelete = () => {
+          props.onNodeDelete(index);
+        };
+
+        const onEdgeDelete = (secondNode: number) => {
+          props.onEdgeDelete(index, secondNode);
+        };
+
+        const onEdgeAdd = (secondNode: number, isDirected: boolean) => {
+          props.addNewEdge(index, secondNode, isDirected);
+        };
+
         return (
           <GraphNode
-            connectNode={() => props.onNodeConnect(index)}
-            key={index}
+            key={props.nodeKeys[index]}
+            nodeIndex={index}
             canvasRef={canvasRef}
             isActive={visited.includes(index)}
-            content={(index + 1).toString()}
             edgeRef={nodeRefs[index]}
             zoomPercentage={props.zoomPercentage}
+            nodeInfo={nodeInfo}
+            onDelete={onDelete}
+            onEdgeDelete={onEdgeDelete}
+            onEdgeAdd={onEdgeAdd}
+            adjacencyList={adjacencyList}
+            initialPosition={contextMenuPosition}
           >
             <span ref={nodeRefs[index]}></span>
           </GraphNode>
@@ -62,19 +112,53 @@ const GraphCanvas: React.FC<Props> = (props: Props): ReactElement => {
       {/* TODO:add directed logic */}
       {connectedNodePairs.map(([n1, n2]: Array<number>, index: number) => {
         const isVisited: boolean =
-          (visitedEdge[0] === n1 && visitedEdge[1] === n2) ||
-          (visitedEdge[0] === n2 && visitedEdge[1] === n1);
+          (currentEdge[0] === n1 && currentEdge[1] === n2) ||
+          (currentEdge[0] === n2 && currentEdge[1] === n1);
+
         return (
           <Edge
             n1={nodeRefs[n1]}
             n2={nodeRefs[n2]}
-            key={`${n1}${n2}`}
-            isDirected={n1 === 0}
+            key={`${props.nodeKeys[n1]}${props.nodeKeys[n2]}`}
+            edgeKey={`${props.nodeKeys[n1]}${props.nodeKeys[n2]}`}
+            isDirected={!adjacencyList[n2].includes(n1)}
             zoomPercentage={props.zoomPercentage}
             isVisited={isVisited}
           />
         );
       })}
+
+      <ContextMenu
+        isVisible={isContextMenuVisible}
+        position={contextMenuPosition}
+        setIsVisible={(val: boolean) => {
+          setContextMenuPosition({top: -100, left: -100});
+          setIsContextMenuVisible(val);
+        }}
+        canvasRef={canvasRef}
+      >
+        <ContextTile
+          onClick={() => {
+            props.addNewNode();
+            setIsContextMenuVisible(false);
+            setTimeout(
+              () => setContextMenuPosition({top: -100, left: -100}),
+              0
+            );
+          }}
+        >
+          Add node
+        </ContextTile>
+        <ContextTile
+          onClick={() => {
+            props.clearCanvas();
+            setIsContextMenuVisible(false);
+            setContextMenuPosition({top: -100, left: -100});
+          }}
+        >
+          Clear canvas
+        </ContextTile>
+      </ContextMenu>
     </Container>
   );
 };

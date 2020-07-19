@@ -5,7 +5,7 @@ import themes from './themes';
 import Theme from './models/Theme';
 
 const App: React.FC<{}> = (): ReactElement => {
-  const [globalTheme, setGlobalTheme] = useState<Theme>(themes.dark);
+  const [globalTheme, setGlobalTheme] = useState<Theme>(themes.light);
 
   return (
     <ThemeProvider theme={globalTheme}>
