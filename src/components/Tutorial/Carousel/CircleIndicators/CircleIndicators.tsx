@@ -9,9 +9,12 @@ interface Props {
 const CircleIndicators: React.FC<Props> = (props: Props): ReactElement => {
   return (
     <React.Fragment>
-      {Array(props.circlesCount).map((_, index: number) => (
-        <Circle></Circle>
-      ))}
+      {[...Array(props.circlesCount)].map((_, index: number) => {
+        console.log('eminem');
+        return (
+          <Circle key={index} isSelected={index === props.selected}></Circle>
+        );
+      })}
     </React.Fragment>
   );
 };
