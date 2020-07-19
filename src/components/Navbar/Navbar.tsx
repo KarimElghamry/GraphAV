@@ -8,6 +8,7 @@ import ThemeSwitch from './ThemeSwitch/ThemeSwitch';
 
 interface NavbarProps {
   changeTheme: Function;
+  onHelpClick: () => void;
 }
 
 const Navbar: React.FC<NavbarProps> = (props: NavbarProps): ReactElement => {
@@ -17,7 +18,7 @@ const Navbar: React.FC<NavbarProps> = (props: NavbarProps): ReactElement => {
       <Row justifyContent="space-evenly" margin="0 18px">
         <ThemeSwitch changeTheme={props.changeTheme}></ThemeSwitch>
         <GithubLogo></GithubLogo>
-        <Star></Star>
+        <Star onClick={() => props.onHelpClick()}></Star>
       </Row>
     </Container>
   );

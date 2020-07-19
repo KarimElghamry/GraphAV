@@ -11,6 +11,7 @@ import { v4 as uuidv4 } from 'uuid';
 
 interface HomeProps {
   changeTheme: Function;
+  onHelpClick: () => void;
 }
 
 const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
@@ -208,7 +209,10 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
         selectedAlgorithm={selectedAlgorithm}
         setSelectedAlgorithm={setSelectedAlgorithm}
       />
-      <Navbar changeTheme={props.changeTheme}></Navbar>
+      <Navbar
+        onHelpClick={props.onHelpClick}
+        changeTheme={props.changeTheme}
+      ></Navbar>
       <GraphCanvas
         onNodeDelete={deleteNode}
         onEdgeDelete={deleteEdge}
