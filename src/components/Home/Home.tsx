@@ -156,7 +156,9 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
           adjacencyList,
           setVisited,
           startingNode,
-          visualizationSpeed
+          visualizationSpeed,
+          setGraphInfo,
+          setCurrentEdge
         );
         break;
       case Algorithms.bellmanFord:
