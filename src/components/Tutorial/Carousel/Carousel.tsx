@@ -4,6 +4,7 @@ import Arrow from './Arrow';
 import Column from '../../common/Column';
 import Row from '../../common/Row';
 import CircleIndicators from './CircleIndicators/CircleIndicators';
+import ArrowContainer from './ArrowContainer';
 
 interface Props {
   children?: Array<ReactElement>;
@@ -34,9 +35,10 @@ const Carousel: React.FC<Props> = (props: Props): ReactElement => {
 
   return (
     <Container>
-      <Column width="100px" onClick={() => scrollPrevious()}>
+      <ArrowContainer onClick={() => scrollPrevious()}>
         <Arrow direction="left"></Arrow>
-      </Column>
+      </ArrowContainer>
+
       <Column width="100%">
         <Row justifyContent="center" style={{height: '90%', width: '100%'}}>
           {(props.children ?? [<div></div>])[currentSelection]}
@@ -49,9 +51,9 @@ const Carousel: React.FC<Props> = (props: Props): ReactElement => {
           ></CircleIndicators>
         </Row>
       </Column>
-      <Column width="100px" onClick={() => scrollNext()}>
+      <ArrowContainer onClick={() => scrollNext()}>
         <Arrow direction="right"></Arrow>
-      </Column>
+      </ArrowContainer>
     </Container>
   );
 };
