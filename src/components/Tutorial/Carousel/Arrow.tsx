@@ -6,7 +6,8 @@ interface Props {
 }
 
 const Arrow = styled.div<Props>`
-  margin: 20px;
+  ${(props) =>
+    props.direction === 'left' ? 'margin-left: 25%' : 'margin-right: 25%'};
   border: solid
     ${(props) =>
       props.theme.name === 'dark'

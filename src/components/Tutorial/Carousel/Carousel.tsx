@@ -35,7 +35,7 @@ const Carousel: React.FC<Props> = (props: Props): ReactElement => {
 
   return (
     <Container>
-      <ArrowContainer onClick={() => scrollPrevious()}>
+      <ArrowContainer direction="left" onClick={() => scrollPrevious()}>
         <Arrow direction="left"></Arrow>
       </ArrowContainer>
 
@@ -51,7 +51,7 @@ const Carousel: React.FC<Props> = (props: Props): ReactElement => {
           ></CircleIndicators>
         </Row>
       </Column>
-      <ArrowContainer onClick={() => scrollNext()}>
+      <ArrowContainer direction="right" onClick={() => scrollNext()}>
         <Arrow direction="right"></Arrow>
       </ArrowContainer>
     </Container>
