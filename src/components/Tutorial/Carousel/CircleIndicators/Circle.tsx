@@ -19,6 +19,7 @@ const Circle = styled.div<Props>`
       ? '#C4C4C4'
       : 'white'};
   cursor: pointer;
+  transition: background-color 0.3s;
 `;
 
 export default Circle;

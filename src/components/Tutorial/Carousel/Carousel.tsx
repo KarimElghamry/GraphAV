@@ -1,4 +1,4 @@
-import React, {ReactElement} from 'react';
+import React, {ReactElement, useState} from 'react';
 import Container from './Container';
 import Arrow from './Arrow';
 import Column from '../../common/Column';
@@ -10,6 +10,8 @@ interface Props {
 }
 
 const Carousel: React.FC<Props> = (props: Props): ReactElement => {
+  const [currentSelection, setCurrentSelection] = useState<number>(0);
+
   return (
     <Container>
       <Column width="100px">
