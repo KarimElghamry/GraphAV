@@ -6,7 +6,7 @@ interface Props {
 }
 
 const Arrow = styled.div<Props>`
-  margin: 15px;
+  margin: 20px;
   border: solid
     ${(props) =>
       props.theme.name === 'dark'
@@ -14,12 +14,12 @@ const Arrow = styled.div<Props>`
         : themes.dark.navbar.background};
   border-width: 0 8px 8px 0;
   display: inline-block;
-  padding: 8px;
+  padding: 10px;
+  cursor: pointer;
 
   transform: rotate(
     ${(props) => (props.direction === 'left' ? '135deg' : '-45deg')}
   );
-
   -webkit-transform: rotate(
     ${(props) => (props.direction === 'left' ? '135deg' : '-45deg')}
   );
