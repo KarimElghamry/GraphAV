@@ -6,7 +6,7 @@ import Row from '../../common/Row';
 import CircleIndicators from './CircleIndicators/CircleIndicators';
 
 interface Props {
-  children?: Array<ReactElement> | ReactElement;
+  children?: Array<ReactElement>;
 }
 
 const Carousel: React.FC<Props> = (props: Props): ReactElement => {
@@ -14,6 +14,14 @@ const Carousel: React.FC<Props> = (props: Props): ReactElement => {
 
   const onCircleSelect = (index: number) => {
     setCurrentSelection(index);
+  };
+
+  const scrollNext = () => {
+    if (currentSelection === (props.children?.length ?? 1) - 1) {
+      setCurrentSelection(0);
+    } else {
+      setCurrentSelection((prev) => prev + 1);
+    }
   };
 
   return (
@@ -27,7 +35,7 @@ const Carousel: React.FC<Props> = (props: Props): ReactElement => {
         </Row>
         <Row justifyContent="center" style={{height: '10%', width: '100%'}}>
           <CircleIndicators
-            circlesCount={7}
+            circlesCount={props.children?.length ?? 0}
             selected={currentSelection}
             onCircleSelect={onCircleSelect}
           ></CircleIndicators>

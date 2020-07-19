@@ -8,6 +8,10 @@ const Tutorial: React.FC = (): ReactElement => {
       <div style={{width: '600px', height: '500px'}}>
         <Carousel>
           <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
         </Carousel>
       </div>
     </Modal>
