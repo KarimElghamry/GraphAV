@@ -1,69 +1,60 @@
 import asyncTimout from '../helpers/asyncTimout'
-
-interface NodeInfo {
-    shortestDistance: number;
-    prevNode: number | undefined;
-}
-
-/*
- * BELLMAN-FORD
- * INPUT: Graph (adjacency), Weight, Source
- * Relax
- *
-*/
+import NodeInfo from '../models/NodeInfo';
 
 const bellmanFord = async (
     startingNode: number,
     adjacencyList: Array<Array<number>>,
     visualizationSpeed: number,
     setVisited: Function,
+    setGraphInfo: Function,
+    setCurrentEdge: Function,
 ) => {
-    const infoTable: Array<NodeInfo> = [];
-
-
-    // Init
-    adjacencyList.forEach((_, index: number) => {
-        const initial: NodeInfo = {
-            shortestDistance: Number.MAX_SAFE_INTEGER,     // infinite
-            prevNode: undefined, //nil
+    // init
+    const infoTable: Array<NodeInfo> = adjacencyList.map((neighbours, node) => {
+        return {
+            shortestPath: undefined,    // infinite
+            previousNode: undefined,    //nil
         }
-        infoTable[index] = initial;
     });
-    infoTable[startingNode].shortestDistance = 0;
+    infoTable[startingNode].shortestPath = 0;
+    setGraphInfo(infoTable)
 
     // Relax edges
     for (let v: number = 0; v < adjacencyList.length - 1; v++) {
-        const visited: Array<number> = [];
-        setVisited(visited);
-        await asyncTimout(visualizationSpeed);
         for (const currentNode in adjacencyList) {
-            visited.push(Number.parseInt(currentNode));
-            setVisited(visited.slice());
+            const node: number = Number.parseInt(currentNode);
+            setVisited([node]);
             await asyncTimout(visualizationSpeed);
-            for (const connectedNode of adjacencyList[currentNode]) {
-                if (infoTable[connectedNode].shortestDistance > infoTable[currentNode].shortestDistance + 1) {  // TODO: replace +1 with edge weight
-                    visited.push(connectedNode);
-                    setVisited(visited.slice());
+            if (infoTable[currentNode].shortestPath !== undefined) {
+
+                for (const connectedNode of adjacencyList[currentNode]) {
+                    setCurrentEdge([node, connectedNode]);
+                    if ((infoTable[connectedNode].shortestPath ?? Number.MAX_SAFE_INTEGER) >
+                        (infoTable[node].shortestPath ?? Number.MAX_SAFE_INTEGER) + 1) {  // TODO: replace +1 with edge weight
+                        infoTable[connectedNode].shortestPath = (infoTable[node].shortestPath ?? 0) + 1;    // TODO: replace +1 with edge weight
+                        infoTable[connectedNode].previousNode = node;
+                        setGraphInfo(infoTable.slice());
+                    }
                     await asyncTimout(visualizationSpeed);
-                    infoTable[connectedNode].shortestDistance = infoTable[currentNode].shortestDistance + 1;    // TODO: replace +1 with edge weight
-                    infoTable[connectedNode].prevNode = Number.parseInt(currentNode);
+                    setCurrentEdge([undefined, undefined]);
                 }
             }
         }
     }
 
     // check negative weight cycles
-    const visited: Array<number> = [];
+    // TODO: check functionality after adding weights
     for (const currentNode in adjacencyList) {
-        visited.push(Number.parseInt(currentNode));
-        setVisited(visited.slice());
+        setVisited([Number.parseInt(currentNode)]);
         await asyncTimout(visualizationSpeed);
         for (const connectedNode of adjacencyList[currentNode]) {
-            if (infoTable[connectedNode].shortestDistance + 1 < infoTable[currentNode].shortestDistance) {// TODO: replace +1 with weight
+            if ((infoTable[connectedNode].shortestPath ?? Number.MAX_SAFE_INTEGER) + 1 < (infoTable[connectedNode].shortestPath ?? Number.MAX_SAFE_INTEGER)) {// TODO: replace +1 with weight
                 return; //TODO: add negative cycle alert
             }
         }
     }
+
+    setVisited(adjacencyList.map((_, index) => index));
 }
 
 
