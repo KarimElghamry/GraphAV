@@ -5,19 +5,21 @@ import AddEdgeTile from '../../../GraphNode/AddEdgeTile';
 import DeleteEdgeTile from '../../../GraphNode/DeleteEdgeTile';
 import ContextMenu from '../../../common/ContextMenu/ContextMenu';
 import Position from '../../../../models/Position';
-
+import ClearButton from '../../../SideNav/ClearButton';
+import HeadingContainer from '../HeadingContainer';
 const DeleteNodeTut: React.FC = (): ReactElement => {
     const ref = React.createRef<HTMLDivElement>();
-    const pos: Position = { top: -50, left: -180 };
+    const nodePos: Position = { top: 50, left: -110 };
     return (
         <div>
-
-            <NodeContainer position={pos} ref={ref}>
-                1
-        </NodeContainer >
+            <HeadingContainer >
+                <h1>Delete Nodes</h1>
+                <h4>Right click on node to delete OR delete all nodes from the tool menu</h4>
+            </HeadingContainer>
+            <NodeContainer position={nodePos} ref={ref}>1</NodeContainer >
             <ContextMenu
                 isVisible={true}
-                position={{ top: pos.top + 50, left: pos.left + 50 }}
+                position={{ top: nodePos.top + 50, left: nodePos.left + 50 }}
                 setIsVisible={(val: boolean) => { }}
                 canvasRef={ref}
             >
@@ -44,6 +46,7 @@ const DeleteNodeTut: React.FC = (): ReactElement => {
                 ></AddEdgeTile>
             </ContextMenu>
 
+            <ClearButton style={{ position: 'relative', left: 140, top: 50 }}>Clear Canvas</ClearButton>
         </div>
 
     );
