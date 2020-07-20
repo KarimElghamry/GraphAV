@@ -6,6 +6,8 @@ import ContextMenu from '../../../common/ContextMenu/ContextMenu';
 import AddEdgeTile from '../../../GraphNode/AddEdgeTile';
 import DeleteEdgeTile from '../../../GraphNode/DeleteEdgeTile';
 import ContextTile from '../../../common/ContextMenu/ContextTile';
+import OptionButton from '../../../SideNav/Options/OptionButton';
+import { UndirectedIcon, DirectedIcon } from '../../../SideNav/Options/OptionIcons';
 
 const AddEdgeTut: React.FC = (): ReactElement => {
     const nodePos: Position = { top: -50, left: -230 };
@@ -22,30 +24,42 @@ const AddEdgeTut: React.FC = (): ReactElement => {
                 isVisible={true}
                 position={{ top: nodePos.top + 50, left: nodePos.left + 50 }}
                 setIsVisible={(val: boolean) => { }}
-                canvasRef={ref}
-            >
-
+                canvasRef={ref}>
                 <ContextTile>Delete node</ContextTile>
                 <DeleteEdgeTile
                     onEdgeDelete={() => { }}
                     neighbours={[]}
                     canvasRef={ref}
-                ></DeleteEdgeTile>
+                />
                 <AddEdgeTile
                     adjacencyList={[[14, 15, 16], [5, 6, 7], [8, 9, 10], [11, 12, 13]]}
                     nodeIndex={0}
                     canvasRef={ref}
                     isDirected={false}
                     onAdd={() => { }}
-                ></AddEdgeTile>
+                />
                 <AddEdgeTile
                     adjacencyList={[[14, 15, 16], [5, 6, 7], [8, 9, 10], [11, 12, 13]]}
                     nodeIndex={0}
                     canvasRef={ref}
                     isDirected={true}
                     onAdd={() => { }}
-                ></AddEdgeTile>
+                />
             </ContextMenu>
+            <div style={{ position: "absolute", top: 50, left: 70 }}>
+                <OptionButton
+                    tooltipContent="Add undirected edge"
+                    onClick={() => { }}>
+                    <UndirectedIcon></UndirectedIcon>
+                </OptionButton>
+            </div>
+            <div style={{ position: "absolute", top: 50, left: 170 }}>
+                <OptionButton
+                    tooltipContent="Add directed edge"
+                    onClick={() => { }}>
+                    <DirectedIcon></DirectedIcon>
+                </OptionButton>
+            </div>
         </div>
     );
 }
