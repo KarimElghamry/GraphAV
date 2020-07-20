@@ -8,6 +8,7 @@ import DeleteEdgeTile from '../../../GraphNode/DeleteEdgeTile';
 import ContextTile from '../../../common/ContextMenu/ContextTile';
 import OptionButton from '../../../SideNav/Options/OptionButton';
 import { UndirectedIcon, DirectedIcon } from '../../../SideNav/Options/OptionIcons';
+import OptionButtonContainer from '../OptionButtonContainer';
 
 const AddEdgeTut: React.FC = (): ReactElement => {
     const nodePos: Position = { top: -50, left: -230 };
@@ -46,20 +47,20 @@ const AddEdgeTut: React.FC = (): ReactElement => {
                     onAdd={() => { }}
                 />
             </ContextMenu>
-            <div style={{ position: "absolute", top: 50, left: 70 }}>
+            <OptionButtonContainer style={{ left: 70, top: 50 }}>
                 <OptionButton
                     tooltipContent="Add undirected edge"
                     onClick={() => { }}>
                     <UndirectedIcon></UndirectedIcon>
                 </OptionButton>
-            </div>
-            <div style={{ position: "absolute", top: 50, left: 170 }}>
+            </OptionButtonContainer>
+            <OptionButtonContainer style={{ left: 160, top: 50 }}>
                 <OptionButton
                     tooltipContent="Add directed edge"
                     onClick={() => { }}>
                     <DirectedIcon></DirectedIcon>
                 </OptionButton>
-            </div>
+            </OptionButtonContainer>
         </div>
     );
 }
