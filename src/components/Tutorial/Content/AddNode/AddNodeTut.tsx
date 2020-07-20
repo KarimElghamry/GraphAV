@@ -16,10 +16,16 @@ const AddNoteTut: React.FC = (): ReactElement => {
                 <h4>Right click on the canvas to add node at that position OR add node from the tool menu</h4>
             </HeadingContainer>
             <div style={{ left: -150, top: 50, position: "absolute" }}>
-                <OptionButton tooltipContent="Add node" onClick={() => { }} >
-                    <AddIcon></AddIcon>
-                </OptionButton>
-            </div>
+                <div style={{ position: "absolute" }}>
+
+                    <OptionButton
+                        tooltipContent="Add node"
+                        onClick={() => { }}
+                    >
+                        <AddIcon></AddIcon>
+                    </OptionButton>
+                </div>
+            </div >
             <ContextMenu
                 isVisible={true}
                 position={{ top: 36, left: 0 }}
