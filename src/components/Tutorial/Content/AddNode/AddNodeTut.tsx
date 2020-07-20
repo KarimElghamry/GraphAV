@@ -11,7 +11,7 @@ const AddNoteTut: React.FC = (): ReactElement => {
     return (
         <div>
 
-            <HeadingContainer style={{ left: -230, top: -214 }}>
+            <HeadingContainer >
                 <h1>Add Node</h1>
                 <h4>Right click on the canvas to add node at that position OR add node from the tool menu</h4>
             </HeadingContainer>

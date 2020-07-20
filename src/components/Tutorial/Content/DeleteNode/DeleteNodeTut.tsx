@@ -12,7 +12,10 @@ const DeleteNodeTut: React.FC = (): ReactElement => {
     const nodePos: Position = { top: 50, left: -110 };
     return (
         <div>
-            <HeadingContainer >
+            <HeadingContainer style={{
+                top: -150,
+                left: -110,
+            }}>
                 <h1>Delete Nodes</h1>
                 <h4>Right click on node to delete OR delete all nodes from the tool menu</h4>
             </HeadingContainer>
