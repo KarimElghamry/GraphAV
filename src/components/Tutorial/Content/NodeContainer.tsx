@@ -12,7 +12,7 @@ const Container = styled.div.attrs((props: Props) => ({
     },
 })) <Props>`
   z-index: 1;
-  position: relative;
+  position: absolute;
   display: flex;
   justify-content: center;
   align-items: center;
