@@ -1,5 +1,5 @@
 import React, { ReactElement } from 'react';
-import NodeContainer from './NodeContainer';
+import NodeContainer from '../NodeContainer';
 import ContextTile from '../../../common/ContextMenu/ContextTile';
 import AddEdgeTile from '../../../GraphNode/AddEdgeTile';
 import DeleteEdgeTile from '../../../GraphNode/DeleteEdgeTile';

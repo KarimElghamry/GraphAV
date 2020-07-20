@@ -15,9 +15,9 @@ const Tutorial: React.FC<Props> = (props: Props): ReactElement => {
     <Modal isVisible={props.isVisible} onExit={props.onExit}>
       <div style={{ width: '600px', height: '500px' }}>
         <Carousel>
+          <ContentContainer><AddEdgeTut /></ContentContainer>
           <div>WELCOME</div>
           <ContentContainer><AddNodeTut /></ContentContainer>
-          <ContentContainer><AddEdgeTut /></ContentContainer>
           <ContentContainer><DeleteNodeTut /></ContentContainer>
           <div>5</div>
         </Carousel>

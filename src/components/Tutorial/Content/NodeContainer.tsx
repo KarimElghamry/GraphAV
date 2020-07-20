@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import Position from '../../../../models/Position';
+import Position from '../../../models/Position';
 
 interface Props {
     position: Position;
