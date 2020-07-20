@@ -1,12 +1,15 @@
 import React, { ReactElement } from 'react';
-import NodeContainer from './NodeContainer';
-const AddNodeTut: React.FC = (): ReactElement => {
+
+
+const AddNoteTut: React.FC = (): ReactElement => {
     return (
-        <NodeContainer position={{ top: 0, left: -150 }}>
-            1
-        </NodeContainer >
+        <div>
+
+
+        </div>
+
     );
 }
 
 
-export default AddNodeTut;
+export default AddNoteTut;
