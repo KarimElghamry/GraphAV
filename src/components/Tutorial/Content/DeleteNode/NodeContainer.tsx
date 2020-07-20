@@ -17,8 +17,8 @@ const Container = styled.div.attrs((props: Props) => ({
   justify-content: center;
   align-items: center;
   font-size: 25px;
-  height: 88px;
-  width: 88px;
+  height: 77px;
+  width: 77px;
   box-sizing: border-box;
   background-color: ${(props) => props.theme.nodeInactive.background};
   color: white;
