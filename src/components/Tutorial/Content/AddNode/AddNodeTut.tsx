@@ -5,7 +5,7 @@ const AddNoteTut: React.FC = (): ReactElement => {
     return (
         <div>
 
-
+            tas
         </div>
 
     );
