@@ -1,10 +1,11 @@
 import React, {ReactElement} from 'react';
+import Container from './Container';
 
 const WelcomeScreen: React.FC = (): ReactElement => {
   return (
-    <div>
-      <div></div>
-    </div>
+    <Container>
+      <div>EMINEM</div>
+    </Container>
   );
 };
 
