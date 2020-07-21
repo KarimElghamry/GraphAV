@@ -5,6 +5,7 @@ const Container = styled.div`
   height: 100%;
   display: flex;
   flex-direction: row;
+  user-select: none;
 `;
 
 export default Container;
