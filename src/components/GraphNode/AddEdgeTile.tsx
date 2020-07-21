@@ -47,7 +47,7 @@ const AddEdgeTile: React.FC<Props> = (props: Props): ReactElement => {
           </SubMenu>
         ) :
           <SubMenu canvasRef={props.canvasRef}>
-            <ContextTile clickable={false}>No Available Nodes</ContextTile>
+            <ContextTile clickable={false}>No available nodes...</ContextTile>
           </SubMenu> : null}
     </ContextTile>
   );
