@@ -1,10 +1,11 @@
-import styled, {keyframes} from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import Position from '../../../models/Position';
 
 interface Props {
   isVisible: boolean;
   position: Position;
   height: number;
+  invertedTheme?: boolean;
 }
 
 const sizeAnim = keyframes`
@@ -25,12 +26,14 @@ const Container = styled.div.attrs((props: Props) => ({
     left: `${props.position.left}px`,
     height: `${props.height}px`,
   },
-}))<Props>`
+})) <Props>`
   position: absolute;
   width: 200px;
   background-color: ${(props) => props.theme.nodeActive.background};
   border-radius: 5px;
-  border: 2px solid ${(props) => props.theme.edge.background};
+  border: 2px solid ${(props) => props.invertedTheme ?
+    props.theme.canvas.background :
+    props.theme.edge.background};
   z-index: 2;
   cursor: pointer;
   display: ${(props) => (props.isVisible ? 'flex' : 'none')};
