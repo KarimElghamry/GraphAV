@@ -1,4 +1,4 @@
-import React, {ReactElement, useState} from 'react';
+import React, { ReactElement, useState } from 'react';
 import ContextTile from '../common/ContextMenu/ContextTile';
 import Arrow from '../common/ContextMenu/Arrow';
 import SubMenu from '../common/ContextMenu/SubMenu/SubMenu';
@@ -35,15 +35,20 @@ const AddEdgeTile: React.FC<Props> = (props: Props): ReactElement => {
     >
       <div>{`Add ${props.isDirected ? 'directed' : 'undirected'} edge`}</div>
       <Arrow></Arrow>
-      {isHovered && renderedList.length !== 0 ? (
-        <SubMenu canvasRef={props.canvasRef}>
-          {renderedList.map((val: number) => (
-            <ContextTile onClick={() => props.onAdd(val, props.isDirected)}>
-              {val + 1}
-            </ContextTile>
-          ))}
-        </SubMenu>
-      ) : null}
+      {isHovered ?
+
+        renderedList.length !== 0 ? (
+          <SubMenu canvasRef={props.canvasRef}>
+            {renderedList.map((val: number) => (
+              <ContextTile onClick={() => props.onAdd(val, props.isDirected)}>
+                {val + 1}
+              </ContextTile>
+            ))}
+          </SubMenu>
+        ) :
+          <SubMenu canvasRef={props.canvasRef}>
+            <ContextTile clickable={false}>No Available Nodes</ContextTile>
+          </SubMenu> : null}
     </ContextTile>
   );
 };
