@@ -22,6 +22,7 @@ const DeleteNodeTut: React.FC = (): ReactElement => {
                 position={{ top: nodePos.top + 50, left: nodePos.left + 50 }}
                 setIsVisible={(val: boolean) => { }}
                 canvasRef={ref}
+                invertedTheme={true}
             >
 
                 <ContextTile>Delete node</ContextTile>

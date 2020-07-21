@@ -25,10 +25,10 @@ const AddNoteTut: React.FC = (): ReactElement => {
                 </OptionButton>
             </OptionButtonContainer >
             <ContextMenu
+                invertedTheme={true}
                 isVisible={true}
                 position={{ top: 36, left: 0 }}
-                setIsVisible={(val: boolean) => {
-                }}
+                setIsVisible={(val: boolean) => { }}
                 canvasRef={React.createRef<HTMLDivElement>()}
             >
                 <ContextTile>
