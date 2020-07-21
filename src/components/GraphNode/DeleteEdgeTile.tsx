@@ -1,4 +1,4 @@
-import React, {ReactElement, useState} from 'react';
+import React, { ReactElement, useState } from 'react';
 import ContextTile from '../common/ContextMenu/ContextTile';
 import Arrow from '../common/ContextMenu/Arrow';
 import SubMenu from '../common/ContextMenu/SubMenu/SubMenu';
@@ -19,15 +19,18 @@ const DeleteEdgeTile: React.FC<Props> = (props: Props): ReactElement => {
     >
       <div>Delete edge</div>
       <Arrow></Arrow>
-      {isHovered && props.neighbours.length !== 0 ? (
-        <SubMenu canvasRef={props.canvasRef}>
-          {props.neighbours.map((val: number) => (
-            <ContextTile key={val} onClick={() => props.onEdgeDelete(val)}>
-              {val + 1}
-            </ContextTile>
-          ))}
-        </SubMenu>
-      ) : null}
+      {isHovered ?
+        props.neighbours.length !== 0 ? (
+          <SubMenu canvasRef={props.canvasRef}>
+            {props.neighbours.map((val: number) => (
+              <ContextTile key={val} onClick={() => props.onEdgeDelete(val)}>
+                {val + 1}
+              </ContextTile>
+            ))}
+          </SubMenu>
+        ) : <SubMenu canvasRef={props.canvasRef}>
+            <ContextTile clickable={false}>No edges...</ContextTile>
+          </SubMenu> : null}
     </ContextTile>
   );
 };
