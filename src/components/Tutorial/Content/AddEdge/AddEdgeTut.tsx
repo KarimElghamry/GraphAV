@@ -25,7 +25,10 @@ const AddEdgeTut: React.FC = (): ReactElement => {
                 isVisible={true}
                 position={{ top: nodePos.top + 50, left: nodePos.left + 50 }}
                 setIsVisible={(val: boolean) => { }}
-                canvasRef={ref}>
+                canvasRef={ref}
+                invertedTheme={true}
+            >
+
                 <ContextTile>Delete node</ContextTile>
                 <DeleteEdgeTile
                     onEdgeDelete={() => { }}
