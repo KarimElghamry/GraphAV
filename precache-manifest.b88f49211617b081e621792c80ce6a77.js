@@ -1,27 +1,31 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "2620339314b935eb4a71530c624dc448",
+    "revision": "853f0d9fd24bcd73cf35de67fd7d2de8",
     "url": "/GraphAV/index.html"
   },
   {
-    "revision": "0f7904c5c2ecdf8fe312",
+    "revision": "871ff1a7d90496da097e",
     "url": "/GraphAV/static/css/main.39df5605.chunk.css"
   },
   {
-    "revision": "ec45620c0117a1c57c61",
-    "url": "/GraphAV/static/js/2.55136a6d.chunk.js"
+    "revision": "6624a5865e300c9b0174",
+    "url": "/GraphAV/static/js/2.0840ed14.chunk.js"
   },
   {
     "revision": "c64c486544348f10a6d6c716950bc223",
-    "url": "/GraphAV/static/js/2.55136a6d.chunk.js.LICENSE.txt"
+    "url": "/GraphAV/static/js/2.0840ed14.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "0f7904c5c2ecdf8fe312",
-    "url": "/GraphAV/static/js/main.5aa960db.chunk.js"
+    "revision": "871ff1a7d90496da097e",
+    "url": "/GraphAV/static/js/main.51f32f0e.chunk.js"
   },
   {
     "revision": "0fe0ffda80151ca027ef",
     "url": "/GraphAV/static/js/runtime-main.2e1f4f99.js"
+  },
+  {
+    "revision": "27ef8b0aae4fd46e827e274c99fbd6ed",
+    "url": "/GraphAV/static/media/GraphAV-logo.27ef8b0a.png"
   },
   {
     "revision": "69670dd3cc7de1d6a3466f3c4b968764",
