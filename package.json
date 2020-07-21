@@ -1,6 +1,6 @@
 {
   "name": "graph-algorithms-visualizer",
-  "homepage": "https://karimelghamry.github.io/Graph-Algorithms-Visualizer",
+  "homepage": "https://karimelghamry.github.io/GraphAV",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
