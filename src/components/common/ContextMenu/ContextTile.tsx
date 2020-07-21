@@ -1,6 +1,10 @@
 import styled from 'styled-components';
 
-const ContextTile = styled.div`
+interface Props {
+  clickable?: boolean;
+}
+
+const ContextTile = styled.div<Props>`
   width: 90%;
   height: 40px;
   padding-right: 5%;
@@ -13,7 +17,7 @@ const ContextTile = styled.div`
   transition: background-color 0.2s;
 
   &:hover {
-    background-color: ${(props) => props.theme.nodeInactive.background};
+    background-color: ${(props) => props.clickable === false ? 'transparent' : props.theme.nodeInactive.background};
   }
 `;
 
