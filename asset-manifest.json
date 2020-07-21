@@ -1,28 +1,28 @@
 {
   "files": {
-    "main.css": "/Graph-Algorithms-Visualizer/static/css/main.cc6069f2.chunk.css",
-    "main.js": "/Graph-Algorithms-Visualizer/static/js/main.a0d27b47.chunk.js",
-    "main.js.map": "/Graph-Algorithms-Visualizer/static/js/main.a0d27b47.chunk.js.map",
-    "runtime-main.js": "/Graph-Algorithms-Visualizer/static/js/runtime-main.ebb9fd2b.js",
-    "runtime-main.js.map": "/Graph-Algorithms-Visualizer/static/js/runtime-main.ebb9fd2b.js.map",
-    "static/js/2.83ad81a3.chunk.js": "/Graph-Algorithms-Visualizer/static/js/2.83ad81a3.chunk.js",
-    "static/js/2.83ad81a3.chunk.js.map": "/Graph-Algorithms-Visualizer/static/js/2.83ad81a3.chunk.js.map",
-    "index.html": "/Graph-Algorithms-Visualizer/index.html",
-    "precache-manifest.7ec516164286255dbca6a52970bca395.js": "/Graph-Algorithms-Visualizer/precache-manifest.7ec516164286255dbca6a52970bca395.js",
-    "service-worker.js": "/Graph-Algorithms-Visualizer/service-worker.js",
-    "static/css/main.cc6069f2.chunk.css.map": "/Graph-Algorithms-Visualizer/static/css/main.cc6069f2.chunk.css.map",
-    "static/js/2.83ad81a3.chunk.js.LICENSE.txt": "/Graph-Algorithms-Visualizer/static/js/2.83ad81a3.chunk.js.LICENSE.txt",
-    "static/media/index.css": "/Graph-Algorithms-Visualizer/static/media/Ramabhadra.69670dd3.ttf",
-    "static/media/add.1c176638.svg": "/Graph-Algorithms-Visualizer/static/media/add.1c176638.svg",
-    "static/media/directed.da0de4af.svg": "/Graph-Algorithms-Visualizer/static/media/directed.da0de4af.svg",
-    "static/media/gh-logo.png": "/Graph-Algorithms-Visualizer/static/media/gh-logo.89c2c067.png",
-    "static/media/star.d2e27e97.svg": "/Graph-Algorithms-Visualizer/static/media/star.d2e27e97.svg",
-    "static/media/undirected.2611a883.svg": "/Graph-Algorithms-Visualizer/static/media/undirected.2611a883.svg"
+    "main.css": "/GraphAV/static/css/main.39df5605.chunk.css",
+    "main.js": "/GraphAV/static/js/main.5aa960db.chunk.js",
+    "main.js.map": "/GraphAV/static/js/main.5aa960db.chunk.js.map",
+    "runtime-main.js": "/GraphAV/static/js/runtime-main.2e1f4f99.js",
+    "runtime-main.js.map": "/GraphAV/static/js/runtime-main.2e1f4f99.js.map",
+    "static/js/2.55136a6d.chunk.js": "/GraphAV/static/js/2.55136a6d.chunk.js",
+    "static/js/2.55136a6d.chunk.js.map": "/GraphAV/static/js/2.55136a6d.chunk.js.map",
+    "index.html": "/GraphAV/index.html",
+    "precache-manifest.18d47a7aa346abe114a108fd4ba63506.js": "/GraphAV/precache-manifest.18d47a7aa346abe114a108fd4ba63506.js",
+    "service-worker.js": "/GraphAV/service-worker.js",
+    "static/css/main.39df5605.chunk.css.map": "/GraphAV/static/css/main.39df5605.chunk.css.map",
+    "static/js/2.55136a6d.chunk.js.LICENSE.txt": "/GraphAV/static/js/2.55136a6d.chunk.js.LICENSE.txt",
+    "static/media/index.css": "/GraphAV/static/media/Ramabhadra.69670dd3.ttf",
+    "static/media/add.1c176638.svg": "/GraphAV/static/media/add.1c176638.svg",
+    "static/media/directed.da0de4af.svg": "/GraphAV/static/media/directed.da0de4af.svg",
+    "static/media/gh-logo.png": "/GraphAV/static/media/gh-logo.89c2c067.png",
+    "static/media/star.d2e27e97.svg": "/GraphAV/static/media/star.d2e27e97.svg",
+    "static/media/undirected.2611a883.svg": "/GraphAV/static/media/undirected.2611a883.svg"
   },
   "entrypoints": [
-    "static/js/runtime-main.ebb9fd2b.js",
-    "static/js/2.83ad81a3.chunk.js",
-    "static/css/main.cc6069f2.chunk.css",
-    "static/js/main.a0d27b47.chunk.js"
+    "static/js/runtime-main.2e1f4f99.js",
+    "static/js/2.55136a6d.chunk.js",
+    "static/css/main.39df5605.chunk.css",
+    "static/js/main.5aa960db.chunk.js"
   ]
 }
