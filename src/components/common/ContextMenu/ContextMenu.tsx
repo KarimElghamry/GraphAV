@@ -1,4 +1,4 @@
-import React, {ReactElement, useRef, useEffect} from 'react';
+import React, { ReactElement, useRef, useEffect } from 'react';
 import Container from './Container';
 import Position from '../../../models/Position';
 
@@ -8,6 +8,7 @@ interface Props {
   position: Position;
   canvasRef: React.RefObject<HTMLDivElement>;
   children: Array<ReactElement>;
+  invertedTheme?: boolean
 }
 
 const ContextMenu: React.FC<Props> = (props: Props): ReactElement => {
@@ -70,6 +71,7 @@ const ContextMenu: React.FC<Props> = (props: Props): ReactElement => {
           }}
           isVisible={props.isVisible}
           position={props.position}
+          invertedTheme={props.invertedTheme}
         >
           {props.children}
         </Container>
