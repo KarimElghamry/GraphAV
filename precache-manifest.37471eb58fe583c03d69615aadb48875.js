@@ -1,11 +1,11 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "853f0d9fd24bcd73cf35de67fd7d2de8",
+    "revision": "8bd79e3d3e22b4ed4748f2d5cb6cca25",
     "url": "/GraphAV/index.html"
   },
   {
-    "revision": "871ff1a7d90496da097e",
-    "url": "/GraphAV/static/css/main.39df5605.chunk.css"
+    "revision": "044f05bd4a3b01d98339",
+    "url": "/GraphAV/static/css/main.63c8d1a9.chunk.css"
   },
   {
     "revision": "6624a5865e300c9b0174",
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/GraphAV/static/js/2.0840ed14.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "871ff1a7d90496da097e",
-    "url": "/GraphAV/static/js/main.51f32f0e.chunk.js"
+    "revision": "044f05bd4a3b01d98339",
+    "url": "/GraphAV/static/js/main.481aa568.chunk.js"
   },
   {
     "revision": "0fe0ffda80151ca027ef",
@@ -32,8 +32,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/GraphAV/static/media/Ramabhadra.69670dd3.ttf"
   },
   {
-    "revision": "1c17663821a16a2a354b6a9fe96a86d7",
-    "url": "/GraphAV/static/media/add.1c176638.svg"
+    "revision": "22ff7e0c3368315713214d8c96626a19",
+    "url": "/GraphAV/static/media/add.22ff7e0c.svg"
   },
   {
     "revision": "da0de4af439807c2b83611015524ff91",
@@ -44,11 +44,11 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/GraphAV/static/media/gh-logo.89c2c067.png"
   },
   {
-    "revision": "d2e27e971d844c84603370d54672e1e9",
-    "url": "/GraphAV/static/media/star.d2e27e97.svg"
+    "revision": "4f7c49ea2d7b82b3a7e9b399332892f7",
+    "url": "/GraphAV/static/media/star.4f7c49ea.svg"
   },
   {
-    "revision": "2611a883dd219a8df0a57766a7bd6c8a",
-    "url": "/GraphAV/static/media/undirected.2611a883.svg"
+    "revision": "33cfd864eefecc7391a42320ddcbbc9e",
+    "url": "/GraphAV/static/media/undirected.33cfd864.svg"
   }
 ]);
