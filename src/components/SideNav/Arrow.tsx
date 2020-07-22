@@ -9,7 +9,8 @@ const Arrow = styled.div<Props>`
   border-width: 0 4px 4px 0;
   display: inline-block;
   padding: 4px;
-  margin-left: 6px;
+  margin-right: 10px;
+  margin-left: ${(props) => (props.isVisible ? '5px' : '0px')};
   transform: ${(props) =>
     props.isVisible ? 'rotate(135deg)' : 'rotate(-45deg)'};
   -webkit-transform: ${(props) =>
