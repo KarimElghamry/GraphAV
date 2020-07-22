@@ -77,7 +77,9 @@ const SideNav: React.FC<Props> = (props: Props): ReactElement => {
         ></Dropdown>
       </Row>
       <Row justifyContent="center">
-        <AlgorithmsDescription></AlgorithmsDescription>
+        <AlgorithmsDescription
+          selectedAlgorithm={props.selectedAlgorithm}
+        ></AlgorithmsDescription>
       </Row>
       <ItemText>Starting Node</ItemText>
 

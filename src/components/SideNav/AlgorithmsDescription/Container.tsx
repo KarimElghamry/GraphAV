@@ -2,7 +2,8 @@ import styled from 'styled-components';
 import themes from '../../../themes';
 
 const Container = styled.div`
-  margin: 4px 20px;
+  font-size: 15px;
+  margin: 4px 22px;
   width: 100%;
   height: 90px;
   background-color: ${(props) =>
