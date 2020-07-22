@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "aafe37d564390aea8295571f615ad3b1",
+    "revision": "1410c34b488d52a6a391657e53a09424",
     "url": "/GraphAV/index.html"
   },
   {
-    "revision": "e8d53458e06402212f5a",
+    "revision": "6de025c84113670496ef",
     "url": "/GraphAV/static/css/main.39df5605.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/GraphAV/static/js/2.0840ed14.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "e8d53458e06402212f5a",
-    "url": "/GraphAV/static/js/main.cf074d91.chunk.js"
+    "revision": "6de025c84113670496ef",
+    "url": "/GraphAV/static/js/main.c6c1bbf6.chunk.js"
   },
   {
     "revision": "0fe0ffda80151ca027ef",
