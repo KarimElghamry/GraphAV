@@ -8,7 +8,6 @@ const GithubLogo = styled.img.attrs({
   width: 28px;
   margin: 0 10px;
   user-select: none;
-  cursor: pointer;
 `;
 
 export default GithubLogo;
