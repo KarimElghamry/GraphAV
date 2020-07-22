@@ -26,9 +26,6 @@ const StyledSideNav = styled.div<Props>`
   &::-webkit-scrollbar-thumb {
     background-color: white;
   }
-  @media (max-width: 550px) {
-    padding-top: 104px;
-  }
 `;
 
 export default StyledSideNav;

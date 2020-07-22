@@ -11,6 +11,7 @@ import {AddIcon, UndirectedIcon, DirectedIcon} from './Options/OptionIcons';
 import ClearButton from './ClearButton';
 import Algorithms from '../../models/Algorithms';
 import AlgorithmsDescription from './AlgorithmsDescription/AlgorithmsDescription';
+import ScrollContainer from './ScrollContainer';
 
 interface Props {
   adjacencyList: Array<Array<number>>;
@@ -51,7 +52,7 @@ const SideNav: React.FC<Props> = (props: Props): ReactElement => {
 
   return (
     <StyledSideNav isVisible={isVisible}>
-      <div style={{marginTop: '64px'}}>
+      <ScrollContainer>
         <ToggleButton isVisible={isVisible} onClick={() => toggleVisibility()}>
           <Arrow isVisible={isVisible}></Arrow>
         </ToggleButton>
@@ -145,7 +146,7 @@ const SideNav: React.FC<Props> = (props: Props): ReactElement => {
             <ItemText>Fast</ItemText>
           </Row>
         </Slider>
-      </div>
+      </ScrollContainer>
     </StyledSideNav>
   );
 };
