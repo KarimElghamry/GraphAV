@@ -2,21 +2,18 @@ import styled from 'styled-components';
 import themes from '../../../themes';
 
 const Container = styled.div`
-  font-size: 15px;
-  margin: 10px 20px;
-  width: 100%;
-  height: 90px;
   background-color: ${(props) =>
     props.theme.name === 'dark'
       ? themes.light.navbar.background
       : themes.dark.navbar.background};
-  border-radius: 5px;
-  border: 2px solid white;
-  transition-duration: 0.3s;
-  text-align: center;
-  padding: 2px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 3px solid ${(props) => props.theme.sidebar.background};
+  margin-top: 40px;
   user-select: none;
-  color: white;
+  transition-duration: 0.3s;
 `;
 
 export default Container;

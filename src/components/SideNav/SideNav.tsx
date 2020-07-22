@@ -12,6 +12,7 @@ import ClearButton from './ClearButton';
 import Algorithms from '../../models/Algorithms';
 import AlgorithmsDescription from './AlgorithmsDescription/AlgorithmsDescription';
 import ScrollContainer from './ScrollContainer';
+import Authors from './Authors/Authors';
 
 interface Props {
   adjacencyList: Array<Array<number>>;
@@ -56,20 +57,6 @@ const SideNav: React.FC<Props> = (props: Props): ReactElement => {
         <ToggleButton isVisible={isVisible} onClick={() => toggleVisibility()}>
           <Arrow isVisible={isVisible}></Arrow>
         </ToggleButton>
-        <ItemText>Zoom</ItemText>
-        <Slider>
-          <input
-            type="range"
-            className="slider"
-            min={0.5}
-            max={1.5}
-            step={0.1}
-            value={props.zoomPercentage}
-            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-              props.setZoomPercentage(e.target.value)
-            }
-          />
-        </Slider>
         <ItemText>Algorithm</ItemText>
         <Row justifyContent="center">
           <Dropdown
@@ -77,11 +64,6 @@ const SideNav: React.FC<Props> = (props: Props): ReactElement => {
             setSelectedTile={setSelectedAlgorithm}
             content={availableAlgorithms}
           ></Dropdown>
-        </Row>
-        <Row justifyContent="center">
-          <AlgorithmsDescription
-            selectedAlgorithm={props.selectedAlgorithm}
-          ></AlgorithmsDescription>
         </Row>
         <ItemText>Starting Node</ItemText>
 
@@ -94,7 +76,11 @@ const SideNav: React.FC<Props> = (props: Props): ReactElement => {
             })}
           ></Dropdown>
         </Row>
-
+        <Row justifyContent="center">
+          <AlgorithmsDescription
+            selectedAlgorithm={props.selectedAlgorithm}
+          ></AlgorithmsDescription>
+        </Row>
         <ItemText>Options</ItemText>
         <Row justifyContent="space-evenly" margin="10px 0px">
           {/* add new node */}
@@ -126,6 +112,20 @@ const SideNav: React.FC<Props> = (props: Props): ReactElement => {
         >
           Clear Canvas
         </ClearButton>
+        <ItemText>Zoom</ItemText>
+        <Slider>
+          <input
+            type="range"
+            className="slider"
+            min={0.5}
+            max={1.5}
+            step={0.1}
+            value={props.zoomPercentage}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+              props.setZoomPercentage(e.target.value)
+            }
+          />
+        </Slider>
         <ItemText>Speed</ItemText>
         <Slider>
           <input
@@ -141,12 +141,13 @@ const SideNav: React.FC<Props> = (props: Props): ReactElement => {
               props.setVisualizationSpeed(speed);
             }}
           />
-          <Row justifyContent="space-between" margin="-20px 0px 0px -20px">
-            <ItemText>Slow</ItemText>
-            <ItemText>Fast</ItemText>
-          </Row>
         </Slider>
+        <Row justifyContent="space-between" margin="-5px 27px 0px 0px">
+          <ItemText>Slow</ItemText>
+          <ItemText>Fast</ItemText>
+        </Row>
       </ScrollContainer>
+      <Authors></Authors>
     </StyledSideNav>
   );
 };
