@@ -3,7 +3,7 @@ import themes from '../../../themes';
 
 const Container = styled.div`
   font-size: 15px;
-  margin: 4px 22px;
+  margin: 4px 20px;
   width: 100%;
   height: 90px;
   background-color: ${(props) =>
@@ -14,7 +14,7 @@ const Container = styled.div`
   border: 2px solid white;
   transition-duration: 0.3s;
   text-align: center;
-  padding: 3px;
+  padding: 2px;
   user-select: none;
   color: white;
 `;
