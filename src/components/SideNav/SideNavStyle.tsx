@@ -6,6 +6,9 @@ interface Props {
 
 const StyledSideNav = styled.div<Props>`
   position: fixed;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   height: 100%;
   width: 250px;
   z-index: 2;
