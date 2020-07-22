@@ -1,11 +1,14 @@
 import React, {ReactElement} from 'react';
 import Container from './Container';
+import GithubLogo from './GithubLogo';
 
 const Authors: React.FC = (): ReactElement => {
   return (
     <Container>
-      <div>EMINEM</div>
-      <div>EMINEM</div>
+      <div>
+        <GithubLogo></GithubLogo>
+      </div>
+      <GithubLogo></GithubLogo>
     </Container>
   );
 };
