@@ -141,12 +141,18 @@ const SideNav: React.FC<Props> = (props: Props): ReactElement => {
               props.setVisualizationSpeed(speed);
             }}
           />
-          <Row justifyContent="space-between" margin="-20px 0px 0px -20px">
-            <ItemText>Slow</ItemText>
-            <ItemText>Fast</ItemText>
-          </Row>
         </Slider>
+        <Row justifyContent="space-between" margin="-5px 27px 0px 0px">
+          <ItemText>Slow</ItemText>
+          <ItemText>Fast</ItemText>
+        </Row>
       </ScrollContainer>
+      <div
+        style={{
+          height: '100px',
+          backgroundColor: 'red',
+        }}
+      ></div>
     </StyledSideNav>
   );
 };
