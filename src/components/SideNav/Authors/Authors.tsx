@@ -1,16 +1,12 @@
 import React, {ReactElement} from 'react';
+import Container from './Container';
 
 const Authors: React.FC = (): ReactElement => {
   return (
-    <div
-      style={{
-        height: '100px',
-        backgroundColor: 'red',
-      }}
-    >
+    <Container>
       <div>EMINEM</div>
       <div>EMINEM</div>
-    </div>
+    </Container>
   );
 };
 
