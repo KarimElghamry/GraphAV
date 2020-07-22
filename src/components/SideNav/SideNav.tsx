@@ -57,20 +57,6 @@ const SideNav: React.FC<Props> = (props: Props): ReactElement => {
         <ToggleButton isVisible={isVisible} onClick={() => toggleVisibility()}>
           <Arrow isVisible={isVisible}></Arrow>
         </ToggleButton>
-        <ItemText>Zoom</ItemText>
-        <Slider>
-          <input
-            type="range"
-            className="slider"
-            min={0.5}
-            max={1.5}
-            step={0.1}
-            value={props.zoomPercentage}
-            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-              props.setZoomPercentage(e.target.value)
-            }
-          />
-        </Slider>
         <ItemText>Algorithm</ItemText>
         <Row justifyContent="center">
           <Dropdown
@@ -78,11 +64,6 @@ const SideNav: React.FC<Props> = (props: Props): ReactElement => {
             setSelectedTile={setSelectedAlgorithm}
             content={availableAlgorithms}
           ></Dropdown>
-        </Row>
-        <Row justifyContent="center">
-          <AlgorithmsDescription
-            selectedAlgorithm={props.selectedAlgorithm}
-          ></AlgorithmsDescription>
         </Row>
         <ItemText>Starting Node</ItemText>
 
@@ -95,7 +76,11 @@ const SideNav: React.FC<Props> = (props: Props): ReactElement => {
             })}
           ></Dropdown>
         </Row>
-
+        <Row justifyContent="center">
+          <AlgorithmsDescription
+            selectedAlgorithm={props.selectedAlgorithm}
+          ></AlgorithmsDescription>
+        </Row>
         <ItemText>Options</ItemText>
         <Row justifyContent="space-evenly" margin="10px 0px">
           {/* add new node */}
@@ -127,6 +112,20 @@ const SideNav: React.FC<Props> = (props: Props): ReactElement => {
         >
           Clear Canvas
         </ClearButton>
+        <ItemText>Zoom</ItemText>
+        <Slider>
+          <input
+            type="range"
+            className="slider"
+            min={0.5}
+            max={1.5}
+            step={0.1}
+            value={props.zoomPercentage}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+              props.setZoomPercentage(e.target.value)
+            }
+          />
+        </Slider>
         <ItemText>Speed</ItemText>
         <Slider>
           <input

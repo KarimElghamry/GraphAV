@@ -12,6 +12,7 @@ const Container = styled.div`
   align-items: center;
   border: 3px solid ${(props) => props.theme.sidebar.background};
   margin-top: 40px;
+  user-select: none;
   transition-duration: 0.3s;
 `;
 
