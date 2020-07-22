@@ -1,4 +1,4 @@
-import React, { ReactElement, useState } from 'react';
+import React, {ReactElement, useState} from 'react';
 import StyledSideNav from './SideNavStyle';
 import Slider from './Slider';
 import ItemText from './ItemText';
@@ -7,9 +7,10 @@ import Arrow from './Arrow';
 import Dropdown from '../common/Dropdown/Dropdown';
 import Row from '../common/Row';
 import OptionButton from './Options/OptionButton';
-import { AddIcon, UndirectedIcon, DirectedIcon } from './Options/OptionIcons';
+import {AddIcon, UndirectedIcon, DirectedIcon} from './Options/OptionIcons';
 import ClearButton from './ClearButton';
 import Algorithms from '../../models/Algorithms';
+import AlgorithmsDescription from './AlgorithmsDescription/AlgorithmsDescription';
 
 interface Props {
   adjacencyList: Array<Array<number>>;
@@ -74,6 +75,9 @@ const SideNav: React.FC<Props> = (props: Props): ReactElement => {
           setSelectedTile={setSelectedAlgorithm}
           content={availableAlgorithms}
         ></Dropdown>
+      </Row>
+      <Row justifyContent="center">
+        <AlgorithmsDescription></AlgorithmsDescription>
       </Row>
       <ItemText>Starting Node</ItemText>
 
