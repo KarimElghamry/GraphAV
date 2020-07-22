@@ -12,6 +12,7 @@ import ClearButton from './ClearButton';
 import Algorithms from '../../models/Algorithms';
 import AlgorithmsDescription from './AlgorithmsDescription/AlgorithmsDescription';
 import ScrollContainer from './ScrollContainer';
+import Authors from './Authors/Authors';
 
 interface Props {
   adjacencyList: Array<Array<number>>;
@@ -147,12 +148,7 @@ const SideNav: React.FC<Props> = (props: Props): ReactElement => {
           <ItemText>Fast</ItemText>
         </Row>
       </ScrollContainer>
-      <div
-        style={{
-          height: '100px',
-          backgroundColor: 'red',
-        }}
-      ></div>
+      <Authors></Authors>
     </StyledSideNav>
   );
 };
