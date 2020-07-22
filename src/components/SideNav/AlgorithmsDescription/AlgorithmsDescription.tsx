@@ -4,7 +4,8 @@ import Container from './Container';
 const AlgorithmsDescription: React.FC = (): ReactElement => {
   return (
     <Container>
-      <div></div>
+      DFS prioritizes the depth while traversing and does not find the shortest
+      path
     </Container>
   );
 };
