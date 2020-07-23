@@ -1,44 +1,47 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# GraphAV
 
-## Available Scripts
+- A graph algorithms visualizer built using React, Typescript and Styled Components.
 
-In the project directory, you can run:
+- deployed at: https://karimelghamry.github.io/GraphAV/
 
-### `npm start`
+### Show some :heart: and :star: the repo to support the project
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Features
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+[✓] Light/Dark themes
 
-### `npm test`
+[✓] Add, move and delete nodes
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+[✓] Directed/Undirected edges
 
-### `npm run build`
+[✓] Unweighted edges
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+[✓] Control visualization speed
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+[✓] Control canvas zoom percentage
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+[✓] Shortest paths and predecessor node information
 
-### `npm run eject`
+[✓] Visited nodes/edges animations
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+[-] Weighted edges (to be implemented)
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Available Algorithms
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+[✓] DFS
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+[✓] BFS (with shortest paths calculations)
 
-## Learn More
+[✓] Dijkstra (with shortest paths calculations)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+[✓] Bellman Ford (with shortest paths calculations)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- If you have any further suggested algorithms, feel free to open an issue!
+
+## Demos
+
+## Authors
+
+- [Karim Elghamry](https://github.com/KarimElghamry)
+
+- [Ali Amin](https://github.com/Ali-Amin)
