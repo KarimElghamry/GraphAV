@@ -10,35 +10,35 @@
 
 ## Features
 
-**[✓]** Light/Dark themes
+**[✔]** Light/Dark themes
 
-**[✓]** Add, move and delete nodes
+**[✔]** Add, move and delete nodes
 
-**[✓]** Directed/Undirected edges
+**[✔]** Directed/Undirected edges
 
-**[✓]** Unweighted edges
+**[✔]** Unweighted edges
 
-**[✓]** Control visualization speed
+**[✔]** Control visualization speed
 
-**[✓]** Control canvas zoom percentage
+**[✔]** Control canvas zoom percentage
 
-**[✓]** Shortest paths and predecessor node information
+**[✔]** Shortest paths and predecessor node information
 
-**[✓]** Visited nodes/edges animations
+**[✔]** Visited nodes/edges animations
 
-_[--]_ Weighted edges (to be implemented)
+**[⛏]** Weighted edges (to be implemented)
 
 ## Available Algorithms
 
-**[✓]** DFS
+**[✔]** DFS
 
-**[✓]** BFS (with shortest paths calculations)
+**[✔]** BFS (with shortest paths calculations)
 
-**[✓]** Dijkstra (with shortest paths calculations)
+**[✔]** Dijkstra (with shortest paths calculations)
 
-**[✓]** Bellman Ford (with shortest paths calculations)
+**[✔]** Bellman Ford (with shortest paths calculations)
 
-**If you have any further suggested algorithms, feel free to open an issue!**
+**🎉 If you have any further suggested algorithms, feel free to open an issue! 😎**
 
 ## Demos
 
