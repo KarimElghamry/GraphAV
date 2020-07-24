@@ -13,12 +13,12 @@ import Algorithms from '../../models/Algorithms';
 import AlgorithmsDescription from './AlgorithmsDescription/AlgorithmsDescription';
 import ScrollContainer from './ScrollContainer';
 import Authors from './Authors/Authors';
+import AlgorithmSettings from './AlgorithmSettings/AlgorithmSettings';
+import AlgorithmOptions from '../../models/AlgorithmOptions';
 
 interface Props {
   adjacencyList: Array<Array<number>>;
   addNewNode: () => void;
-  startingNode: number;
-  setStartingNode: Function;
   setZoomPercentage: Function;
   zoomPercentage: number;
   onUndirectedEdgeClick: VoidFunction;
@@ -28,10 +28,13 @@ interface Props {
   clearCanvas: Function;
   selectedAlgorithm: Algorithms;
   setSelectedAlgorithm: Function;
+  algorithmOptions: AlgorithmOptions;
+  setAlgorithmOptions: Function;
 }
 
 const availableAlgorithms: Array<Algorithms> = [
   Algorithms.dfs,
+  Algorithms.dls,
   Algorithms.bfs,
   Algorithms.dijkstra,
   Algorithms.bellmanFord,
@@ -41,7 +44,6 @@ const availableAlgorithms: Array<Algorithms> = [
 
 const SideNav: React.FC<Props> = (props: Props): ReactElement => {
   const [isVisible, setIsVisible] = useState<boolean>(true);
-  const adjacencyList = props.adjacencyList;
 
   const toggleVisibility = () => {
     setIsVisible((prev) => !prev);
@@ -67,17 +69,14 @@ const SideNav: React.FC<Props> = (props: Props): ReactElement => {
             content={availableAlgorithms}
           ></Dropdown>
         </Row>
-        <ItemText>Starting Node</ItemText>
 
-        <Row justifyContent="center">
-          <Dropdown
-            selectedTile={props.startingNode}
-            setSelectedTile={props.setStartingNode}
-            content={adjacencyList.map((val: Array<number>, index: number) => {
-              return (index + 1).toString();
-            })}
-          ></Dropdown>
-        </Row>
+        <AlgorithmSettings
+          algorithmOptions={props.algorithmOptions}
+          setAlgorithmOptions={props.setAlgorithmOptions}
+          selectedAlgorithm={props.selectedAlgorithm}
+          adjacencyList={props.adjacencyList}
+        ></AlgorithmSettings>
+
         <Row justifyContent="center">
           <AlgorithmsDescription
             selectedAlgorithm={props.selectedAlgorithm}

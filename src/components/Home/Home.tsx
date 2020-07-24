@@ -1,13 +1,14 @@
-import React, { ReactElement, useState } from "react";
-import Navbar from "../Navbar/Navbar";
-import SideNav from "../SideNav/SideNav";
-import GraphCanvas from "../GraphCanvas/GraphCanvas";
-import VisualizeButton from "../VisualizeButton/VisualizeButton";
-import algorithms from "../../algorithms";
-import Algorithms from "../../models/Algorithms";
-import NodeInfo from "../../models/NodeInfo";
-import CreateEdgeModal from "../CreateEdgeModal/CreateEdgeModal";
-import { v4 as uuidv4 } from "uuid";
+import React, {ReactElement, useState} from 'react';
+import Navbar from '../Navbar/Navbar';
+import SideNav from '../SideNav/SideNav';
+import GraphCanvas from '../GraphCanvas/GraphCanvas';
+import VisualizeButton from '../VisualizeButton/VisualizeButton';
+import algorithms from '../../algorithms';
+import Algorithms from '../../models/Algorithms';
+import NodeInfo from '../../models/NodeInfo';
+import CreateEdgeModal from '../CreateEdgeModal/CreateEdgeModal';
+import {v4 as uuidv4} from 'uuid';
+import AlgorithmOptions from '../../models/AlgorithmOptions';
 
 interface HomeProps {
   changeTheme: Function;
@@ -20,7 +21,6 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
   const [visited, setVisited] = useState<Array<number>>([]);
   const [currentEdge, setCurrentEdge] = useState<[number, number]>([-1, -1]);
   const [graphInfo, setGraphInfo] = useState<Array<NodeInfo>>([]);
-  const [startingNode, setStartingNode] = useState<number>(0);
   const [selectedAlgorithm, setSelectedAlgorithm] = useState<Algorithms>(
     Algorithms.dfs
   );
@@ -34,6 +34,10 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
     false
   );
 
+  const [algorithmOptions, setAlgorithmOptions] = useState<AlgorithmOptions>({
+    startNode: 0,
+  });
+
   const resetGraphState = () => {
     setVisited([]);
     setCurrentEdge([-1, -1]);
@@ -45,6 +49,7 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
     secondNode: number,
     isDirected: boolean
   ) => {
+    if (isVisualizing) return;
     const newAdjacencyList = adjacencyList.slice();
     newAdjacencyList[firstNode].push(secondNode);
     if (!isDirected) newAdjacencyList[secondNode].push(firstNode);
@@ -70,6 +75,7 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
   };
 
   const deleteEdge = (firstNode: number, secondNode: number) => {
+    if (isVisualizing) return;
     const newAdjacencyList = adjacencyList.slice();
     newAdjacencyList[firstNode] = newAdjacencyList[firstNode].filter(
       (val: number) => val !== secondNode
@@ -82,6 +88,7 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
     resetGraphState();
   };
   const deleteNode = (node: number) => {
+    if (isVisualizing) return;
     let newAdjacencyList = adjacencyList.map((val: Array<number>) => {
       //remove node from neighbours and decrement all nodes bigger than the
       //removed node
@@ -102,6 +109,12 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
     setNodeKeys(newNodeKeys);
     setAdjacencyList(newAdjacencyList);
     resetGraphState();
+
+    const newAlgorithmOptions: AlgorithmOptions = Object.create(
+      algorithmOptions
+    );
+    newAlgorithmOptions.startNode = 0;
+    setAlgorithmOptions(newAlgorithmOptions);
   };
 
   const handleEdgeModalExit = () => {
@@ -114,6 +127,7 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
   };
 
   const addNewNode = () => {
+    if (isVisualizing) return;
     const newAdjacencyList = adjacencyList.slice();
     const newNodeKeys = nodeKeys.slice();
     newAdjacencyList.push([]);
@@ -130,6 +144,8 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
     setVisited([]);
     setCurrentEdge([-1, -1]);
     setGraphInfo([]);
+
+    const startingNode = algorithmOptions.startNode ?? 0;
 
     switch (selectedAlgorithm) {
       case Algorithms.dfs:
@@ -170,6 +186,7 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
           setVisited,
           setGraphInfo,
           setCurrentEdge
+
         );
         break;
       case Algorithms.iddfs:
@@ -202,6 +219,11 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
     setVisualizationSpeed(speed);
   };
 
+  const changeZoomPercentage = (percentage: number) => {
+    if (isVisualizing) return;
+    setZoomPercentage(percentage);
+  };
+
   const clearCanvas = () => {
     if (isVisualizing) return;
     setVisited([]);
@@ -216,17 +238,17 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
       <SideNav
         onUndirectedEdgeClick={() => setIsConnectingUndirected(true)}
         onDirectedEdgeClick={() => setIsConnectingDirected(true)}
-        startingNode={startingNode}
-        setStartingNode={setStartingNode}
         adjacencyList={adjacencyList}
         addNewNode={addNewNode}
-        setZoomPercentage={setZoomPercentage}
+        setZoomPercentage={changeZoomPercentage}
         zoomPercentage={zoomPercentage}
         visualizationSpeed={visualizationSpeed}
         setVisualizationSpeed={changeVisualizationSpeed}
         clearCanvas={clearCanvas}
         selectedAlgorithm={selectedAlgorithm}
         setSelectedAlgorithm={setSelectedAlgorithm}
+        algorithmOptions={algorithmOptions}
+        setAlgorithmOptions={setAlgorithmOptions}
       />
       <Navbar
         onHelpClick={props.onHelpClick}

@@ -17,7 +17,7 @@ const Authors: React.FC = (): ReactElement => {
     <Container>
       {Object.entries(authorsDetails).map((item: [string, string]) => {
         return (
-          <AuthorTile onClick={() => openUrl(item[1])}>
+          <AuthorTile key={item[0]} onClick={() => openUrl(item[1])}>
             <GithubLogo></GithubLogo>
             {item[0]}
           </AuthorTile>
