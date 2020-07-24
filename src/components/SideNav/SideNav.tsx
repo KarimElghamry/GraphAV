@@ -44,7 +44,6 @@ const availableAlgorithms: Array<Algorithms> = [
 
 const SideNav: React.FC<Props> = (props: Props): ReactElement => {
   const [isVisible, setIsVisible] = useState<boolean>(true);
-  const adjacencyList = props.adjacencyList;
 
   const toggleVisibility = () => {
     setIsVisible((prev) => !prev);
