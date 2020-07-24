@@ -33,6 +33,7 @@ interface Props {
 
 const availableAlgorithms: Array<Algorithms> = [
   Algorithms.dfs,
+  Algorithms.dls,
   Algorithms.bfs,
   Algorithms.dijkstra,
   Algorithms.bellmanFord,
