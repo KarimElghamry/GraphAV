@@ -30,13 +30,15 @@
 
 ## Available Algorithms
 
-**[✔]** DFS
+**[✔]** DFS - Depth First Search
 
-**[✔]** BFS (with shortest paths calculations)
+**[✔]** DLS - Depth Limited Search
+
+**[✔]** IDDFS - Iterative Deepening Depth First Search
+
+**[✔]** BFS - Breadth First Search (with shortest paths calculations)
 
 **[✔]** Dijkstra (with shortest paths calculations)
-
-**[✔]** Bellman Ford (with shortest paths calculations)
 
 **🎉 If you have any further suggested algorithms, feel free to open an issue! 😎**
 
