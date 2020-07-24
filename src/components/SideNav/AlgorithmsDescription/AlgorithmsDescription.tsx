@@ -23,6 +23,10 @@ const descriptionText = new Map<Algorithms, string>([
     Algorithms.dls,
     "DLS can be used when the depth of the shallowest goal of a problem is known",
   ],
+  [
+    Algorithms.iddfs,
+    "IDDFS combines DFS’s memory complexity and BFS’s quicker search for nodes closer to root",
+  ],
 ]);
 
 const AlgorithmsDescription: React.FC<Props> = (props: Props): ReactElement => {
