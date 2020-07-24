@@ -1,14 +1,14 @@
-import React, {ReactElement, useState} from 'react';
-import Navbar from '../Navbar/Navbar';
-import SideNav from '../SideNav/SideNav';
-import GraphCanvas from '../GraphCanvas/GraphCanvas';
-import VisualizeButton from '../VisualizeButton/VisualizeButton';
-import algorithms from '../../algorithms';
-import Algorithms from '../../models/Algorithms';
-import NodeInfo from '../../models/NodeInfo';
-import CreateEdgeModal from '../CreateEdgeModal/CreateEdgeModal';
-import {v4 as uuidv4} from 'uuid';
-import AlgorithmOptions from '../../models/AlgorithmOptions';
+import React, { ReactElement, useState } from "react";
+import Navbar from "../Navbar/Navbar";
+import SideNav from "../SideNav/SideNav";
+import GraphCanvas from "../GraphCanvas/GraphCanvas";
+import VisualizeButton from "../VisualizeButton/VisualizeButton";
+import algorithms from "../../algorithms";
+import Algorithms from "../../models/Algorithms";
+import NodeInfo from "../../models/NodeInfo";
+import CreateEdgeModal from "../CreateEdgeModal/CreateEdgeModal";
+import { v4 as uuidv4 } from "uuid";
+import AlgorithmOptions from "../../models/AlgorithmOptions";
 
 interface HomeProps {
   changeTheme: Function;
@@ -186,7 +186,6 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
           setVisited,
           setGraphInfo,
           setCurrentEdge
-
         );
         break;
       case Algorithms.iddfs:
@@ -196,7 +195,7 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
           setVisited,
           visualizationSpeed,
           setCurrentEdge
-       );
+        );
         break;
       case Algorithms.dls:
         await algorithms.dls(
@@ -205,7 +204,7 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
           setVisited,
           visualizationSpeed,
           setCurrentEdge,
-          3 //TODO: change to maximum depth input by user
+          algorithmOptions.depthLimit ?? 0
         );
         break;
       default:
