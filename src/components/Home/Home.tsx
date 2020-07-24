@@ -172,6 +172,15 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
           setCurrentEdge
         );
         break;
+      case Algorithms.iddfs:
+        await algorithms.iddfs(
+          adjacencyList,
+          startingNode,
+          setVisited,
+          visualizationSpeed,
+          setCurrentEdge
+       );
+        break;
       case Algorithms.dls:
         await algorithms.dls(
           adjacencyList,

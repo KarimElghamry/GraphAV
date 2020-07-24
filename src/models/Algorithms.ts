@@ -4,7 +4,8 @@ enum Algorithms {
   dijkstra = "Dijkstra",
   prim = "Prim",
   bellmanFord = "Bellman-Ford",
-  dls = "DLS",
+  iddfs = "IDDFS",
+  dls = "DLS"
 }
 
 export default Algorithms;
