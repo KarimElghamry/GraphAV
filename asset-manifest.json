@@ -1,29 +1,30 @@
 {
   "files": {
     "main.css": "/GraphAV/static/css/main.39df5605.chunk.css",
-    "main.js": "/GraphAV/static/js/main.54f4f95f.chunk.js",
-    "main.js.map": "/GraphAV/static/js/main.54f4f95f.chunk.js.map",
+    "main.js": "/GraphAV/static/js/main.6526b9eb.chunk.js",
+    "main.js.map": "/GraphAV/static/js/main.6526b9eb.chunk.js.map",
     "runtime-main.js": "/GraphAV/static/js/runtime-main.2e1f4f99.js",
     "runtime-main.js.map": "/GraphAV/static/js/runtime-main.2e1f4f99.js.map",
-    "static/js/2.0840ed14.chunk.js": "/GraphAV/static/js/2.0840ed14.chunk.js",
-    "static/js/2.0840ed14.chunk.js.map": "/GraphAV/static/js/2.0840ed14.chunk.js.map",
+    "static/js/2.c7e29104.chunk.js": "/GraphAV/static/js/2.c7e29104.chunk.js",
+    "static/js/2.c7e29104.chunk.js.map": "/GraphAV/static/js/2.c7e29104.chunk.js.map",
     "index.html": "/GraphAV/index.html",
-    "precache-manifest.fa77a698a3d768f191d944a0a5eda813.js": "/GraphAV/precache-manifest.fa77a698a3d768f191d944a0a5eda813.js",
+    "precache-manifest.2c5fe1bf1100e25a8fd7151a7d0d7914.js": "/GraphAV/precache-manifest.2c5fe1bf1100e25a8fd7151a7d0d7914.js",
     "service-worker.js": "/GraphAV/service-worker.js",
     "static/css/main.39df5605.chunk.css.map": "/GraphAV/static/css/main.39df5605.chunk.css.map",
-    "static/js/2.0840ed14.chunk.js.LICENSE.txt": "/GraphAV/static/js/2.0840ed14.chunk.js.LICENSE.txt",
+    "static/js/2.c7e29104.chunk.js.LICENSE.txt": "/GraphAV/static/js/2.c7e29104.chunk.js.LICENSE.txt",
     "static/media/GraphAV-logo.png": "/GraphAV/static/media/GraphAV-logo.27ef8b0a.png",
     "static/media/index.css": "/GraphAV/static/media/Ramabhadra.69670dd3.ttf",
     "static/media/add.1c176638.svg": "/GraphAV/static/media/add.1c176638.svg",
     "static/media/directed.da0de4af.svg": "/GraphAV/static/media/directed.da0de4af.svg",
     "static/media/gh-logo.png": "/GraphAV/static/media/gh-logo.89c2c067.png",
+    "static/media/help-icon.png": "/GraphAV/static/media/help-icon.475c3481.png",
     "static/media/star.d2e27e97.svg": "/GraphAV/static/media/star.d2e27e97.svg",
     "static/media/undirected.2611a883.svg": "/GraphAV/static/media/undirected.2611a883.svg"
   },
   "entrypoints": [
     "static/js/runtime-main.2e1f4f99.js",
-    "static/js/2.0840ed14.chunk.js",
+    "static/js/2.c7e29104.chunk.js",
     "static/css/main.39df5605.chunk.css",
-    "static/js/main.54f4f95f.chunk.js"
+    "static/js/main.6526b9eb.chunk.js"
   ]
 }
