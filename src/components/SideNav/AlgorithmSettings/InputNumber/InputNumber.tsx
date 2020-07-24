@@ -1,4 +1,5 @@
 import React, {ReactElement} from 'react';
+import Container from './Container';
 
 interface Props {
   value: number;
@@ -15,12 +16,12 @@ const InputNumber: React.FC<Props> = (props: Props): ReactElement => {
   };
 
   return (
-    <input
+    <Container
       type="text"
       pattern="[0-9]*"
       onChange={handleTextInputChange}
       value={props.value}
-    ></input>
+    ></Container>
   );
 };
 
