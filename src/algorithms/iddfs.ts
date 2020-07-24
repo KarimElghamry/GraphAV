@@ -1,6 +1,6 @@
 import asyncTimout from "../helpers/asyncTimout";
 
-const visited: Array<number> = []; // frontier
+let visited: Array<number> = []; // frontier
 
 const iddfsWrapper = async (
   adjacencyList: Array<Array<number>>,
@@ -9,6 +9,7 @@ const iddfsWrapper = async (
   visualizationSpeed: number,
   setCurrentEdge: Function
 ) => {
+  visited = [];
   setVisited([]);
   await iddfs(
     adjacencyList,
