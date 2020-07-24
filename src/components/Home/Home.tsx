@@ -107,6 +107,12 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
     setNodeKeys(newNodeKeys);
     setAdjacencyList(newAdjacencyList);
     resetGraphState();
+
+    const newAlgorithmOptions: AlgorithmOptions = Object.create(
+      algorithmOptions
+    );
+    newAlgorithmOptions.startNode = 0;
+    setAlgorithmOptions(newAlgorithmOptions);
   };
 
   const handleEdgeModalExit = () => {
