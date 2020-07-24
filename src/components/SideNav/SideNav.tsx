@@ -71,20 +71,13 @@ const SideNav: React.FC<Props> = (props: Props): ReactElement => {
           ></Dropdown>
         </Row>
 
-        <ItemText>Starting Node</ItemText>
-        <Row justifyContent="center">
-          <Dropdown
-            selectedTile={props.startingNode}
-            setSelectedTile={props.setStartingNode}
-            content={adjacencyList.map((val: Array<number>, index: number) => {
-              return (index + 1).toString();
-            })}
-          ></Dropdown>
-        </Row>
         <AlgorithmSettings
           algorithmOptions={props.algorithmOptions}
           setAlgorithmOptions={props.setAlgorithmOptions}
           selectedAlgorithm={props.selectedAlgorithm}
+          startingNode={props.startingNode}
+          setStartingNode={props.setStartingNode}
+          adjacencyList={props.adjacencyList}
         ></AlgorithmSettings>
 
         <Row justifyContent="center">

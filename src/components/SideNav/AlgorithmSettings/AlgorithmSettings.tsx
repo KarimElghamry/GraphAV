@@ -4,11 +4,15 @@ import Row from '../../common/Row';
 import InputNumber from './InputNumber/InputNumber';
 import AlgorithmOptions from '../../../models/AlgorithmOptions';
 import Algorithms from '../../../models/Algorithms';
+import Dropdown from '../../common/Dropdown/Dropdown';
 
 interface Props {
   algorithmOptions: AlgorithmOptions;
   setAlgorithmOptions: Function;
   selectedAlgorithm: Algorithms;
+  startingNode: number;
+  setStartingNode: Function;
+  adjacencyList: Array<Array<number>>;
 }
 
 const AlgorithmSettings: React.FC<Props> = (props: Props): ReactElement => {
@@ -20,7 +24,19 @@ const AlgorithmSettings: React.FC<Props> = (props: Props): ReactElement => {
 
   const depthLimitAlgorithms: Array<Algorithms> = [Algorithms.dls];
   return (
-    <div>
+    <React.Fragment>
+      <ItemText>Starting Node</ItemText>
+      <Row justifyContent="center">
+        <Dropdown
+          selectedTile={props.startingNode}
+          setSelectedTile={props.setStartingNode}
+          content={props.adjacencyList.map(
+            (val: Array<number>, index: number) => {
+              return (index + 1).toString();
+            }
+          )}
+        ></Dropdown>
+      </Row>
       {depthLimitAlgorithms.includes(props.selectedAlgorithm) ? (
         <React.Fragment>
           <ItemText>Depth limit</ItemText>
@@ -32,7 +48,7 @@ const AlgorithmSettings: React.FC<Props> = (props: Props): ReactElement => {
           </Row>
         </React.Fragment>
       ) : null}
-    </div>
+    </React.Fragment>
   );
 };
 
