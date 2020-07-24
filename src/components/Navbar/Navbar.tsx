@@ -2,9 +2,9 @@ import React, {ReactElement} from 'react';
 import Container from './Container';
 import Row from '../common/Row';
 import GithubLogo from './GithubLogo';
-import Star from './Star';
 import ThemeSwitch from './ThemeSwitch/ThemeSwitch';
 import GraphAVLogo from './GraphAVLogo';
+import HelpIcon from './HelpIcon';
 
 interface NavbarProps {
   changeTheme: Function;
@@ -21,7 +21,7 @@ const Navbar: React.FC<NavbarProps> = (props: NavbarProps): ReactElement => {
       <Row justifyContent="space-evenly" margin="0 18px">
         <ThemeSwitch changeTheme={props.changeTheme}></ThemeSwitch>
         <GithubLogo></GithubLogo>
-        <Star onClick={() => props.onHelpClick()}></Star>
+        <HelpIcon onClick={() => props.onHelpClick()}></HelpIcon>
       </Row>
     </Container>
   );
