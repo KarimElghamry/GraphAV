@@ -20,6 +20,7 @@ const dlsWrapper = async (
     maxDepth,
     0
   );
+  setCurrentEdge([]);
 };
 
 const dls = async (
