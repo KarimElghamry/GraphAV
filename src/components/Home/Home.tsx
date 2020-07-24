@@ -49,6 +49,7 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
     secondNode: number,
     isDirected: boolean
   ) => {
+    if (isVisualizing) return;
     const newAdjacencyList = adjacencyList.slice();
     newAdjacencyList[firstNode].push(secondNode);
     if (!isDirected) newAdjacencyList[secondNode].push(firstNode);
@@ -118,6 +119,7 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
   };
 
   const addNewNode = () => {
+    if (isVisualizing) return;
     const newAdjacencyList = adjacencyList.slice();
     const newNodeKeys = nodeKeys.slice();
     newAdjacencyList.push([]);
