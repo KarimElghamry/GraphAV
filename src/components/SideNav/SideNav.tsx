@@ -1,15 +1,15 @@
-import React, { ReactElement, useState } from 'react';
-import StyledSideNav from './SideNavStyle';
-import Slider from './Slider';
-import ItemText from './ItemText';
-import ToggleButton from './ToggleButton';
-import Arrow from './Arrow';
-import Dropdown from '../common/Dropdown/Dropdown';
-import Row from '../common/Row';
-import OptionButton from './Options/OptionButton';
-import { AddIcon, UndirectedIcon, DirectedIcon } from './Options/OptionIcons';
-import ClearButton from './ClearButton';
-import Algorithms from '../../models/Algorithms';
+import React, { ReactElement, useState } from "react";
+import StyledSideNav from "./SideNavStyle";
+import Slider from "./Slider";
+import ItemText from "./ItemText";
+import ToggleButton from "./ToggleButton";
+import Arrow from "./Arrow";
+import Dropdown from "../common/Dropdown/Dropdown";
+import Row from "../common/Row";
+import OptionButton from "./Options/OptionButton";
+import { AddIcon, UndirectedIcon, DirectedIcon } from "./Options/OptionIcons";
+import ClearButton from "./ClearButton";
+import Algorithms from "../../models/Algorithms";
 
 interface Props {
   adjacencyList: Array<Array<number>>;
@@ -32,6 +32,7 @@ const availableAlgorithms: Array<Algorithms> = [
   Algorithms.bfs,
   Algorithms.dijkstra,
   Algorithms.bellmanFord,
+  Algorithms.dls,
 ];
 
 const SideNav: React.FC<Props> = (props: Props): ReactElement => {
