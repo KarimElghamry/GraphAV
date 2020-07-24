@@ -1,20 +1,20 @@
-import React, {ReactElement, useState} from 'react';
-import StyledSideNav from './SideNavStyle';
-import Slider from './Slider';
-import ItemText from './ItemText';
-import ToggleButton from './ToggleButton';
-import Arrow from './Arrow';
-import Dropdown from '../common/Dropdown/Dropdown';
-import Row from '../common/Row';
-import OptionButton from './Options/OptionButton';
-import {AddIcon, UndirectedIcon, DirectedIcon} from './Options/OptionIcons';
-import ClearButton from './ClearButton';
-import Algorithms from '../../models/Algorithms';
-import AlgorithmsDescription from './AlgorithmsDescription/AlgorithmsDescription';
-import ScrollContainer from './ScrollContainer';
-import Authors from './Authors/Authors';
-import AlgorithmSettings from './AlgorithmSettings/AlgorithmSettings';
-import AlgorithmOptions from '../../models/AlgorithmOptions';
+import React, { ReactElement, useState } from "react";
+import StyledSideNav from "./SideNavStyle";
+import Slider from "./Slider";
+import ItemText from "./ItemText";
+import ToggleButton from "./ToggleButton";
+import Arrow from "./Arrow";
+import Dropdown from "../common/Dropdown/Dropdown";
+import Row from "../common/Row";
+import OptionButton from "./Options/OptionButton";
+import { AddIcon, UndirectedIcon, DirectedIcon } from "./Options/OptionIcons";
+import ClearButton from "./ClearButton";
+import Algorithms from "../../models/Algorithms";
+import AlgorithmsDescription from "./AlgorithmsDescription/AlgorithmsDescription";
+import ScrollContainer from "./ScrollContainer";
+import Authors from "./Authors/Authors";
+import AlgorithmSettings from "./AlgorithmSettings/AlgorithmSettings";
+import AlgorithmOptions from "../../models/AlgorithmOptions";
 
 interface Props {
   adjacencyList: Array<Array<number>>;
@@ -35,11 +35,10 @@ interface Props {
 const availableAlgorithms: Array<Algorithms> = [
   Algorithms.dfs,
   Algorithms.dls,
+  Algorithms.iddfs,
   Algorithms.bfs,
   Algorithms.dijkstra,
   Algorithms.bellmanFord,
-  Algorithms.iddfs,
-  Algorithms.dls
 ];
 
 const SideNav: React.FC<Props> = (props: Props): ReactElement => {
