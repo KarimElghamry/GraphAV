@@ -1,6 +1,8 @@
 import asyncTimout from "../helpers/asyncTimout";
 
 let visited: Array<number> = []; // frontier
+let toVisit: Array<number> = []; // includes nodes that are not reached in the current iteration
+let maxDepth = 0;
 
 const iddfsWrapper = async (
   adjacencyList: Array<Array<number>>,
@@ -9,18 +11,32 @@ const iddfsWrapper = async (
   visualizationSpeed: number,
   setCurrentEdge: Function
 ) => {
-  visited = [];
-  setVisited([]);
-  await iddfs(
-    adjacencyList,
-    startingNode,
-    setVisited,
-    visualizationSpeed,
-    setCurrentEdge,
-    0,
-    0,
-    0
-  );
+  // init
+  toVisit = [0];
+  maxDepth = 0;
+
+  // main loop
+  while (toVisit.length > 0) {
+    //re init visited in every iteration
+    visited = [];
+    setVisited([]);
+    setCurrentEdge([]); // current edge remains from last iteration, needs clearing
+    await asyncTimout(visualizationSpeed);
+
+    toVisit = []; // removes unvisited nodes from last iteration
+    await iddfs(
+      adjacencyList,
+      startingNode,
+      setVisited,
+      visualizationSpeed,
+      setCurrentEdge,
+      0,
+      maxDepth,
+      0
+    );
+    maxDepth += 1;
+  }
+  setCurrentEdge([]); // last traversed edge remains selected, needs clearing
 };
 
 const iddfs = async (
@@ -34,23 +50,32 @@ const iddfs = async (
   currentDepth: number
 ) => {
   if (visited.includes(node)) return;
-  if (currentDepth === maxDepth) return;
+
+  // visit node
   visited.push(node);
   setVisited(visited.slice());
   setCurrentEdge([previousNode, node]);
-  asyncTimout(visualizationSpeed);
+  await asyncTimout(visualizationSpeed);
 
-  for (const neighbour of adjacencyList[node])
-    await iddfs(
-      adjacencyList,
-      neighbour,
-      setVisited,
-      visualizationSpeed,
-      setCurrentEdge,
-      node,
-      maxDepth,
-      currentDepth + 1
-    );
+  if (currentDepth === maxDepth) {
+    // if next depth beyond max depth, add next level nodes to toVisit
+    for (const neighbour of adjacencyList[node])
+      if (!visited.includes(neighbour)) toVisit.push(neighbour);
+    maxDepth += 1;
+    return;
+  } else {
+    for (const neighbour of adjacencyList[node])
+      await iddfs(
+        adjacencyList,
+        neighbour,
+        setVisited,
+        visualizationSpeed,
+        setCurrentEdge,
+        node,
+        maxDepth,
+        currentDepth + 1
+      );
+  }
 };
 
 export default iddfsWrapper;
