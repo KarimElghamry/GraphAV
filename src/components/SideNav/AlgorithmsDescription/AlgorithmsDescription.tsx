@@ -25,7 +25,7 @@ const descriptionText = new Map<Algorithms, string>([
   ],
   [
     Algorithms.iddfs,
-    "IDDFS combines DFS’s memory complexity and BFS’s quicker search for nodes closer to root",
+    "IDDFS uses DFS's memory complexity and BFS's faster root neighbour search ",
   ],
 ]);
 
