@@ -35,7 +35,7 @@ const dls = async (
   currentDepth: number
 ) => {
   if (visited.includes(node)) return;
-  if (currentDepth === maxDepth) return;
+  if (currentDepth > maxDepth) return;
   await helpers.asyncTimout(visualizationSpeed);
   visited.push(node);
   setVisited(visited.slice());
