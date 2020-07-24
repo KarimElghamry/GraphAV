@@ -75,6 +75,7 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
   };
 
   const deleteEdge = (firstNode: number, secondNode: number) => {
+    if (isVisualizing) return;
     const newAdjacencyList = adjacencyList.slice();
     newAdjacencyList[firstNode] = newAdjacencyList[firstNode].filter(
       (val: number) => val !== secondNode
@@ -87,6 +88,7 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
     resetGraphState();
   };
   const deleteNode = (node: number) => {
+    if (isVisualizing) return;
     let newAdjacencyList = adjacencyList.map((val: Array<number>) => {
       //remove node from neighbours and decrement all nodes bigger than the
       //removed node
@@ -197,6 +199,11 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
     setVisualizationSpeed(speed);
   };
 
+  const changeZoomPercentage = (percentage: number) => {
+    if (isVisualizing) return;
+    setZoomPercentage(percentage);
+  };
+
   const clearCanvas = () => {
     if (isVisualizing) return;
     setVisited([]);
@@ -213,7 +220,7 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
         onDirectedEdgeClick={() => setIsConnectingDirected(true)}
         adjacencyList={adjacencyList}
         addNewNode={addNewNode}
-        setZoomPercentage={setZoomPercentage}
+        setZoomPercentage={changeZoomPercentage}
         zoomPercentage={zoomPercentage}
         visualizationSpeed={visualizationSpeed}
         setVisualizationSpeed={changeVisualizationSpeed}
