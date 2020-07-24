@@ -13,6 +13,7 @@ import Algorithms from '../../models/Algorithms';
 import AlgorithmsDescription from './AlgorithmsDescription/AlgorithmsDescription';
 import ScrollContainer from './ScrollContainer';
 import Authors from './Authors/Authors';
+import AlgorithmSettings from './AlgorithmSettings/AlgorithmSettings';
 
 interface Props {
   adjacencyList: Array<Array<number>>;
@@ -65,8 +66,9 @@ const SideNav: React.FC<Props> = (props: Props): ReactElement => {
             content={availableAlgorithms}
           ></Dropdown>
         </Row>
-        <ItemText>Starting Node</ItemText>
 
+        <AlgorithmSettings></AlgorithmSettings>
+        <ItemText>Starting Node</ItemText>
         <Row justifyContent="center">
           <Dropdown
             selectedTile={props.startingNode}

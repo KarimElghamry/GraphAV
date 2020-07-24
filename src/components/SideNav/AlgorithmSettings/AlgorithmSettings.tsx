@@ -1,9 +1,10 @@
 import React, {ReactElement} from 'react';
+import ItemText from '../ItemText';
 
 const AlgorithmSettings: React.FC = (): ReactElement => {
   return (
     <div>
-      <div></div>
+      <ItemText>Max Depth</ItemText>
     </div>
   );
 };
