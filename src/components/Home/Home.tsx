@@ -1,4 +1,4 @@
-import React, { ReactElement, useState } from 'react';
+import React, {ReactElement, useState} from 'react';
 import Navbar from '../Navbar/Navbar';
 import SideNav from '../SideNav/SideNav';
 import GraphCanvas from '../GraphCanvas/GraphCanvas';
@@ -7,7 +7,8 @@ import algorithms from '../../algorithms';
 import Algorithms from '../../models/Algorithms';
 import NodeInfo from '../../models/NodeInfo';
 import CreateEdgeModal from '../CreateEdgeModal/CreateEdgeModal';
-import { v4 as uuidv4 } from 'uuid';
+import {v4 as uuidv4} from 'uuid';
+import AlgorithmOptions from '../../models/AlgorithmOptions';
 
 interface HomeProps {
   changeTheme: Function;
@@ -33,6 +34,8 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
   const [isConnectingDirected, setIsConnectingDirected] = useState<boolean>(
     false
   );
+
+  const [algorithmOptions, setAlgorithmOptions] = useState<AlgorithmOptions>();
 
   const resetGraphState = () => {
     setVisited([]);
@@ -169,7 +172,7 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
           visualizationSpeed,
           setVisited,
           setGraphInfo,
-          setCurrentEdge,
+          setCurrentEdge
         );
         break;
       default:
