@@ -40,6 +40,12 @@
 
 **[✔]** Dijkstra (with shortest paths calculations)
 
+**[⛏]** Bellman-Ford (to be implemented)
+
+**[⛏]** Floyd-Warshall (to be implemented)
+
+**[⛏]** A\* (to be implemented)
+
 **🎉 If you have any further suggested algorithms, feel free to open an issue! 😎**
 
 ## Demos
