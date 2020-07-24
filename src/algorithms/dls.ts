@@ -18,7 +18,7 @@ const dlsWrapper = async (
     setVisited,
     visualizationSpeed,
     setCurrentEdge,
-    0,
+    -1,
     maxDepth,
     0
   );
