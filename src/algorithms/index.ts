@@ -11,7 +11,7 @@ const algorithms = {
   bfs: bfs,
   bellmanFord: bellmanFord,
   iddfs: iddfs,
-  dls: dls
+  dls: dls,
 };
 
 export default algorithms;
