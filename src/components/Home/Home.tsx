@@ -21,7 +21,6 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
   const [visited, setVisited] = useState<Array<number>>([]);
   const [currentEdge, setCurrentEdge] = useState<[number, number]>([-1, -1]);
   const [graphInfo, setGraphInfo] = useState<Array<NodeInfo>>([]);
-  const [startingNode, setStartingNode] = useState<number>(0);
   const [selectedAlgorithm, setSelectedAlgorithm] = useState<Algorithms>(
     Algorithms.dfs
   );
@@ -36,8 +35,7 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
   );
 
   const [algorithmOptions, setAlgorithmOptions] = useState<AlgorithmOptions>({
-    depthLimit: 0,
-    endNode: 0,
+    startNode: 0,
   });
 
   const resetGraphState = () => {
@@ -137,6 +135,8 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
     setCurrentEdge([-1, -1]);
     setGraphInfo([]);
 
+    const startingNode = algorithmOptions.startNode ?? 0;
+
     switch (selectedAlgorithm) {
       case Algorithms.dfs:
         await algorithms.dfs(
@@ -203,8 +203,6 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
       <SideNav
         onUndirectedEdgeClick={() => setIsConnectingUndirected(true)}
         onDirectedEdgeClick={() => setIsConnectingDirected(true)}
-        startingNode={startingNode}
-        setStartingNode={setStartingNode}
         adjacencyList={adjacencyList}
         addNewNode={addNewNode}
         setZoomPercentage={setZoomPercentage}

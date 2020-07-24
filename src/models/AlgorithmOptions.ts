@@ -1,5 +1,6 @@
 interface AlgorithmOptions {
   depthLimit?: number;
+  startNode?: number;
   endNode?: number;
 }
 

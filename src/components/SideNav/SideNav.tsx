@@ -19,8 +19,6 @@ import AlgorithmOptions from '../../models/AlgorithmOptions';
 interface Props {
   adjacencyList: Array<Array<number>>;
   addNewNode: () => void;
-  startingNode: number;
-  setStartingNode: Function;
   setZoomPercentage: Function;
   zoomPercentage: number;
   onUndirectedEdgeClick: VoidFunction;
@@ -74,8 +72,6 @@ const SideNav: React.FC<Props> = (props: Props): ReactElement => {
           algorithmOptions={props.algorithmOptions}
           setAlgorithmOptions={props.setAlgorithmOptions}
           selectedAlgorithm={props.selectedAlgorithm}
-          startingNode={props.startingNode}
-          setStartingNode={props.setStartingNode}
           adjacencyList={props.adjacencyList}
         ></AlgorithmSettings>
 
