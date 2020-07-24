@@ -179,7 +179,7 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
           setVisited,
           visualizationSpeed,
           setCurrentEdge,
-          3
+          3 //TODO: change to maximum depth input by user
         );
         break;
       default:
