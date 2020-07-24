@@ -37,10 +37,10 @@ const dls = async (
 ) => {
   if (visited.includes(node)) return;
   if (currentDepth === maxDepth) return;
+  await helpers.asyncTimout(visualizationSpeed);
   visited.push(node);
   setVisited(visited.slice());
   setCurrentEdge([previousNode, node]);
-  await helpers.asyncTimout(visualizationSpeed);
 
   for (const neighbour of adjacencyList[node])
     await dls(
