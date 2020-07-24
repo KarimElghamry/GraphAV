@@ -1,13 +1,13 @@
-import React, { ReactElement, useState } from 'react';
-import Navbar from '../Navbar/Navbar';
-import SideNav from '../SideNav/SideNav';
-import GraphCanvas from '../GraphCanvas/GraphCanvas';
-import VisualizeButton from '../VisualizeButton/VisualizeButton';
-import algorithms from '../../algorithms';
-import Algorithms from '../../models/Algorithms';
-import NodeInfo from '../../models/NodeInfo';
-import CreateEdgeModal from '../CreateEdgeModal/CreateEdgeModal';
-import { v4 as uuidv4 } from 'uuid';
+import React, { ReactElement, useState } from "react";
+import Navbar from "../Navbar/Navbar";
+import SideNav from "../SideNav/SideNav";
+import GraphCanvas from "../GraphCanvas/GraphCanvas";
+import VisualizeButton from "../VisualizeButton/VisualizeButton";
+import algorithms from "../../algorithms";
+import Algorithms from "../../models/Algorithms";
+import NodeInfo from "../../models/NodeInfo";
+import CreateEdgeModal from "../CreateEdgeModal/CreateEdgeModal";
+import { v4 as uuidv4 } from "uuid";
 
 interface HomeProps {
   changeTheme: Function;
@@ -169,7 +169,16 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
           visualizationSpeed,
           setVisited,
           setGraphInfo,
-          setCurrentEdge,
+          setCurrentEdge
+        );
+        break;
+      case Algorithms.iddfs:
+        await algorithms.iddfs(
+          adjacencyList,
+          startingNode,
+          setVisited,
+          visualizationSpeed,
+          setCurrentEdge
         );
         break;
       default:
