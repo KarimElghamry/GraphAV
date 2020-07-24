@@ -5,6 +5,7 @@ enum Algorithms {
   prim = "Prim",
   bellmanFord = "Bellman-Ford",
   iddfs = "IDDFS",
+  dls = "DLS"
 }
 
 export default Algorithms;
