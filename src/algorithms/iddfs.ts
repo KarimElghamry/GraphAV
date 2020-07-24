@@ -2,7 +2,6 @@ import asyncTimout from "../helpers/asyncTimout";
 
 let visited: Array<number> = []; // frontier
 let toVisit: Array<number> = []; // includes nodes that are not reached in the current iteration
-let maxDepth = 0;
 
 const iddfsWrapper = async (
   adjacencyList: Array<Array<number>>,
@@ -13,7 +12,7 @@ const iddfsWrapper = async (
 ) => {
   // init
   toVisit = [0];
-  maxDepth = 0;
+  let maxDepth = 0;
 
   // main loop
   while (toVisit.length > 0) {
@@ -30,8 +29,8 @@ const iddfsWrapper = async (
       setVisited,
       visualizationSpeed,
       setCurrentEdge,
-      -1,
       maxDepth,
+      -1,
       0
     );
     maxDepth += 1;
@@ -45,23 +44,23 @@ const iddfs = async (
   setVisited: Function,
   visualizationSpeed: number,
   setCurrentEdge: Function,
-  previousNode: number,
   maxDepth: number,
+  previousNode: number,
   currentDepth: number
 ) => {
   if (visited.includes(node)) return;
 
   // visit node
+  toVisit = toVisit.filter((el) => el !== node);
   visited.push(node);
   setVisited(visited.slice());
   setCurrentEdge([previousNode, node]);
   await asyncTimout(visualizationSpeed);
-
   if (currentDepth === maxDepth) {
     // if next depth beyond max depth, add next level nodes to toVisit
     for (const neighbour of adjacencyList[node])
       if (!visited.includes(neighbour)) toVisit.push(neighbour);
-    maxDepth += 1;
+
     return;
   } else {
     for (const neighbour of adjacencyList[node])
@@ -71,8 +70,8 @@ const iddfs = async (
         setVisited,
         visualizationSpeed,
         setCurrentEdge,
-        node,
         maxDepth,
+        node,
         currentDepth + 1
       );
   }
