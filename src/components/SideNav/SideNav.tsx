@@ -38,6 +38,8 @@ const availableAlgorithms: Array<Algorithms> = [
   Algorithms.bfs,
   Algorithms.dijkstra,
   Algorithms.bellmanFord,
+  Algorithms.iddfs,
+  Algorithms.dls
 ];
 
 const SideNav: React.FC<Props> = (props: Props): ReactElement => {
