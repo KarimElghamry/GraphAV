@@ -14,6 +14,7 @@ import AlgorithmsDescription from './AlgorithmsDescription/AlgorithmsDescription
 import ScrollContainer from './ScrollContainer';
 import Authors from './Authors/Authors';
 import AlgorithmSettings from './AlgorithmSettings/AlgorithmSettings';
+import AlgorithmOptions from '../../models/AlgorithmOptions';
 
 interface Props {
   adjacencyList: Array<Array<number>>;
@@ -29,6 +30,8 @@ interface Props {
   clearCanvas: Function;
   selectedAlgorithm: Algorithms;
   setSelectedAlgorithm: Function;
+  algorithmOptions: AlgorithmOptions;
+  setAlgorithmOptions: Function;
 }
 
 const availableAlgorithms: Array<Algorithms> = [
@@ -68,7 +71,6 @@ const SideNav: React.FC<Props> = (props: Props): ReactElement => {
           ></Dropdown>
         </Row>
 
-        <AlgorithmSettings></AlgorithmSettings>
         <ItemText>Starting Node</ItemText>
         <Row justifyContent="center">
           <Dropdown
@@ -79,6 +81,11 @@ const SideNav: React.FC<Props> = (props: Props): ReactElement => {
             })}
           ></Dropdown>
         </Row>
+        <AlgorithmSettings
+          algorithmOptions={props.algorithmOptions}
+          setAlgorithmOptions={props.setAlgorithmOptions}
+        ></AlgorithmSettings>
+
         <Row justifyContent="center">
           <AlgorithmsDescription
             selectedAlgorithm={props.selectedAlgorithm}

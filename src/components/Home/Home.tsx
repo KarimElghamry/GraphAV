@@ -35,7 +35,10 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
     false
   );
 
-  const [algorithmOptions, setAlgorithmOptions] = useState<AlgorithmOptions>();
+  const [algorithmOptions, setAlgorithmOptions] = useState<AlgorithmOptions>({
+    depthLimit: 0,
+    endNode: 0,
+  });
 
   const resetGraphState = () => {
     setVisited([]);
@@ -211,6 +214,8 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
         clearCanvas={clearCanvas}
         selectedAlgorithm={selectedAlgorithm}
         setSelectedAlgorithm={setSelectedAlgorithm}
+        algorithmOptions={algorithmOptions}
+        setAlgorithmOptions={setAlgorithmOptions}
       />
       <Navbar
         onHelpClick={props.onHelpClick}

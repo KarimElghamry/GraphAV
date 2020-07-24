@@ -4,7 +4,10 @@ import themes from '../../../../themes';
 const Container = styled.input`
   padding-left: 10px;
   padding-right: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
   font-size: 18px;
+  font-family: 'Ramabhadra';
   width: 100px;
   height: 30px;
   border: none;
