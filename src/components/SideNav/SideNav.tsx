@@ -84,6 +84,7 @@ const SideNav: React.FC<Props> = (props: Props): ReactElement => {
         <AlgorithmSettings
           algorithmOptions={props.algorithmOptions}
           setAlgorithmOptions={props.setAlgorithmOptions}
+          selectedAlgorithm={props.selectedAlgorithm}
         ></AlgorithmSettings>
 
         <Row justifyContent="center">
