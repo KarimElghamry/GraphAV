@@ -1,6 +1,6 @@
 import helpers from "../helpers";
 
-const visited: Array<number> = [];
+let visited: Array<number> = [];
 
 const dlsWrapper = async (
   adjacencyList: Array<Array<number>>,
@@ -10,6 +10,8 @@ const dlsWrapper = async (
   setCurrentEdge: Function,
   maxDepth: number
 ) => {
+  visited = [];
+  setVisited([]);
   await dls(
     adjacencyList,
     startingNode,
