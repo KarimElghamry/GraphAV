@@ -5,7 +5,7 @@ interface Props {
 }
 
 const Container = styled.div<Props>`
-  z-index: 999;
+  z-index: 1;
   position: fixed;
   left: calc(100% - 150px - 20px);
   top: calc(100% - 35px - 20px);
