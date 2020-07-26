@@ -12,6 +12,10 @@ interface NavbarProps {
 }
 
 const Navbar: React.FC<NavbarProps> = (props: NavbarProps): ReactElement => {
+  const openUrl = (url: string) => {
+    window.open(url, '_blank')?.focus();
+  };
+
   return (
     <Container>
       <Row justifyContent="center">
@@ -20,7 +24,9 @@ const Navbar: React.FC<NavbarProps> = (props: NavbarProps): ReactElement => {
 
       <Row justifyContent="space-evenly" margin="0 18px">
         <ThemeSwitch changeTheme={props.changeTheme}></ThemeSwitch>
-        <GithubLogo></GithubLogo>
+        <GithubLogo
+          onClick={() => openUrl('https://github.com/KarimElghamry/GraphAV')}
+        ></GithubLogo>
         <HelpIcon onClick={() => props.onHelpClick()}></HelpIcon>
       </Row>
     </Container>
