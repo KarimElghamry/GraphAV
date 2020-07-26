@@ -8,6 +8,7 @@ import ArrowContainer from './ArrowContainer';
 
 interface Props {
   children?: Array<ReactElement>;
+  onTutorialExit: () => void;
 }
 
 const Carousel: React.FC<Props> = (props: Props): ReactElement => {
@@ -19,7 +20,7 @@ const Carousel: React.FC<Props> = (props: Props): ReactElement => {
 
   const scrollNext = () => {
     if (currentSelection === (props.children?.length ?? 1) - 1) {
-      setCurrentSelection(0);
+      props.onTutorialExit();
     } else {
       setCurrentSelection((prev) => prev + 1);
     }
@@ -27,7 +28,7 @@ const Carousel: React.FC<Props> = (props: Props): ReactElement => {
 
   const scrollPrevious = () => {
     if (currentSelection === 0) {
-      setCurrentSelection((props.children?.length ?? 1) - 1);
+      return;
     } else {
       setCurrentSelection((prev) => prev - 1);
     }

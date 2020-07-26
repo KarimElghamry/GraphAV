@@ -16,7 +16,7 @@ const Tutorial: React.FC<Props> = (props: Props): ReactElement => {
   return (
     <Modal isVisible={props.isVisible} onExit={props.onExit}>
       <div style={{width: '600px', height: '500px'}}>
-        <Carousel>
+        <Carousel onTutorialExit={props.onExit}>
           <WelcomeScreen></WelcomeScreen>
           <ContentContainer>
             <AddNodeTut />
