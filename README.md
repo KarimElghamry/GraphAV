@@ -28,6 +28,8 @@
 
 **[⛏]** Weighted edges (to be implemented)
 
+**[⛏]** Touch screen support (to be implemented)
+
 ## Available Algorithms
 
 **[✔]** DFS - Depth First Search
