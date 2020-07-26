@@ -50,7 +50,7 @@
 
 ## Demos
 
-<table>
+<table style="font-weight:bold;">
   <tr>
     <td align="center">DFS</td>
      <td align="center">IDDFS</td>
