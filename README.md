@@ -1,4 +1,6 @@
 # GraphAV
+[<img src="https://img.shields.io/website?up_message=Github%20Pages&url=https%3A%2F%2Fkarimelghamry.github.io%2FGraphAV%2F">](https://karimelghamry.github.io/GraphAV/) <img src="https://img.shields.io/github/license/karimelghamry/GraphAV"> <img src="https://img.shields.io/github/issues-raw/karimelghamry/GraphAV">
+<img src="https://img.shields.io/github/issues-pr-closed/karimelghamry/GraphAV"> <img src="https://img.shields.io/github/contributors/karimelghamry/GraphAV">
 
 <p align="center"><img height="350px" src="screenshots/GraphAV.png"></p>
 
