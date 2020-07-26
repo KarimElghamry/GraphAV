@@ -6,6 +6,8 @@
 
 - deployed at: https://karimelghamry.github.io/GraphAV/
 
+**NOTE: touch screen is still not supported. Use a PC/Laptop for a better experience.**
+
 ### Show some :heart: and :star: the repo to support the project
 
 ## Features
