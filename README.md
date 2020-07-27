@@ -34,6 +34,8 @@
 
 **[⛏]** Touch screen support (to be implemented)
 
+**[⛏]** Save/share graphs (to be implemented)
+
 ## Available Algorithms
 
 **[✔]** DFS - Depth First Search
