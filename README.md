@@ -52,6 +52,10 @@
 
 **[⛏]** A\* (to be implemented)
 
+**[⛏]** Kosaraju (to be implemented)
+
+**[⛏]** Tarjan's Strongly Connected Components\* (to be implemented)
+
 **🎉 If you have any further suggested algorithms, feel free to open an issue! 😎**
 
 ## Demos
